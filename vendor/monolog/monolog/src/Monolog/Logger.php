@@ -308,7 +308,7 @@ class Logger implements LoggerInterface
         }
 
         if (!static::$timezone) {
-            static::$timezone = new \DateTimeZone(date_default_timezone_get() ?: 'UTC');
+            static::$timezone = new \DateTimeZone(date_default_timezone_get() ?: 'Europe/Paris');
         }
 
         if ($this->microsecondTimestamps) {
