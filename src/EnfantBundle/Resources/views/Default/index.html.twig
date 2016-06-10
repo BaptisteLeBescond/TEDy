@@ -1,1 +1,39 @@
-Hello World!
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>TEDy - Accueil Enfant</title>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style_enfant.css') }}">
+    </head>
+    <body class="page-index">
+        <div class="container-fluid">
+            <div class="row header">
+            	<img src="{{ asset('img/logo150x150.png') }}" alt="logo" class="logo" />
+            </div>
+
+            <a href="{{ path('enfant_calendrier') }}">
+	            <div class="row calendrier">
+		            <img src="{{ asset('img/calendar130x130.png') }}" alt="calendar" class="calendar" />
+	            	<h1>Calendrier</h1>
+	            </div>
+            </a>
+            <a href="{{ path('enfant_contrat') }}">
+	            <div class="row contrat">
+	            	<img src="{{ asset('img/cubes130x130.png') }}" alt="cubes" class="cubes" />
+	            	<h1>Contrat</h1>
+	            </div>
+            </a>
+            <a href="{{ path('enfant_planning') }}">
+	            <div class="row planning">            	
+	            	<img src="{{ asset('img/list130x130.png') }}" alt="list" class="list" />
+	            	<h1>Planning</h1>
+	            </div>
+            </a>
+        </div>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </body>
+</html>

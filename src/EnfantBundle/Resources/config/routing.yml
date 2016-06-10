@@ -1,3 +1,15 @@
 enfant_homepage:
     path:     /
     defaults: { _controller: EnfantBundle:Default:index }
+
+enfant_calendrier:
+    path:     /calendrier
+    defaults: { _controller: EnfantBundle:Default:calendrier }
+
+enfant_contrat:
+    path:     /contrat
+    defaults: { _controller: EnfantBundle:Default:contrat }
+
+enfant_planning:
+    path:     /planning
+    defaults: { _controller: EnfantBundle:Default:planning }

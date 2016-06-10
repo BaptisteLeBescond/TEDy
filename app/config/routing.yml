@@ -1,18 +1,18 @@
 sequence:
     resource: "@SequenceBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /sequence
 
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /user
 
 enfant:
     resource: "@EnfantBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /enfant
 
 educateur:
     resource: "@EducateurBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /educateur
 
 app:
     resource: "@AppBundle/Controller/"

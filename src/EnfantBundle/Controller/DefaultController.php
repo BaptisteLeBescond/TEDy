@@ -10,4 +10,19 @@ class DefaultController extends Controller
     {
         return $this->render('EnfantBundle:Default:index.html.twig');
     }
+
+    public function calendrierAction()
+    {
+        return $this->render('EnfantBundle:Default:calendrier.html.twig');
+    }
+
+    public function contratAction()
+    {
+        return $this->render('EnfantBundle:Default:contrat.html.twig');
+    }
+
+    public function planningAction()
+    {
+        return $this->render('EnfantBundle:Default:planning.html.twig');
+    }
 }
