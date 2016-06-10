@@ -1,0 +1,3 @@
+educateur_homepage:
+    path:     /
+    defaults: { _controller: EducateurBundle:Default:index }

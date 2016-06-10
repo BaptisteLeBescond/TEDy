@@ -1,3 +1,19 @@
+sequence:
+    resource: "@SequenceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+enfant:
+    resource: "@EnfantBundle/Resources/config/routing.yml"
+    prefix:   /
+
+educateur:
+    resource: "@EducateurBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

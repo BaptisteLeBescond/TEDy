@@ -1,0 +1,3 @@
+sequence_homepage:
+    path:     /
+    defaults: { _controller: SequenceBundle:Default:index }
