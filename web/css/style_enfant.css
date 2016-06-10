@@ -1,0 +1,116 @@
+/*style_enfant.css*/
+
+
+/*** HEADER ***/
+
+body.page-planning,
+body.page-contrat,
+body.page-calendrier {
+	overflow-x: hidden;
+}
+
+.bleu {
+	background-color: #3a405a;
+	height: 20vh;
+}
+
+.bleuclair {
+	background-color: #6f7aa9;
+	height: 5vh;
+}
+
+.page-planning img.logo,
+.page-contrat img.logo,
+.page-calendrier img.logo {
+	padding-left: 45%;
+	position: absolute;
+	top: 2%;
+}
+
+
+
+
+/*** index.html.twig ***/
+
+body.page-index {
+	overflow: hidden;
+}
+
+div .header {
+	background-color: #3a405a;
+	height: 25vh;
+}
+
+.page-index img.logo {
+	padding-left: 45%;
+}
+
+div .calendrier {
+	background-color: #6f7aa9;
+	height: 25vh;
+}
+
+div .calendrier h1 {
+	color: white;
+	float: right;
+	padding-right: 25%;
+    padding-top: 3%;
+    font-size: 50px;
+}
+
+img.calendar {
+	padding-left: 30%;
+    padding-top: 1%;
+}
+
+div .contrat {
+	background-color: white;
+	height: 25vh;
+}
+
+div .contrat h1 {
+	color: #ffa527;
+	float: right;
+	padding-right: 28%;
+    padding-top: 3%;
+    font-size: 50px;
+}
+
+img.cubes {
+	padding-left: 30%;
+    padding-top: 1%;
+}
+
+div .planning {
+	background-color: #ffa527;
+	height: 25vh;
+}
+
+div .planning h1 {
+	color: #3a405a;
+	float: right;
+	padding-right: 26%;
+    padding-top: 3%;
+    font-size: 50px;
+}
+
+img.list {
+	padding-left: 30%;
+    padding-top: 1%;
+}
+
+
+
+
+/*** calendrier.html.twig ***/
+
+div.button {
+	padding-top: 1%;
+}
+
+button.btn {
+	background-color: #ffa527;
+	font-size: 40px;
+	padding-left: 5%;
+	padding-right: 5%;
+}
