@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>TEDy - {% block title %}{% endblock %}</title>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style_enfant.css') }}">
@@ -11,11 +12,11 @@
     <body {% block bodyclass %}{% endblock %}>
         <div class="container-fluid">
             <header class="row">
-                <div class="row bleu">
+                <div class="bleu">
+                    <img src="{{ asset('img/logo/logo150x150.png') }}" alt="logo" class="logo img-responsive" />
                 </div>
-                <div class="row bleuclair">
+                <div class="bleuclair {% block hidden %}{% endblock %}">
                 </div>
-                <img src="{{ asset('img/logo/logo150x150.png') }}" alt="logo" class="logo" />
             </header>
 
             {% block body %}{% endblock %}
