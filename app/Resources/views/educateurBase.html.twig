@@ -8,6 +8,19 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style_educateur.css') }}">
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        <script type="text/javascript">
+            function openmenu()   {
+                var div = document.getElementById('conteneur-menu'),
+                display = getComputedStyle(div, null).display;
+
+                if(display == "block")  {
+                    document.getElementById('conteneur-menu').style.display = "none";
+                }else   {
+                    document.getElementById('conteneur-menu').style.display = "block";
+                }
+            }
+        </script>
     </head>
     <body {% block bodyclass %}{% endblock %}>
         <div class="container-fluid">
@@ -15,7 +28,24 @@
                 <div class="bleu">
                     <img src="{{ asset('img/logo/logo150x150.png') }}" alt="logo" class="logo img-responsive" />
                 </div>
-                <div class="bleuclair">
+                <div class="bleuclair row">
+                  <img src="{{ asset('img/list.png') }}" alt="icone de menu" class="icone-menu img-responsive" onClick="openmenu()" />
+                  <div class="conteneur-menu" id="conteneur-menu">
+                          <ul class="menu-principal col-lg-12 col-md-12 col-sm-12 col-xs-6">
+                            <li class="col-md-2 col-sm-2 col-xs-12">
+                              <a href="#">Accueil</a>
+                            </li>
+                            <li class="col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1 col-xs-12">
+                              <a href="#">Calendrier</a>
+                              </li>
+                            <li class="col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-2 col-xs-12">
+                              <a href="#">Administration</a>
+                            </li>
+                            <li class="col-md-2 col-sm-2 col-xs-12">
+                              <a href="#">Mon compte</a>
+                             </li>
+                          </ul>
+                  </div>
                 </div>
             </header>
 

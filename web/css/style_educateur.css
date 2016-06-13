@@ -13,6 +13,7 @@ body{
     background-color: #6f7aa9;
     height: 50px;
 }
+
 ul.menu-principal {
   list-style: none;
   text-align: center;
@@ -25,11 +26,21 @@ ul.menu-principal > li a {
   color: white;
   vertical-align: middle;
 }
-.separe {
-  margin-right: 30%;
+ul.menu-principal > li a:hover {
+  text-decoration: none;
+  padding: 0px 5px;
+  border-radius: 3px;
+  background-color: #3a405a;
 }
+img.icone-menu {
+  margin: 5px auto auto 30px;
+  display: none;
+}
+
 img.logo {
     margin: 0px auto;
+    position: relative;
+    z-index: 2;
 }
 
 .list-etapes{
@@ -75,18 +86,34 @@ img.logo {
 
 /*** RESPONSIVE ***/
 
+@media screen and (max-width: 768px) {
+    .conteneur-menu {
+      display: none;
+    }
+    img.icone-menu {
+      display: block;
+    }
+    ul.menu-principal {
+      text-align: left;
+      min-width: 200px;
+      max-width: 200px;
+      background-color: #6f7aa9;
+      border-radius: 5px;
+      position: absolute;
+      z-index: 1;
+    }
+    ul.menu-principal > li {
+      font-size: 1.2em;
+      padding: 5px;
+    }
+}
+
 @media screen and (min-width: 768px) {
     ul.menu-principal > li {
       font-size: 1.4em;
     }
-    .alignement-gauche {
-      text-align: left;
-    }
-    .alignement-droite {
-      text-align: right;
-    }
-
 }
+
 @media screen and (min-width: 1200px) {
   ul.menu-principal > li {
     font-size: 1.8em;
