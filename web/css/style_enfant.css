@@ -7,13 +7,15 @@
 
 body{
 	font-family: Andika;
+	margin: 0;
 }
 
 /*** HEADER ***/
 
 body.page-planning,
 body.page-contrat,
-body.page-calendrier {
+body.page-calendrier,
+body.page-login {
 	overflow-x: hidden;
 }
 
@@ -90,12 +92,12 @@ div .planning h1 {
 
 /*** calendrier.html.twig ***/
 
-div.button {
+.page-calendrier div.button {
 	padding-top: 1%;
 	outline-style: none;
 }
 
-button.btn {
+.page-calendrier button.btn {
 	background-color: #ffa527;
 	font-size: 40px;
 	padding-left: 5%;
@@ -103,6 +105,60 @@ button.btn {
 	outline-style: none;
 
 }
+
+
+
+/*** login.html.twig ***/
+
+.page-login form {
+	padding-top: 2%;
+	padding-left: 2%;
+	width: 100%;
+	margin: auto;
+}
+
+.page-login input {
+	outline-style: none;
+}
+
+.page-login input[type="text"],
+.page-login input[type="password"] {
+	width: 40%;
+	border-radius: 6px;
+	padding-bottom: 2%;
+}
+
+.page-login label {
+    font-size: 20px;
+}
+
+.page-login label[for="password"] {
+	padding-top: 3%;
+}
+
+.page-login label[for="remember_me"] {
+	padding-top: 3%;
+	font-size: 15px;
+}
+
+.page-login .row.button {
+	padding-top: 3%;
+}
+
+.page-login .btn {
+	background-color: #3a405a;	
+	color: white;
+	border-radius: 6px;
+	padding-left: 12%;
+    padding-right: 12%;
+    font-size: 20px;
+}
+
+.page-login a.inscription {
+	color: #3a405a;
+	padding-left: 14%;
+}
+
 
 /*** responsive ***/
 
