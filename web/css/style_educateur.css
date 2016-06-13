@@ -1,44 +1,80 @@
 @font-face {
-  	font-family: "Andika";
-  	src: url("../font/AndBasR.ttf");
+    font-family: "Andika";
+    src: url("../font/AndBasR.ttf");
 }
-
 body{
-	font-family: Andika;
+    font-family: Andika;
 }
-
 .bleu {
-	background-color: #3a405a;
-	height: 80px;
+    background-color: #3a405a;
+    height: 80px;
 }
-
 .bleuclair {
-	background-color: #6f7aa9;
-	height: 50px;
+    background-color: #6f7aa9;
+    height: 50px;
 }
-
 ul.menu-principal {
   list-style: none;
   text-align: center;
 }
-
 ul.menu-principal > li {
   display: inline;
   font-size: 1.6em;
 }
-
 ul.menu-principal > li a {
   color: white;
   vertical-align: middle;
 }
-
 .separe {
   margin-right: 30%;
 }
 
 img.logo {
-	margin: 0px auto;
+    margin: 0px auto;
 }
+
+.list-etapes{
+	border: 1px solid black;
+	margin:10px;
+}
+.etape{
+	padding: 50px;
+	cursor: move;
+}
+.etape p{
+	height: 0px;
+	text-align: center;
+	font-size: 14px;
+}
+
+.dropzone {
+  background-color: #ccc;
+  border: 1px solid black;
+  height: 100px;
+  transition: background-color 0.3s;
+}
+
+.drop-active {
+  border-color: #aaa;
+}
+
+.drag-drop {
+  display: inline-block;
+  min-width: 40px;
+  padding: 2em 0.5em;
+
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+
+  transition: background-color 0.3s;
+}
+
+.drag-drop.can-drop {
+  color: #000;
+  background-color: #4e4;
+}
+
+/*** RESPONSIVE ***/
 
 @media screen and (min-width: 768px) {
     ul.menu-principal > li {
@@ -48,14 +84,20 @@ img.logo {
     .alignement-gauche {
       text-align: left;
     }
-
     .alignement-droite {
       text-align: right;
     }
+
 }
 
 @media screen and (min-width: 1200px) {
   ul.menu-principal > li {
     font-size: 1.8em;
   }
+}
+
+@media screen and (max-width: 1200px){
+	.etape p{
+    	font-size: 10px;
+    }
 }

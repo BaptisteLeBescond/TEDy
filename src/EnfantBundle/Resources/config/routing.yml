@@ -13,3 +13,7 @@ enfant_contrat:
 enfant_planning:
     path:     /planning
     defaults: { _controller: EnfantBundle:Default:planning }
+
+enfant_planningencours:
+    path:     /planning
+    defaults: { _controller: EnfantBundle:Default:planningencours }
