@@ -75,4 +75,173 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set age
+     *
+     * @param integer $age
+     * @return User
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+    
+        return $this;
+    }
+
+    /**
+     * Get age
+     *
+     * @return integer 
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * Set telephone
+     *
+     * @param integer $telephone
+     * @return User
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+    
+        return $this;
+    }
+
+    /**
+     * Get telephone
+     *
+     * @return integer 
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * Set adresse_postale
+     *
+     * @param string $adressePostale
+     * @return User
+     */
+    public function setAdressePostale($adressePostale)
+    {
+        $this->adresse_postale = $adressePostale;
+    
+        return $this;
+    }
+
+    /**
+     * Get adresse_postale
+     *
+     * @return string 
+     */
+    public function getAdressePostale()
+    {
+        return $this->adresse_postale;
+    }
+
+    /**
+     * Set code_postale
+     *
+     * @param integer $codePostale
+     * @return User
+     */
+    public function setCodePostale($codePostale)
+    {
+        $this->code_postale = $codePostale;
+    
+        return $this;
+    }
+
+    /**
+     * Get code_postale
+     *
+     * @return integer 
+     */
+    public function getCodePostale()
+    {
+        return $this->code_postale;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     * @return User
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+    
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string 
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     * @return User
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+    
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string 
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+        
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+        $this->roles = array('ROLE_EDUCATEUR');
+    }
 }
