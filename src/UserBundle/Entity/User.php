@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
+ * @ORM\AttributeOverrides({
+ *      @ORM\AttributeOverride(name="email", column=@ORM\Column(type="string", name="email", length=255, nullable=true)),
+ *      @ORM\AttributeOverride(name="emailCanonical", column=@ORM\Column(type="string", name="email_canonical", length=255, nullable=true))
+ * })
  */
 class User extends BaseUser
 {
@@ -25,43 +29,43 @@ class User extends BaseUser
 
     /**
      * @var string
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=false)
      */
     private $name;
 
     /**
      * @var int
-     * @ORM\Column(name="age", type="integer")
+     * @ORM\Column(name="age", type="integer", nullable=true, unique=false)
      */
     private $age;
 
     /**
      * @var int
-     * @ORM\Column(name="telephone", type="integer")
+     * @ORM\Column(name="telephone", type="integer", nullable=true)
      */
     private $telephone;
 
     /**
      * @var string
-     * @ORM\Column(name="adresse_postale", type="string", length=255)
+     * @ORM\Column(name="adresse_postale", type="string", length=255, nullable=true, unique=false)
      */
     private $adresse_postale;
 
     /**
      * @var int
-     * @ORM\Column(name="code_postale", type="integer")
+     * @ORM\Column(name="code_postale", type="integer", nullable=true, unique=false)
      */
     private $code_postale;
 
     /**
      * @var string
-     * @ORM\Column(name="ville", type="string", length=255)
+     * @ORM\Column(name="ville", type="string", length=255, nullable=true, unique=false)
      */
     private $ville;
 
     /**
      * @var string
-     * @ORM\Column(name="photo", type="string", length=255)
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true, unique=false)
      */
     private $photo;
 
