@@ -1,0 +1,37 @@
+{% extends 'educateurBase.html.twig' %}
+
+{% block title %} Ajout d'une séquence {% endblock %}
+
+{% block bodyclass %} class="page-creer-sequence" {% endblock %}
+
+{% block body %}
+    hello {{user}}
+
+    <h1>Créez votre séquence</h1>
+    <h2>Pour l'utiliser dans vos contrats ou vos plannings</h2>
+
+    <div class="row">
+    	<div class="col-md-6">
+	    	{{form(form)}}
+	    </div>
+	    <div class="col-md-6">
+	    	<div class="dropzone">
+
+	    	</div>
+	    </div>	    
+    </div>
+    <div class="row list-etapes">
+	    {% for etape in etapes %}
+	    	<div id="etape{{loop.index}}" class="col-md-2 etape" draggable="true">
+	    		<img src="{{ asset('img/etape/') }}{{ etape.image }}" class="img-responsive">
+	    		<p>{{ etape.libelle }}</p>
+	    	</div>
+	    {% endfor %}
+	</div>
+{% endblock body %}
+
+{% block javascripts %}
+	<script type="text/javascript">
+		
+	</script>
+{% endblock %}
