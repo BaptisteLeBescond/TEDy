@@ -24,6 +24,49 @@ class User extends BaseUser
 
 
     /**
+     * @var string
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var int
+     * @ORM\Column(name="age", type="integer")
+     */
+    private $age;
+
+    /**
+     * @var int
+     * @ORM\Column(name="telephone", type="integer")
+     */
+    private $telephone;
+
+    /**
+     * @var string
+     * @ORM\Column(name="adresse_postale", type="string", length=255)
+     */
+    private $adresse_postale;
+
+    /**
+     * @var int
+     * @ORM\Column(name="code_postale", type="integer")
+     */
+    private $code_postale;
+
+    /**
+     * @var string
+     * @ORM\Column(name="ville", type="string", length=255)
+     */
+    private $ville;
+
+    /**
+     * @var string
+     * @ORM\Column(name="photo", type="string", length=255)
+     */
+    private $photo;
+
+
+    /**
      * Get id
      *
      * @return integer 
