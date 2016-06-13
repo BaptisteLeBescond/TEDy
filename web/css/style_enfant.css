@@ -117,6 +117,10 @@ div .planning h1 {
 	margin: auto;
 }
 
+.page-login input {
+	outline-style: none;
+}
+
 .page-login input[type="text"],
 .page-login input[type="password"] {
 	width: 40%;
