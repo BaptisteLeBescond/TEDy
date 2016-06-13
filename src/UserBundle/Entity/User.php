@@ -65,6 +65,11 @@ class User extends BaseUser
      */
     private $photo;
 
+    /**
+      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User")
+      */
+    private $enfant;
+
 
     /**
      * Get id
@@ -237,11 +242,44 @@ class User extends BaseUser
     {
         return $this->photo;
     }
-        
+
     public function __construct()
     {
         parent::__construct();
         // your own logic
         $this->roles = array('ROLE_EDUCATEUR');
+    }
+
+    /**
+     * Add enfant
+     *
+     * @param \UserBundle\Entity\User $enfant
+     * @return User
+     */
+    public function addEnfant(\UserBundle\Entity\User $enfant)
+    {
+        $this->enfant[] = $enfant;
+    
+        return $this;
+    }
+
+    /**
+     * Remove enfant
+     *
+     * @param \UserBundle\Entity\User $enfant
+     */
+    public function removeEnfant(\UserBundle\Entity\User $enfant)
+    {
+        $this->enfant->removeElement($enfant);
+    }
+
+    /**
+     * Get enfant
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEnfant()
+    {
+        return $this->enfant;
     }
 }
