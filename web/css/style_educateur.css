@@ -17,6 +17,45 @@ body{
 	height: 50px;
 }
 
+ul.menu-principal {
+  list-style: none;
+  text-align: center;
+}
+
+ul.menu-principal > li {
+  display: inline;
+  font-size: 1.6em;
+}
+
+ul.menu-principal > li a {
+  color: white;
+  vertical-align: middle;
+}
+
+.separe {
+  margin-right: 30%;
+}
+
 img.logo {
 	margin: 0px auto;
+}
+
+@media screen and (min-width: 768px) {
+    ul.menu-principal > li {
+      font-size: 1.4em;
+    }
+
+    .alignement-gauche {
+      text-align: left;
+    }
+
+    .alignement-droite {
+      text-align: right;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+  ul.menu-principal > li {
+    font-size: 1.8em;
+  }
 }
