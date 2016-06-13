@@ -145,13 +145,14 @@ div .planning h1 {
 	background-color: #3a405a;	
 	color: white;
 	border-radius: 6px;
-	padding-left: 9%;
-    padding-right: 9%;
+	padding-left: 12%;
+    padding-right: 12%;
     font-size: 20px;
 }
 
 .page-login a.inscription {
 	color: #3a405a;
+	padding-left: 14%;
 }
 
 
