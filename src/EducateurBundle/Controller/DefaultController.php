@@ -8,6 +8,9 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('EducateurBundle:Default:index.html.twig');
+    	$em = $this->getDoctrine()->getManager();
+    	$user = $this->getUser();
+
+        return $this->render('EducateurBundle:Default:index.html.twig', array('user' => $user));
     }
 }

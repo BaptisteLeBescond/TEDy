@@ -1,5 +1,13 @@
 /*style_enfant.css*/
 
+@font-face {
+  	font-family: "Andika";
+  	src: url("../font/AndBasR.ttf");
+}
+
+body{
+	font-family: Andika;
+}
 
 /*** HEADER ***/
 

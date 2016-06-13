@@ -1,1 +1,9 @@
-Hello World!
+{% extends 'educateurBase.html.twig' %}
+
+{% block title %} Tableau de bord {% endblock %}
+
+{% block bodyclass %} class="page-index" {% endblock %}
+
+{% block body %}
+    hello {{user}}
+{% endblock body %}

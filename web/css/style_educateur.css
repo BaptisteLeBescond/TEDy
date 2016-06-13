@@ -1,0 +1,22 @@
+@font-face {
+  	font-family: "Andika";
+  	src: url("../font/AndBasR.ttf");
+}
+
+body{
+	font-family: Andika;
+}
+
+.bleu {
+	background-color: #3a405a;
+	height: 80px;
+}
+
+.bleuclair {
+	background-color: #6f7aa9;
+	height: 50px;
+}
+
+img.logo {
+	margin: 0px auto;
+}
