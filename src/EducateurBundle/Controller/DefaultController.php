@@ -16,8 +16,9 @@ class DefaultController extends Controller
     {
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
+      $enfants = $user->getEnfant();
 
-        return $this->render('EducateurBundle:Default:index.html.twig', array('user' => $user));
+        return $this->render('EducateurBundle:Default:index.html.twig', array('user' => $user, 'enfants' => $enfants));
     }
 
     public function ajoutEnfantAction(Request $request)
@@ -28,7 +29,7 @@ class DefaultController extends Controller
 		$enfant = new User;
 		$enfant->setRoles(array('role' => 'ROLE_ENFANT'));
 		$enfant->setEnabled(1);
-		
+
 		$form = $this->get('form.factory')->createBuilder('form', $enfant)
 		  ->add('username',  'text', array('label' => 'Prénom','required' => true, 'attr' => array('class' => 'form-required')))
 	      ->add('name',     'text', array('label' => 'Nom','required' => true, 'attr' => array('class' => 'form-required')))
@@ -36,12 +37,12 @@ class DefaultController extends Controller
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Mot de passe'),
                 'second_options' => array('label' => 'Vérification du mot de passe')))
-	      ->add('age',   'integer', array('label' => 'Âge','required' => false, 'attr' => array('class' => 'form-required')))
-	      ->add('telephone', 'integer', array('label' => 'Téléphone','required' => false, 'attr' => array('class' => 'form-required')))
-	      ->add('adresse_postale', 'text', array('label' => 'Adresse','required' => false, 'attr' => array('class' => 'form-required')))
-	      ->add('code_postale', 'integer', array('label' => 'Code postal','required' => false, 'attr' => array('class' => 'form-required')))
-	      ->add('ville', 'text', array('label' => 'Ville','required' => false, 'attr' => array('class' => 'form-required')))
-	      ->add('photo', 'file', array('label' => 'Photo','required' => false, 'attr' => array('class' => 'form-required')))
+	      ->add('age',   'integer', array('label' => 'Âge','required' => false, 'attr' => array()))
+	      ->add('telephone', 'integer', array('label' => 'Téléphone','required' => false, 'attr' => array()))
+	      ->add('adresse_postale', 'text', array('label' => 'Adresse','required' => false, 'attr' => array()))
+	      ->add('code_postale', 'integer', array('label' => 'Code postal','required' => false, 'attr' => array()))
+	      ->add('ville', 'text', array('label' => 'Ville','required' => false, 'attr' => array()))
+	      ->add('photo', 'file', array('label' => 'Photo','required' => false, 'attr' => array()))
 	      ->add('save',      'submit')
 	      ->getForm()
 	      ;
