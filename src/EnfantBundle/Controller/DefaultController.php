@@ -27,4 +27,9 @@ class DefaultController extends Controller
     {
         return $this->render('EnfantBundle:Default:planning.html.twig');
     }
+
+    public function planningencoursAction()
+    {
+        return $this->render('EnfantBundle:Default:planningencours.html.twig');
+    }
 }
