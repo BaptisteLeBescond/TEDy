@@ -1,9 +1,16 @@
 {% extends 'enfantBase.html.twig' %}
 
-{% block title %} Bonjour {{user}} {% endblock %}
+{% block title %} 
+    Bonjour {{user}} 
+{% endblock title %}
 
-{% block bodyclass %} class="page-index" {% endblock %}
-{% block hidden %} hidden {% endblock %}
+{% block bodyclass %} 
+    class="page-index" 
+{% endblock bodyclass %}
+
+{% block hidden %} 
+    hidden 
+{% endblock hidden %}
 
 {% block body %}
     <a href="{{ path('enfant_calendrier') }}">

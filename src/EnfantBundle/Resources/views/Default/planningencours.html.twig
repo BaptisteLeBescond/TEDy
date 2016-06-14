@@ -1,17 +1,33 @@
 {% extends 'enfantBase.html.twig' %}
 
 {% block title %}
-Planning En Cours
+	Planning En Cours
 {% endblock title %}
 
 {% block bodyclass %}
-class="page-planningencours"
+	class="page-planningencours"
 {% endblock bodyclass %}
 
 {% block body %}
-hello
-{% for p in planning %}
-	{{p.libelle}}
-	toto
-{% endfor %}
+	<div class="row temps">
+		<div class="col-md-offset-5">
+			<span class="temps">00:00</span>
+		</div>
+	</div>
+	<div class="row images">
+		<div class="col-md-offset-5 col-md-1">
+			<img src="{{ asset('img/planning/play-button64.png') }}" alt="play" class="image play" />
+		</div>
+		<div class="col-md-1">
+			<img src="{{ asset('img/planning/stop64.png') }}" alt="stop" class="image stop" />
+		</div>
+	</div>
+	{% for e in planning.sequence.etapes %}
+		<div class="row">
+			<div class="col-md-offset-2 col-md-6 etape">
+				<img src="{{ asset('img/etape/') }}{{e.image}}" alt="etape" width="100" height="100" class="img-responsive" />
+				{{e.libelle}}
+			</div>
+		</div>
+	{% endfor %}
 {% endblock body %}

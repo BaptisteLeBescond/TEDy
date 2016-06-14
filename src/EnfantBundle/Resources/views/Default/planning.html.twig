@@ -1,11 +1,11 @@
 {% extends 'enfantBase.html.twig' %}
 
 {% block title %}
-Planning
+	Planning
 {% endblock title %}
 
 {% block bodyclass %}
-class="page-planning"
+	class="page-planning"
 {% endblock bodyclass %}
 
 {% block body %}
@@ -15,7 +15,7 @@ class="page-planning"
 	</div>
 	<div class="row plannings">
 		{% for planning in plannings %}
-			<a href="{{ path('enfant_planningencours' , { 'planning' : planning.id }) }}">
+			<a href="{{ path('enfant_planningencours' , { 'id' : planning.id }) }}">
 				<div class="col-md-5 planning">
 					<div class="row libelle">
 						<h3>{{planning.libelle}}</h3>

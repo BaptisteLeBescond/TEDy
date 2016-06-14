@@ -64,7 +64,9 @@ body.page-index {
    	margin-top: 7vh;
 }
 
-.page-index img.calendar, .page-index img.cubes, .page-index img.list {
+.page-index img.calendar,
+.page-index img.cubes,
+.page-index img.list {
 	height: 18vh;
 	margin: 3vh auto 0px auto;
 }
@@ -223,6 +225,29 @@ body.page-index {
 .page-planning div.images {
 	margin-left: 13%;
 	margin-bottom: 1%;
+}
+
+
+
+
+
+
+
+/*** planningencours.html.twig ***/
+
+.page-planningencours span.temps {
+	color: #ffa527;
+	font-size: 30px;
+    padding-left: 8%;
+}
+
+.page-planningencours div.images {
+	padding-top: 1%;
+	padding-bottom: 2%;
+}
+
+.page-planningencours div.etape {
+	border: 1px solid black;
 }
 
 
