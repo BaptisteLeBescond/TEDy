@@ -181,13 +181,33 @@ body.page-index {
 
 /*** planning.html.twig ***/
 
-.page-planning h1 {
-	text-align: center;
+.page-planning div.accueil a {
+	text-decoration: none;
+	color: #3a405a;
+	font-size: 20px;
+    position: absolute;
+    top: 25%;
+    left: 2%;
 }
 
-div.plannings {
+.page-planning div.accueil a img {
+	vertical-align: middle;
+	padding-right: 3px;
+}
+
+.page-planning h1 {
+	text-align: center;
+	color: #3a405a;
+}
+
+.page-planning div.plannings {
 	margin-left: 10%;
 	margin-top: 1%
+}
+
+.page-planning div.plannings a {
+	text-decoration: none;
+	color: #3a405a;
 }
 
 .page-planning div.planning {

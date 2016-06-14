@@ -9,23 +9,26 @@ class="page-planning"
 {% endblock bodyclass %}
 
 {% block body %}
-	<div class="row">
+	<div class="row accueil">
+		<a href="{{ path('enfant_homepage') }}"><img src="{{ asset( 'img/fleche/back24.png' ) }}" alt="fleche" />Accueil</a>
 		<h1>Choisis ton planning</h1>
 	</div>
 	<div class="row plannings">
 		{% for planning in plannings %}
-			<div class="col-md-5 planning">
-				<div class="row libelle">
-					<h3>{{planning.libelle}}</h3>
+			<a href="{{ path('enfant_planningencours' , { 'planning' : planning.id }) }}">
+				<div class="col-md-5 planning">
+					<div class="row libelle">
+						<h3>{{planning.libelle}}</h3>
+					</div>
+					<div class="row images">
+						{% for etape in planning.sequence.etapes | slice(0,4) %}
+							<div class="col-md-6 image">
+								<img src="{{ asset( 'img/etape/' ) }}{{etape.image}}" alt="image" width="100" height="100" class="img-responsive" />
+							</div>
+						{% endfor %}
+					</div>
 				</div>
-				<div class="row images">
-					{% for etape in planning.sequence.etapes | slice(0,4) %}
-						<div class="col-md-6 image">
-							<img src="{{ asset( 'img/etape/' ) }}{{etape.image}}" alt="image" width="100" height="100" class="img-responsive" />
-						</div>
-					{% endfor %}
-				</div>
-			</div>
+			</a>
 		{% endfor %}
 	</div>
 {% endblock body %}

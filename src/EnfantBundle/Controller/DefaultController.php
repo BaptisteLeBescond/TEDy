@@ -32,10 +32,8 @@ class DefaultController extends Controller
         return $this->render('EnfantBundle:Default:planning.html.twig', array('user' => $user , 'plannings' => $plannings));
     }
 
-    public function planningencoursAction()
+    public function planningencoursAction($planning)
     {
-        
-
-        return $this->render('EnfantBundle:Default:planningencours.html.twig');
+        return $this->render('EnfantBundle:Default:planningencours.html.twig', array('planning' => $planning));
     }
 }

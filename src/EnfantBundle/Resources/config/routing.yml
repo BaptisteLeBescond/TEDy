@@ -15,5 +15,5 @@ enfant_planning:
     defaults: { _controller: EnfantBundle:Default:planning }
 
 enfant_planningencours:
-    path:     /planning
+    path:     /planning/{planning}
     defaults: { _controller: EnfantBundle:Default:planningencours }
