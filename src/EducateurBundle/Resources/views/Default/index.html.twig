@@ -5,5 +5,39 @@
 {% block bodyclass %} class="page-index" {% endblock %}
 
 {% block body %}
-    hello {{user}}
+
+  <div class="row">
+    <div class="col-md-2 col-sm-2 col-xs-2 user-present">
+        {{user}}  |
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    		    <a href="{{ path('fos_user_security_logout') }}">
+    		        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+    		    </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row">
+      <h1 class="titre-page col-md-4 col-md-offset-1 col-sm-4 col-xs-12">
+          Tableau de bord
+      </h1>
+
+      <button type="button" class="col-md-2 col-md-offset-3 col-sm-2 col-sm-offset-3 col-xs-4 btn btn-primary bouton-ajout-enfant">
+         <a href="{{ path('educateur_enfant_ajout') }}">Ajouter un enfant</a>
+      </button>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 tableau-enfants">
+        <div class="row">
+          {% for enfant in enfants %}
+            <div class="col-md-3 col-sm-3 col-xs-4 un-enfant">
+                <img src="{{ asset('img/user/user.png') }}" alt="photo de profil de l'enfant" class="photo-profil-enfant img-responsive" />
+                <p>{{ enfant.username }} {{ enfant.name }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
 {% endblock body %}

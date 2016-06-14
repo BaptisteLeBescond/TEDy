@@ -5,6 +5,10 @@
 body{
     font-family: Andika;
 }
+
+
+/*** HEADER ***/
+
 .bleu {
     background-color: #3a405a;
     height: 80px;
@@ -42,6 +46,46 @@ img.logo {
     position: relative;
     z-index: 2;
 }
+
+/*** index.html.twig ***/
+.user-present {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: rgb(230,230,230);
+  padding: 5px;
+  border-radius: 5px;
+  min-width: 150px;
+}
+
+.titre-page {
+  color: #ffa524;
+  text-align: center;
+}
+
+.bouton-ajout-enfant {
+  font-size: 1.3em;
+  margin-top: 20px;
+  min-width: 180px;
+}
+.bouton-ajout-enfant a, .bouton-ajout-enfant a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.un-enfant{
+  padding: 5px;
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 20px;
+}
+.photo-profil-enfant {
+  width: 80px;
+  height: 80px;
+  margin: 0px auto 5px;
+}
+/*** creerSequence.html.twig ***/
 
 .list-etapes{
 	border: 1px solid black;
@@ -116,11 +160,21 @@ img.logo {
       font-size: 1.2em;
       padding: 5px;
     }
+
+    .ajout-enfant{
+      margin-left: 10px;
+    }
 }
 
 @media screen and (min-width: 768px) {
     ul.menu-principal > li {
       font-size: 1.4em;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .titre-page {
+      font-size: 2em;
     }
 }
 
