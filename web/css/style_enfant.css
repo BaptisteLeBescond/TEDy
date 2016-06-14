@@ -10,6 +10,10 @@ body{
 	margin: 0;
 }
 
+
+
+
+
 /*** HEADER ***/
 
 body.page-planning,
@@ -43,51 +47,54 @@ body.page-index {
 	overflow: hidden;
 }
 
-div .header {
+.page-index div .header {
 	background-color: #3a405a;
 	height: 25vh;
 }
 
-div .calendrier {
+.page-index div .calendrier {
 	background-color: #6f7aa9;
 	height: 25vh;
 }
 
-div .calendrier h1 {
+.page-index div .calendrier h1 {
 	color: white;
     font-size: 10vh;
     text-align: center;
    	margin-top: 7vh;
 }
 
-img.calendar, img.cubes, img.list {
+.page-index img.calendar, .page-index img.cubes, .page-index img.list {
 	height: 18vh;
 	margin: 3vh auto 0px auto;
 }
 
-div .contrat {
+.page-index div .contrat {
 	background-color: white;
 	height: 25vh;
 }
 
-div .contrat h1 {
+.page-index div .contrat h1 {
 	color: #ffa527;
     font-size: 10vh;
     text-align: center;
    	margin-top: 7vh;
 }
 
-div .planning {
+.page-index div .planning {
 	background-color: #ffa527;
 	height: 25vh;
 }
 
-div .planning h1 {
+.page-index div .planning h1 {
 	color: #3a405a;
     font-size: 10vh;
     text-align: center;
    	margin-top: 7vh;
 }
+
+
+
 
 
 /*** calendrier.html.twig ***/
@@ -105,6 +112,8 @@ div .planning h1 {
 	outline-style: none;
 
 }
+
+
 
 
 
@@ -166,6 +175,38 @@ div .planning h1 {
   text-align: center;
   font-size: 1.2em;
 }
+
+
+
+
+/*** planning.html.twig ***/
+
+.page-planning h1 {
+	text-align: center;
+}
+
+div.plannings {
+	margin-left: 10%;
+	margin-top: 1%
+}
+
+.page-planning div.planning {
+	border: 1px solid black;
+	background-color: #e0e3f4;
+	margin: 1%;
+}
+
+.page-planning div.libelle {
+	text-align: center;
+}
+
+.page-planning div.images {
+	margin-left: 13%;
+	margin-bottom: 1%;
+}
+
+
+
 
 
 /*** responsive ***/

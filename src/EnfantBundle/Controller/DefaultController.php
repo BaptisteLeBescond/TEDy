@@ -25,11 +25,17 @@ class DefaultController extends Controller
 
     public function planningAction()
     {
-        return $this->render('EnfantBundle:Default:planning.html.twig');
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $plannings = $em->getRepository('SequenceBundle:Planning')->findBy(array('enfant' => $user->getId()));
+
+        return $this->render('EnfantBundle:Default:planning.html.twig', array('user' => $user , 'plannings' => $plannings));
     }
 
     public function planningencoursAction()
     {
+        
+
         return $this->render('EnfantBundle:Default:planningencours.html.twig');
     }
 }
