@@ -24,16 +24,23 @@ class Etape
     /**
      * @var string
      *
-     * @ORM\Column(name="libelle", type="string", length=255)
+     * @ORM\Column(name="libelle", type="string", length=255, unique=false)
      */
     private $libelle;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @ORM\Column(name="image", type="string", length=255, nullable=true, unique=false)
      */
     private $image;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="position", type="integer", unique=false)
+     */
+    private $position;
 
 
     /**
@@ -90,5 +97,28 @@ class Etape
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     * @return Etape
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer 
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }
