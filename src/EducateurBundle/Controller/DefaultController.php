@@ -54,6 +54,11 @@ class DefaultController extends Controller
 
 			$user->addEnfant($enfant);
 
+			$factory = $this->get('security.encoder_factory');
+            $encoder = $factory->getEncoder($enfant);
+            $password = $encoder->encodePassword($form->get('password')->getData(), $enfant->getSalt());
+            $enfant->setPassword($password);
+
 			$em->persist($user);
 			$em->persist($enfant);
 			$em->flush();
