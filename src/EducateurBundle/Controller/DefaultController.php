@@ -9,6 +9,7 @@ use SequenceBundle\Entity\Sequence;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class DefaultController extends Controller
 {
@@ -75,18 +76,33 @@ class DefaultController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
     	$sequence = new Sequence;
-    	$etapes = $em->getRepository('SequenceBundle:Etape')->findAll();
+    	$etapes = $em->getRepository('SequenceBundle:Etape')->findByPosition(0);
 
     	$form = $this->get('form.factory')->createBuilder('form', $sequence)
 		  ->add('libelle',  'text', array('label' => 'Titre','required' => true, 'attr' => array('class' => 'form-required')))
 	      ->add('description',     'textarea', array('label' => 'Description','required' => true, 'attr' => array('class' => 'form-required')))
 	      // ->add('musique',   'integer', array('label' => 'Âge','required' => false, 'attr' => array('class' => 'form-required')))
-	      ->add('save',      'submit')
+	      ->add('etapes',  EntityType::class, array('class' => 'SequenceBundle:Etape', 'expanded' => true, 'multiple' => true, 'required' => false, 'attr' => array('class' => 'form-required')))
+	      ->add('save', 'submit')
 	      ->getForm()
 	      ;
 
         $form->handleRequest($request);
 
+        if($form->isValid()){
+			var_dump($form['etapes']->getData());
+
+			$sequence->setCreateur($user);
+			$sequence->removeAllEtape();
+
+			$em->persist($sequence);
+			// $em->flush();
+
+		}
+		else
+			var_dump('ERREUR !');
+
         return $this->render('EducateurBundle:Default:creerSequence.html.twig', array('form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
     }
+
 }

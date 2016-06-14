@@ -121,4 +121,8 @@ class Etape
     {
         return $this->position;
     }
+
+    public function __toString(){
+        return $this->libelle;
+    }
 }
