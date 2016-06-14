@@ -110,11 +110,17 @@ div .planning h1 {
 
 /*** login.html.twig ***/
 
+.erreur {
+  margin: 20px auto 0px;
+  width: 50%;
+  color: red;
+  font-size: 1.4em;
+  text-align: center;
+}
+
 .page-login form {
-	padding-top: 2%;
-	padding-left: 2%;
-	width: 100%;
-	margin: auto;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .page-login input {
@@ -156,7 +162,9 @@ div .planning h1 {
 
 .page-login a.inscription {
 	color: #3a405a;
-	padding-left: 14%;
+  display: block;
+  text-align: center;
+  font-size: 1.2em;
 }
 
 
