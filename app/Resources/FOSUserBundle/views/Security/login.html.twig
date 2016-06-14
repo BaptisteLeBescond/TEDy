@@ -46,14 +46,14 @@ class="page-login"
 </div>
 
 <div class="row">
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-8 col-md-offset-2 inscription">
 		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 		    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
 		    <a href="{{ path('fos_user_security_logout') }}">
 		        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
 		    </a>
 		{% else %}
-		    <a class="inscription" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+		    <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
 		{% endif %}
 	</div>
 </div>
