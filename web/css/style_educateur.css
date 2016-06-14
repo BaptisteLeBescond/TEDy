@@ -111,33 +111,6 @@ img.logo {
 	width: 30px;
 }
 
-.drop-active {
-  border: dotted blue 2px;
-}
-
-.drag-drop {
-  background-color: #29e;
-  display: inline-block;
-  min-width: 40px;
-  padding: 2em 0.5em;
-
-  -webkit-transform: translate(0px, 0px);
-          transform: translate(0px, 0px);
-
-  transition: background-color 0.3s;
-}
-
-.drag-drop.can-drop {
-  color: #000;
-  background-color: #4e4;
-}
-
-.drop-target {
-  background-color: #29e;
-  border-color: #fff;
-  border-style: solid;
-}
-
 /*** RESPONSIVE ***/
 
 @media screen and (max-width: 768px) {

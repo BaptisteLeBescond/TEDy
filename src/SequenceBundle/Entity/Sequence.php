@@ -48,6 +48,11 @@ class Sequence
     private $etapes;
 
     /**
+      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+      */
+    private $createur;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -157,6 +162,15 @@ class Sequence
     }
 
     /**
+     * Remove all etapes
+     *
+     */
+    public function removeAllEtape()
+    {
+        $this->etapes->clear();
+    }
+
+    /**
      * Get etapes
      *
      * @return \Doctrine\Common\Collections\Collection 
@@ -164,5 +178,28 @@ class Sequence
     public function getEtapes()
     {
         return $this->etapes;
+    }
+
+    /**
+     * Set createur
+     *
+     * @param \UserBundle\Entity\User $createur
+     * @return Sequence
+     */
+    public function setCreateur(\UserBundle\Entity\User $createur = null)
+    {
+        $this->createur = $createur;
+    
+        return $this;
+    }
+
+    /**
+     * Get createur
+     *
+     * @return \UserBundle\Entity\User 
+     */
+    public function getCreateur()
+    {
+        return $this->createur;
     }
 }
