@@ -238,7 +238,10 @@ body.page-index {
 .page-planningencours span.temps {
 	color: #ffa527;
 	font-size: 30px;
-    padding-left: 8%;
+}
+
+.page-planningencours span.temps:nth-child(1) {
+	padding-left: 8%;
 }
 
 .page-planningencours div.images {
@@ -246,10 +249,39 @@ body.page-index {
 	padding-bottom: 2%;
 }
 
-.page-planningencours div.etape {
-	border: 1px solid black;
+.page-planningencours .image.play,
+.page-planningencours .image.stop {
+	cursor: pointer;
 }
 
+.page-planningencours div.corbeille {
+	background-color: red;
+	width: auto;
+	position: absolute;
+    right: 0;
+    padding: 1%;
+}
+
+.page-planningencours div.etape {
+	border: 1px solid black;
+	margin-bottom: 1%;
+}
+
+.page-planningencours div.col-color {
+	background-color: #6f7aa9;
+	width: 4vw;
+    height: 20vh;
+}
+
+.page-planningencours h3 {
+	color: #ffa527;
+	padding-top: 7%;
+    font-size: 30px;
+}
+
+.page-planningencours .img-etape {
+	padding-top: 9%;
+}
 
 
 
