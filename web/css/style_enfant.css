@@ -160,7 +160,7 @@ div .planning h1 {
     font-size: 20px;
 }
 
-.page-login a.inscription {
+.page-login .inscription {
 	color: #3a405a;
   display: block;
   text-align: center;
