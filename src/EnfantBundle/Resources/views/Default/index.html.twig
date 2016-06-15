@@ -31,6 +31,11 @@
             <div class="col-md-4 col-xs-4">
             	<h1>Contrat</h1>
             </div>
+            {% if contrat %}
+                <div class="col-md-2 col-xs-2">
+                    <img src="{{ asset('img/index/exclamation-sign.png') }}" class="exclamation">
+                </div>
+            {% endif %}
         </div>
     </a>
     <a href="{{ path('enfant_planning') }}">
