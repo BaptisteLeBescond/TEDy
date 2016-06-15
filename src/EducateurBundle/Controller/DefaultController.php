@@ -151,8 +151,9 @@ class DefaultController extends Controller
     	$user = $this->getUser();
 
     	$enfant = $em->getRepository('UserBundle:User')->findOneBy(array('username' => $username, 'name' => $name));
+    	$contrats = $em->getRepository('SequenceBundle:Contrat')->findByEnfant($enfant);
 
-        return $this->render('EducateurBundle:Default:ficheEnfant.html.twig', array('user' => $user, 'enfant' => $enfant));
+        return $this->render('EducateurBundle:Default:ficheEnfant.html.twig', array('contrats' => $contrats, 'user' => $user, 'enfant' => $enfant));
     }
 
     public function creerContratAction(Request $request, $username, $name)

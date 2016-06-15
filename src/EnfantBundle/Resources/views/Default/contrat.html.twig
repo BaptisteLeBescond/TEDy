@@ -9,5 +9,28 @@
 {% endblock bodyclass %}
 
 {% block body %}
+	{% if contrat %}
+		<div class="row"></div>
+		<div class="row">
+			<div id="casesEtapes">
+				{% for etape in etapes %}
+					<div class="col-md-{{sizeCol}} etape">
+						{{etape.position}} <img class="img-responsive" src="{{asset('img/etape/')}}{{etape.image}}">
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div id="casesJetons" class="row">
+			{% for etape in etapes %}
+				<div class="col-md-{{sizeCol}} jeton">
+					jeton vide lol
+				</div>
+			{% endfor %}
+		</div>
+	{% else %}
 
+		Désolé, il n'y a pas de contrat.
+		Mais tu peux toujours démarrer un planning !
+
+	{% endif %}
 {% endblock body %}

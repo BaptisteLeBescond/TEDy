@@ -44,6 +44,7 @@ class Sequence
 
     /**
       * @ORM\ManyToMany(targetEntity="SequenceBundle\Entity\Etape")
+      * @ORM\OrderBy({"position" = "asc"})
       */
     private $etapes;
 
