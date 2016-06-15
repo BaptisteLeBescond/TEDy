@@ -243,6 +243,12 @@ body.page-index {
 	right: 6%;
 }
 
+.page-planningencours .musique {
+	position: absolute;
+	right: 2%;
+    top: 56%;
+}
+
 .page-planningencours span.temps {
 	color: #ffa527;
 	font-size: 30px;
@@ -314,12 +320,21 @@ body.page-index {
 	padding-top: 9%;
 }
 
-.page-planningencours .message {
+.page-planningencours .message-ko {
+	display: none;
+}
+
+.page-planningencours .message-ok {
 	margin: 20px auto 0px;
   	width: 50%;
   	color: #3a405a;
   	font-size: 1.4em;
   	text-align: center;
+}
+
+.page-planningencours .message-ok button {
+	background-color: #ffa527;
+	margin-top: 1%;
 }
 
 

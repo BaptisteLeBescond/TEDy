@@ -72,15 +72,38 @@ class DefaultController extends Controller
         return $this->render('EnfantBundle:Default:planning.html.twig', array('user' => $user , 'plannings' => $plannings));
     }
 
-    public function planningencoursAction($id)
+    public function planningencoursAction(Request $request, $id)
     {
         if($this->container->get('security.authorization_checker')->isGranted('ROLE_EDUCATEUR'))
             return $this->render('EnfantBundle:Default:accessDenied.html.twig');
 
         $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $plannings = $em->getRepository('SequenceBundle:Planning')->findBy(array('enfant' => $user->getId()));
         $planning = $em->getRepository('SequenceBundle:Planning')->find(array('id' => $id));
 
-        return $this->render('EnfantBundle:Default:planningencours.html.twig', array('planning' => $planning));
+        $planning->setEnCours(true);
+        $em->persist($planning);
+        $em->flush();
+
+        $form = $this->get('form.factory')->createBuilder('form')
+            ->add('duree',  'text', array('required' => false, 'attr' => array('id' => 'duree')))
+            ->add('Enregistrer', 'submit')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if($form->isValid()){
+            $planning->setEnCours(false);
+            $planning->setDuree($form['duree']->getData());
+
+            $em->persist($planning);
+            $em->flush();
+
+            return $this->render('EnfantBundle:Default:planning.html.twig', array('user' => $user , 'plannings' => $plannings));
+        }
+
+        return $this->render('EnfantBundle:Default:planningencours.html.twig', array('planning' => $planning, 'form' => $form->createView()));
     }
 
     public function creerPlanningAction(Request $request)

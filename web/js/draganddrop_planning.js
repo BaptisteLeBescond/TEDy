@@ -95,21 +95,33 @@ interact('.dropzone').dropzone({
 
         // style of new step
         var etapes = document.getElementsByClassName('etapes');
-        etapes[0].classList.add('draggable');
+        if(typeof etapes[0] !== 'undefined') {
+            etapes[0].classList.add('draggable');
 
-        var etape = etapes[0].getElementsByClassName('etape');
-        etape[0].classList.remove('col-md-offset-2');
-        etape[0].classList.add('col-md-offset-1');
-        etape[0].classList.remove('col-md-6');
-        etape[0].classList.add('col-md-8');
+            var etape = etapes[0].getElementsByClassName('etape');
+            etape[0].classList.remove('col-md-offset-2');
+            etape[0].classList.add('col-md-offset-1');
+            etape[0].classList.remove('col-md-6');
+            etape[0].classList.add('col-md-8');
 
-        var color = etape[0].getElementsByClassName('col-color');
-        color[0].classList.add('col-color-first');
-        color[0].classList.remove('col-color');
+            var color = etape[0].getElementsByClassName('col-color');
+            color[0].classList.add('col-color-first');
+            color[0].classList.remove('col-color');
 
-        var img = etape[0].getElementsByClassName('img-etape');
-        img[0].setAttribute('width','120');
-        img[0].setAttribute('height','120');
+            var img = etape[0].getElementsByClassName('img-etape');
+            img[0].setAttribute('width','120');
+            img[0].setAttribute('height','120');
+        }
+        else {
+            var message = document.getElementById('message');
+            message.classList.remove('message-ko');
+            message.classList.add('message-ok');
+            var inputDuree = document.getElementById('form_duree');
+            var heure = document.getElementById('heure').innerHTML;
+            var minute = document.getElementById('minute').innerHTML;
+            var seconde = document.getElementById('seconde').innerHTML;
+            inputDuree.setAttribute('value', heure+':'+minute+':'+seconde);
+        }
         
     },
     ondropdeactivate: function (event) {

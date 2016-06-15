@@ -45,6 +45,12 @@ class Planning
       */
     private $sequence;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duree", type="string", length=255)
+     */
+    private $duree;
 
     /**
      * Get id
@@ -146,5 +152,28 @@ class Planning
     public function getSequence()
     {
         return $this->sequence;
+    }
+
+    /**
+     * Set duree
+     *
+     * @param string $duree
+     * @return Planning
+     */
+    public function setDuree($duree)
+    {
+        $this->duree = $duree;
+    
+        return $this;
+    }
+
+    /**
+     * Get duree
+     *
+     * @return string 
+     */
+    public function getDuree()
+    {
+        return $this->duree;
     }
 }

@@ -9,31 +9,25 @@
 {% endblock bodyclass %}
 
 {% block body %}
-	
-
 	<div class="row dropzone">
 		<div class="col-md-12 corbeille thiner">
 			<img src="{{ asset('img/planning/waste-bin24.png') }}" alt="corbeille" class="img-corbeille img-responsive" />
 		</div>
 	</div>
-
-	<!--
+	
 	<div class="row temps">
-		<div class="col-md-offset-5">
-			<span class="temps" id="minute">00</span>
-			<span class="temps">:</span>
-			<span class="temps" id="seconde">00</span>
+		<span class="temps" id="heure">00</span><span class="temps">:</span><span class="temps" id="minute">00</span><span class="temps">:</span><span class="temps" id="seconde">00</span>
+		<div class="images">
+			<img src="{{ asset('img/planning/play-button64.png') }}" alt="play" class="image play img-responsive" id="play" />
+			<img src="{{ asset('img/planning/pause64.png') }}" alt="pause" class="image pause img-responsive" id="pause" style="display:none;" /><img src="{{ asset('img/planning/stop64.png') }}" alt="stop" class="image stop img-responsive" id="stop" />
 		</div>
 	</div>
-	<div class="row images">
-		<div class="col-md-offset-5 col-md-1">
-			<img src="{{ asset('img/planning/play-button64.png') }}" alt="play" class="image play img-responsive" id="play" />
-			<img src="{{ asset('img/planning/pause64.png') }}" alt="pause" class="image pause img-responsive" id="pause" style="display:none;" />
-		</div>
-		<div class="col-md-1">
-			<img src="{{ asset('img/planning/stop64.png') }}" alt="stop" class="image stop img-responsive" id="stop" />
-		</div>
-	</div>-->
+
+	{{form(form)}}
+
+	<div class="row musique">
+		<audio src="{{ asset('music/') }}{{planning.sequence.musique}}" controls loop preload="auto"></audio>
+	</div>
 
 	{% for e in planning.sequence.etapes %}
 		{% if loop.first %}
@@ -66,6 +60,11 @@
 		</div> <!-- div class="etapes" -->
 	{% endfor %}
 
+	<div class="row message-ko" id="message">
+		<span>Bravo ! Tu as fini ton planning ! ;-)</span>
+		<br />
+		<button class="btn">Enregistrer</button>
+	</div>
 {% endblock body %}
 
 {% block javascripts %}

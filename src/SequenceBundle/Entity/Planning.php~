@@ -45,6 +45,12 @@ class Planning
       */
     private $sequence;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="duree", type="string", length=255)
+     */
+    private $duree;
 
     /**
      * Get id
@@ -100,5 +106,51 @@ class Planning
     public function getEnCours()
     {
         return $this->enCours;
+    }
+
+    /**
+     * Set enfant
+     *
+     * @param \UserBundle\Entity\User $enfant
+     * @return Planning
+     */
+    public function setEnfant(\UserBundle\Entity\User $enfant = null)
+    {
+        $this->enfant = $enfant;
+    
+        return $this;
+    }
+
+    /**
+     * Get enfant
+     *
+     * @return \UserBundle\Entity\User 
+     */
+    public function getEnfant()
+    {
+        return $this->enfant;
+    }
+
+    /**
+     * Set sequence
+     *
+     * @param \SequenceBundle\Entity\Sequence $sequence
+     * @return Planning
+     */
+    public function setSequence(\SequenceBundle\Entity\Sequence $sequence = null)
+    {
+        $this->sequence = $sequence;
+    
+        return $this;
+    }
+
+    /**
+     * Get sequence
+     *
+     * @return \SequenceBundle\Entity\Sequence 
+     */
+    public function getSequence()
+    {
+        return $this->sequence;
     }
 }
