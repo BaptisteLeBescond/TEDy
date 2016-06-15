@@ -20,6 +20,9 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+    	if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
+            return $this->render('EducateurBundle:Default:accessDenied.html.twig');
+
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
       $enfants = $user->getEnfant();
@@ -29,6 +32,9 @@ class DefaultController extends Controller
 
     public function ajoutEnfantAction(Request $request)
     {
+    	if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
+            return $this->render('EducateurBundle:Default:accessDenied.html.twig');
+
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
 
@@ -78,6 +84,9 @@ class DefaultController extends Controller
 
     public function creerSequenceAction(Request $request)
     {
+    	if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
+            return $this->render('EducateurBundle:Default:accessDenied.html.twig');
+        
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
     	$sequence = new Sequence;

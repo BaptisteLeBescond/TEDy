@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TEDy - Désolé...</title>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style_enfant.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body {% block bodyclass %}{% endblock %}>
+        <div class="container-fluid">
+            <header class="row">
+                <div class="bleu">
+                    <img src="{{ asset('img/logo/logo150x150.png') }}" alt="logo" class="logo img-responsive" />
+                </div>
+                <div class="bleuclair {% block hidden %}{% endblock %}">
+                </div>
+            </header>
+
+            <div class="col-md-6 col-md-offset-3">
+                <h1>Désolé, mais tu ne peux pas accéder à cette partie du site !</h1>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    </body>
+</html>
