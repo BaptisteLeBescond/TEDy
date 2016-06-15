@@ -4,48 +4,74 @@
 
 {% block bodyclass %} class="page-creer-sequence" {% endblock %}
 
-	{% block stylesheets %}
-		<style type="text/css">
-			
-			.etape{
-				cursor: pointer;
-			}
-			.selected{
-				background-color: #29e;
-				border-radius: 10px;
-				border: 1px solid #6f7aa9;
-
-				transition:0.4s;
-			}
-
-		</style>
-	{% endblock %}
-
 {% block body %}
-    hello {{user}}
+<div class="row">
+	<div class="col-md-2 col-sm-2 col-xs-2 user-present">
+		{{user}}  |
+
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				<a href="{{ path('fos_user_security_logout') }}">
+						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+				</a>
+		{% endif %}
+	</div>
+</div>
 
     <div class="row">
-	    <h1>Créez votre séquence</h1>
-	    <h2>Pour l'utiliser dans vos contrats ou vos plannings</h2>
+	    <h1 class="titre-page col-md-12 col-sm-12">Créez votre séquence</h1>
+	    <h2 class="second-titre-page col-md-12 col-sm-12">Pour l'utiliser dans vos contrats ou vos plannings</h2>
 	</div>
 
     <div class="row">
-    	<div class="col-md-6">
-	    	{{form(form)}}
+    	<div class="col-md-6 col-sm-12 col-xs-12">
+				{{ form_start(form, {'attr': {'class': 'form-ajout-seq'}}) }}
+	    		<div class="form-group">
+						<div class="row">
+							{{ form_label(form.libelle,"Titre", {'label_attr': {'class': 'col-md-4 col-sm-4 control-label form-required'}}) }}
+							<div class="col-md-6 col-sm-6">
+								{{ form_widget(form.libelle, {'attr': {'class': 'form-control form-ajout-seq-input', 'required' :'required'}}) }}
+							</div>
+						</div>
+
+						<div class="row">
+							{{ form_label(form.description,"Description", {'label_attr': {'class': 'col-md-4 col-sm-4 control-label form-required', 'type': 'TextareaType'}}) }}
+							<div class="col-md-6 col-sm-6">
+								{{ form_widget(form.description, {'attr': {'class': 'form-control form-ajout-seq-input', 'required' :'required'}}) }}
+							</div>
+						</div>
+					</div>
+
+					<div class="form-ajout-seq-bouton">
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}, 'label': 'Enregistrer'}) }}
+          </div>
+				{{ form_end(form) }}
 	    </div>
-	    <div class="col-md-6">
-	    	<div id="dropzone" style="height:50px;">
+
+	    <div class="col-md-6 col-sm-12 col-xs-12">
+	    	<div id="dropzone">
 
 	    	</div>
-	    </div>	    
+	    </div>
     </div>
-    <div class="row" id="list-etapes">
-	    {% for etape in etapes %}
-	    	<div id="etape" class="col-md-2 etape" style="padding:0px">
-    			<img src="{{ asset('img/etape/') }}{{ etape.image }}" data-src="{{ etape.image }}" data-origin-id="{{loop.index}}" class="img-responsive" width="100">
-	    		<p>{{ etape.libelle }}</p>
-	    	</div>
-	    {% endfor %}
+
+		<div class="row">
+			<h3 class="troisieme-titre-page col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+				Clique sur une étape pour l'ajouter à ta séquence !
+			</h3>
+		</div>
+
+		<div class="row">
+      <div class="col-md-10 col-md-offset-1">
+		    <div class="row" id="list-etapes">
+			    {% for etape in etapes %}
+			    	<div id="etape" class="col-md-2 col-sm-4 col-xs-6 etape">
+		    			<img src="{{ asset('img/etape/') }}{{ etape.image }}" data-src="{{ etape.image }}"
+							data-origin-id="{{loop.index}}" class="photo-etape img-responsive">
+			    		<p>{{ etape.libelle }}</p>
+			    	</div>
+			    {% endfor %}
+			</div>
+		</div>
 	</div>
 {% endblock body %}
 
@@ -68,7 +94,7 @@
 			clone.setAttribute('class', 'img-responsive in-list pull-left');
 			clone.addEventListener('click', handleRemoveEtape, false);
 			dropzone.appendChild(clone);
-			this.className = 'col-md-2 etape selected';
+			this.className = 'col-md-2 col-sm-4 col-xs-6 etape selected';
 			this.removeEventListener('click', handleAddEtape);
 
 			// var checkBox = document.getElementById("form_etapes_"+image.getAttribute('data-origin-id'));

@@ -88,28 +88,55 @@ img.logo {
 
 /*** creerSequence.html.twig ***/
 
-.list-etapes{
-	border: 1px solid black;
-	margin:10px;
-}
-.etape{
-	padding: 50px;
-	cursor: move;
-}
-.etape p{
-	height: 0px;
-	text-align: center;
-	font-size: 14px;
+.second-titre-page {
+ color: #3a405a;
 }
 
-.dropzone {
-  background-color: #ccc;
-  border: 1px solid black;
-  min-height: 100px;
-  transition: background-color 0.3s;
+.troisieme-titre-page {
+  color: #3a405a;
+  text-align: center;
 }
-.dropzone img{
-	width: 30px;
+
+.form-ajout-seq {
+  font-size: 1.2em;
+  text-align: center;
+}
+.form-ajout-seq-input {
+  margin-bottom: 10px;
+}
+
+#dropzone {
+  height: 200px;
+  background-color: rgb(230,230,230);
+  border-radius: 5px;
+}
+#dropzone img{
+	width: 80px;
+  height: 80px;
+}
+
+#etape{
+  cursor: pointer;
+  margin: 30px 5px 0px;
+  padding: 5px;
+}
+#etape p{
+  font-size: 1.2em;
+  text-align: center;
+  height: 30px;
+}
+.photo-etape {
+  width: 100px;
+  height: 100px;
+  margin: 0px auto 5px;
+}
+.selected{
+  background-color: #e0e3f4;
+  box-shadow: 5px 5px 15px 5px #656565;
+  transition:0.4s;
+}
+.in-list {
+  margin-right: 40px;
 }
 
 /*** ajoutEnfant.html.twig ***/
@@ -155,6 +182,11 @@ img.logo {
     .ajout-enfant{
       margin-left: 10px;
     }
+
+    #etape img {
+      width: 70px;
+      height: 70px;
+    }
 }
 
 @media screen and (min-width: 768px) {
@@ -164,7 +196,7 @@ img.logo {
 }
 
 @media screen and (max-width: 900px) {
-    .titre-page {
+    .titre-page, .second-titre-page, .troisieme-titre-page {
       font-size: 2em;
     }
 }
