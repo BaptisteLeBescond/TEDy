@@ -45,6 +45,13 @@ class Contrat
     /**
      * @var bool
      *
+     * @ORM\Column(name="fini", type="boolean")
+     */
+    private $fini;
+
+    /**
+     * @var bool
+     *
      * @ORM\Column(name="enCours", type="boolean")
      */
     private $enCours;
@@ -63,6 +70,16 @@ class Contrat
       * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
       */
     private $enfant;
+
+    /**
+      * @ORM\ManyToOne(targetEntity="SequenceBundle\Entity\Sequence")
+      */
+    private $sequence;
+
+    public function __construct()
+    {
+        $this->date = new \DateTime('now');
+    }
 
     /**
      * Get id
@@ -233,5 +250,51 @@ class Contrat
     public function getEnfant()
     {
         return $this->enfant;
+    }
+
+    /**
+     * Set sequence
+     *
+     * @param \SequenceBundle\Entity\Sequence $sequence
+     * @return Contrat
+     */
+    public function setSequence(\SequenceBundle\Entity\Sequence $sequence = null)
+    {
+        $this->sequence = $sequence;
+    
+        return $this;
+    }
+
+    /**
+     * Get sequence
+     *
+     * @return \SequenceBundle\Entity\Sequence 
+     */
+    public function getSequence()
+    {
+        return $this->sequence;
+    }
+
+    /**
+     * Set fini
+     *
+     * @param boolean $fini
+     * @return Contrat
+     */
+    public function setFini($fini)
+    {
+        $this->fini = $fini;
+    
+        return $this;
+    }
+
+    /**
+     * Get fini
+     *
+     * @return boolean 
+     */
+    public function getFini()
+    {
+        return $this->fini;
     }
 }

@@ -202,4 +202,8 @@ class Sequence
     {
         return $this->createur;
     }
+
+    public function __toString(){
+        return $this->libelle;
+    }
 }

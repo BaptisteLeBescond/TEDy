@@ -91,4 +91,8 @@ class Recompense
     {
         return $this->image;
     }
+
+    public function __toString(){
+        return $this->libelle;
+    }
 }

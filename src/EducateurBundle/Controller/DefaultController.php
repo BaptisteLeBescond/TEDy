@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use UserBundle\Entity\User;
 use SequenceBundle\Entity\Sequence;
 use SequenceBundle\Entity\Etape;
+use SequenceBundle\Entity\Contrat;
 // use EducateurBundle\Form\EnfantType;
 use EducateurBundle\Form\SequenceType;
 use EducateurBundle\Form\EtapeType;
@@ -15,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class DefaultController extends Controller
 {
@@ -86,7 +88,7 @@ class DefaultController extends Controller
     {
     	if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
             return $this->render('EducateurBundle:Default:accessDenied.html.twig');
-        
+
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
     	$sequence = new Sequence;
@@ -138,6 +140,68 @@ class DefaultController extends Controller
 			var_dump('ERREUR !');
 
         return $this->render('EducateurBundle:Default:creerSequence.html.twig', array('form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
+    }
+
+    public function ficheEnfantAction($username, $name)
+    {
+    	if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
+            return $this->render('EducateurBundle:Default:accessDenied.html.twig');
+
+    	$em = $this->getDoctrine()->getManager();
+    	$user = $this->getUser();
+
+    	$enfant = $em->getRepository('UserBundle:User')->findOneBy(array('username' => $username, 'name' => $name));
+
+        return $this->render('EducateurBundle:Default:ficheEnfant.html.twig', array('user' => $user, 'enfant' => $enfant));
+    }
+
+    public function creerContratAction(Request $request, $username, $name)
+    {
+    	if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
+            return $this->render('EducateurBundle:Default:accessDenied.html.twig');
+
+    	$em = $this->getDoctrine()->getManager();
+    	$user = $this->getUser();
+
+    	$sequences = $em->getRepository('SequenceBundle:Sequence')->findBy(array('createur' => $user));
+    	$enfant = $em->getRepository('UserBundle:User')->findOneBy(array('username' => $username, 'name' => $name));
+
+    	$contrat = new Contrat;
+
+    	$form = $this->get('form.factory')->createBuilder('form', $contrat)
+    	  ->add('libelle',  'text', array('label' => 'Titre','required' => true, 'attr' => array('class' => 'form-required')))
+	      ->add('description',     'textarea', array('label' => 'Description','required' => true, 'attr' => array('class' => 'form-required')))
+	      ->add('date',     'datetime', array('date_format' => 'yyyy-MM-dd  HH:i', 'label' => 'Date','required' => true, 'attr' => array('class' => 'form-required')))
+	      ->add('recompense',     EntityType::class, array('class' => 'SequenceBundle:Recompense', 'label' => 'Sélectionnez une récompense','required' => true, 'attr' => array('class' => 'form-required')))
+	      ->add('sequence',     EntityType::class, array('class' => 'SequenceBundle:Sequence', 'choices' => $sequences, 'label' => 'Sélectionnez une séquence','required' => true, 'attr' => array('class' => 'form-required')))
+	      ->add('save', 'submit')
+	      ->getForm()
+	      ;
+
+	    $form->handleRequest($request);
+
+        if($form->isValid()){
+        	var_dump($contrat->getDate()->format('Y-m-d H:i'));
+        	var_dump(date('Y-m-d H:i'));
+        	var_dump($contrat->getDate()->format('Y-m-d H:i') < date('Y-m-d H:i'));
+
+        	if($contrat->getDate()->format('Y-m-d H:i') < date('Y-m-d H:i')){
+        		var_dump("To launch now");
+        		$contrat->setEnCours(true);
+        	}
+        	else
+        		$contrat->setEnCours(false);
+
+        	$contrat->setFini(false);
+        	$contrat->setEducateur($user);
+        	$contrat->setEnfant($enfant);
+        	
+        	$em->persist($contrat);
+        	$em->flush();
+
+        }
+
+        return $this->render('EducateurBundle:Default:creerContrat.html.twig', array('form' => $form->createView(), 'user' => $user, 'enfant' => $enfant, 'sequences' => $sequences));
     }
 
 }
