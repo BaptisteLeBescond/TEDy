@@ -85,6 +85,7 @@ img.logo {
   height: 80px;
   margin: 0px auto 5px;
 }
+
 /*** creerSequence.html.twig ***/
 
 .list-etapes{
@@ -109,6 +110,23 @@ img.logo {
 }
 .dropzone img{
 	width: 30px;
+}
+
+/*** ajoutEnfant.html.twig ***/
+.form-ajout-enfant {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.form-ajout-enfant-input {
+  margin-top: 10px;
+  min-width: 200px;
+}
+
+.form-ajout-enfant-bouton {
+  margin-top: 10px;
+  font-size: 1.2em;
 }
 
 /*** RESPONSIVE ***/
