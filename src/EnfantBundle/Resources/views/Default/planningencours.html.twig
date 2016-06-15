@@ -9,11 +9,20 @@
 {% endblock bodyclass %}
 
 {% block body %}
+	
+
+	<div class="row dropzone">
+		<div class="col-md-12 corbeille thiner">
+			<img src="{{ asset('img/planning/waste-bin24.png') }}" alt="corbeille" class="img-corbeille img-responsive" />
+		</div>
+	</div>
+
+	<!--
 	<div class="row temps">
 		<div class="col-md-offset-5">
-			<span class="temps" id="minute">0</span>
+			<span class="temps" id="minute">00</span>
 			<span class="temps">:</span>
-			<span class="temps" id="seconde">0</span>
+			<span class="temps" id="seconde">00</span>
 		</div>
 	</div>
 	<div class="row images">
@@ -24,94 +33,43 @@
 		<div class="col-md-1">
 			<img src="{{ asset('img/planning/stop64.png') }}" alt="stop" class="image stop img-responsive" id="stop" />
 		</div>
-	</div>
-	<div class="corbeille">
-		<img src="{{ asset('img/planning/waste-bin128.png') }}" alt="corbeille" class="img-responsive" />
-	</div>
+	</div>-->
+
 	{% for e in planning.sequence.etapes %}
-		<div class="row">
-			<div class="col-md-offset-2 col-md-6 etape">
+		{% if loop.first %}
+			<div class="row etapes draggable">
+				<div class="col-md-offset-1 col-md-8 etape">
+			{% else %}
+			<div class="row etapes">
+				<div class="col-md-offset-2 col-md-6 etape">
+			{% endif %}
 				<div class="row">
+					{% if loop.first %}
+					<div class="col-md-1 col-color-first">
+					</div>
+					{% else %}
 					<div class="col-md-1 col-color">
 					</div>
+					{% endif %}
 					<div class="col-md-offset-1 col-md-3">
-						<img src="{{ asset('img/etape/') }}{{e.image}}" alt="etape" width="100" height="100" class="img-etape img-responsive" />
+						{% if loop.first %}
+							<img src="{{ asset('img/etape/') }}{{e.image}}" alt="etape" width="120" height="120" class="img-etape img-responsive" />
+						{% else %}
+							<img src="{{ asset('img/etape/') }}{{e.image}}" alt="etape" width="100" height="100" class="img-etape img-responsive" />
+						{% endif %}
 					</div>
 					<div class="col-md-7">
 						<h3>{{e.libelle}}</h3>
 					</div>
 				</div>
-			</div>
-		</div>
+			</div> <!-- div class="etape" -->
+		</div> <!-- div class="etapes" -->
 	{% endfor %}
+
 {% endblock body %}
 
 {% block javascripts %}
-	<script>
-		// initialise les dixièmes
-		var dixieme = 0;
-		// initialise les secondes
-		var seconde = 0;
-		// initialise les minutes
-		var minute = 0;
-
-		var spanSeconde = document.getElementById('seconde');
-		var spanMinute = document.getElementById('minute');
-
-		function play(){
-			// incrémentation des dixièmes de 1
-			dixieme++;
-
-			// si les dixièmes > 9, on les réinitialise à 0 et on incrémente les secondes de 1
-			if (dixieme > 9) {
-				dixieme = 0;
-				seconde++;
-			} 
-
-			// si les secondes > 59, on les réinitialise à 0 et on incrémente les minutes de 1
-			if (seconde > 59) {
-				seconde = 0;
-				minute++;
-			} 
-			
-
-			// on affiche les secondes
-			spanSeconde.textContent = seconde;
-			// on affiche les minutes
-			spanMinute.textContent = minute;
-			// la fonction est relancée toutes les 10° de secondes
-			compte = setTimeout('play()', 100);
-		}
-
-		// fonction qui remet les compteurs à 0
-		function stop(){ 
-			//arrête la fonction play()
-			clearTimeout(compte) ;
-			dixieme = 0;
-			seconde = 0;
-			minute = 0;
-			spanSeconde.textContent = seconde;
-			spanMinute.textContent = minute;
-		}
-
-
-		$('#play').click(function(){
-			$('#play').hide();
-			$('#pause').show();
-			play();
-		});
-
-		$('#pause').click(function(){
-			$('#pause').hide();
-			$('#play').show();
-			clearTimeout(compte);
-		});
-
-		$('#stop').click(function(){
-			stop();
-			$('#pause').hide();
-			$('#play').show();
-		});
-
-	</script>
+	<script type="text/javascript" src="{{ asset('js/chrono.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/interact.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/draganddrop_planning.js') }}"></script>
 {% endblock javascripts %}

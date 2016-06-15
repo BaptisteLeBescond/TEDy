@@ -19,7 +19,8 @@ body{
 body.page-planning,
 body.page-contrat,
 body.page-calendrier,
-body.page-login {
+body.page-login,
+body.page-planningencours {
 	overflow-x: hidden;
 }
 
@@ -254,12 +255,24 @@ body.page-index {
 	cursor: pointer;
 }
 
-.page-planningencours div.corbeille {
+.page-planningencours div.corbeille.thiner {
 	background-color: red;
-	width: auto;
-	position: absolute;
-    right: 0;
-    padding: 1%;
+	height: 5vh;
+	padding-top: 3px;
+	padding-left: 49%;
+	transition: 0.3s;
+}
+
+.page-planningencours div.corbeille.bigger {
+	background-color: red;
+	height: 10vh;
+	padding-top: 12px;
+	padding-left: 49%;
+	transition: 0.3s;
+}
+
+.page-planningencours div.etapes {
+	margin-top: 1%;	
 }
 
 .page-planningencours div.etape {
@@ -271,6 +284,12 @@ body.page-index {
 	background-color: #6f7aa9;
 	width: 4vw;
     height: 20vh;
+}
+
+.page-planningencours div.col-color-first {
+	background-color: #ffa527;
+	width: 5vw;
+    height: 25vh;
 }
 
 .page-planningencours h3 {
