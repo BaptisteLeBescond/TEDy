@@ -1,0 +1,9 @@
+{% extends 'educateurBase.html.twig' %}
+
+{% block bodyclass %} class="page-fiche-enfant" {% endblock %}
+
+{% block body %}
+	Enfant : {{enfant.username}} {{enfant.name}}
+
+	<a href="{{ path('educateur_creer_contrat', { 'username' : enfant.username, 'name' : enfant.name }) }}">Ajouter un contrat</a>
+{% endblock %}
