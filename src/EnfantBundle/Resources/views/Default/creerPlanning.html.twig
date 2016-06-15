@@ -1,0 +1,155 @@
+{% extends 'enfantBase.html.twig' %}
+
+{% block title %} Ajout d'une séquence {% endblock %}
+
+{% block bodyclass %} class="page-creer-sequence" {% endblock %}
+
+{% block body %}
+<div class="row">
+	<div class="col-md-2 col-sm-2 col-xs-2 user-present">
+		{{user}}  |
+
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				<a href="{{ path('fos_user_security_logout') }}">
+						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+				</a>
+		{% endif %}
+	</div>
+</div>
+
+    <div class="row">
+	    <h1 class="titre-page col-md-12 col-sm-12">Créez votre séquence</h1>
+	    <h2 class="second-titre-page col-md-12 col-sm-12">Pour l'utiliser dans vos contrats ou vos plannings</h2>
+	</div>
+
+    <div class="row">
+    	<div class="col-md-6 col-sm-12 col-xs-12">
+				{{ form_start(form, {'attr': {'class': 'form-ajout-seq'}}) }}
+	    		<div class="form-group">
+						<div class="row">
+							{{ form_label(form.libelle,"Titre", {'label_attr': {'class': 'col-md-4 col-sm-4 control-label form-required'}}) }}
+							<div class="col-md-6 col-sm-6">
+								{{ form_widget(form.libelle, {'attr': {'class': 'form-control form-ajout-seq-input', 'required' :'required'}}) }}
+							</div>
+						</div>
+
+						<div class="row">
+							{{ form_label(form.description,"Description", {'label_attr': {'class': 'col-md-4 col-sm-4 control-label form-required', 'type': 'TextareaType'}}) }}
+							<div class="col-md-6 col-sm-6">
+								{{ form_widget(form.description, {'attr': {'class': 'form-control form-ajout-seq-input', 'required' :'required'}}) }}
+							</div>
+						</div>
+					</div>
+
+					<div class="form-ajout-seq-bouton">
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}, 'label': 'Enregistrer'}) }}
+          </div>
+				{{ form_end(form) }}
+	    </div>
+
+	    <div class="col-md-6 col-sm-12 col-xs-12">
+	    	<div id="dropzone">
+
+	    	</div>
+	    </div>
+    </div>
+
+		<div class="row">
+			<h3 class="troisieme-titre-page col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+				Clique sur une étape pour l'ajouter à ta séquence !
+			</h3>
+		</div>
+
+		<div class="row">
+      <div class="col-md-10 col-md-offset-1">
+		    <div class="row" id="list-etapes">
+			    {% for etape in etapes %}
+			    	<div id="etape" class="col-md-2 col-sm-4 col-xs-6 etape">
+		    			<img src="{{ asset('img/etape/') }}{{ etape.image }}" data-src="{{ etape.image }}"
+							data-origin-id="{{loop.index}}" class="photo-etape img-responsive">
+			    		<p>{{ etape.libelle }}</p>
+			    	</div>
+			    {% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock body %}
+
+{% block javascripts %}
+	<script type="text/javascript">
+		var etapes = document.getElementsByClassName("etape");
+		var dropzone = document.getElementById("dropzone");
+		var position = 0;
+
+		function handleAddEtape(e){
+			// console.log(this.firstChild.nextElementSibling);
+			var image = this.firstChild.nextElementSibling;
+			var clone = image.cloneNode(true);
+			var id = image.getAttribute('data-origin-id');
+			var p = image.nextElementSibling.innerHTML;
+			var imageSrc = image.getAttribute('data-src');
+			console.log(p +" "+ imageSrc);
+			clone.setAttribute('data-new-id', id);
+			clone.setAttribute('data-position', ++position);
+			clone.setAttribute('class', 'img-responsive in-list pull-left');
+			clone.addEventListener('click', handleRemoveEtape, false);
+			dropzone.appendChild(clone);
+			this.className = 'col-md-2 col-sm-4 col-xs-6 etape selected';
+			this.removeEventListener('click', handleAddEtape);
+
+			// var checkBox = document.getElementById("form_etapes_"+image.getAttribute('data-origin-id'));
+			// checkBox.setAttribute('checked', 'checked');
+
+			var inputLibelle = document.getElementById("form_libelleEtape"+(id-1));
+			console.log(inputLibelle);
+			var inputImage = document.getElementById("form_imageEtape"+(id-1));
+			var inputPosition = document.getElementById("form_positionEtape"+(id-1));
+			// console.log(inputLibelle);
+			inputLibelle.setAttribute('value', p);
+			inputImage.setAttribute('value', imageSrc);
+			inputPosition.setAttribute('value', position);
+		}
+
+		function handleRemoveEtape(e){
+			// console.log(this);
+			dropzone.removeChild(this);
+			var newId = this.getAttribute('data-new-id');
+			console.log(this.getAttribute('data-position'));
+			var origin = document.querySelector('[data-origin-id="'+newId+'"]');
+			// console.log(origin);
+			origin.parentNode.className = 'col-md-2 etape';
+			origin.parentNode.addEventListener('click', handleAddEtape, false);
+
+			var etapeSelected = document.getElementsByClassName('in-list');
+			//console.log(etapeSelected);
+			var oldPosition = this.getAttribute('data-position');
+			[].forEach.call(etapeSelected, function(etape) {
+				if(etape.getAttribute('data-position') > oldPosition)
+					etape.setAttribute('data-position', etape.getAttribute('data-position')-1);
+			});
+			position--;
+
+			// var checkBox = document.getElementById("form_etapes_"+newId);
+			// checkBox.removeAttribute('checked');
+
+			var inputLibelle = document.getElementById("form_libelleEtape"+(newId-1));
+			var inputImage = document.getElementById("form_imageEtape"+(newId-1));
+			var inputPosition = document.getElementById("form_positionEtape"+(newId-1));
+			// console.log(inputLibelle);
+			inputLibelle.setAttribute('value', '');
+			inputImage.setAttribute('value', '');
+			inputPosition.setAttribute('value', null);
+
+			var inputs = document.getElementsByClassName('inputPosition');
+			[].forEach.call(inputs, function(input) {
+				var newPosition = input.getAttribute('value') - 1;
+				if(input.getAttribute('value') > oldPosition)
+					input.setAttribute('value', newPosition);
+			});
+		}
+
+		[].forEach.call(etapes, function(etape) {
+			etape.addEventListener('click', handleAddEtape, false);
+		});
+	</script>
+{% endblock %}
