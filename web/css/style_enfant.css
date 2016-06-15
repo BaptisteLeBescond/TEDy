@@ -182,6 +182,7 @@ body.page-index {
 
 
 
+
 /*** planning.html.twig ***/
 
 .page-planning div.accueil a {
@@ -236,23 +237,34 @@ body.page-index {
 
 /*** planningencours.html.twig ***/
 
+.page-planningencours div.temps {
+	width: auto;
+	position: absolute;
+	right: 6%;
+}
+
 .page-planningencours span.temps {
 	color: #ffa527;
 	font-size: 30px;
 }
 
 .page-planningencours span.temps:nth-child(1) {
-	padding-left: 8%;
+	padding-left: 6%;
 }
 
 .page-planningencours div.images {
 	padding-top: 1%;
 	padding-bottom: 2%;
+	display: flex;
 }
 
 .page-planningencours .image.play,
 .page-planningencours .image.stop {
 	cursor: pointer;
+}
+
+.page-planningencours .image.stop {
+	margin-left: 15%;
 }
 
 .page-planningencours div.corbeille.thiner {
@@ -272,7 +284,7 @@ body.page-index {
 }
 
 .page-planningencours div.etapes {
-	margin-top: 1%;	
+	margin-top: 3%;	
 }
 
 .page-planningencours div.etape {
@@ -301,6 +313,15 @@ body.page-index {
 .page-planningencours .img-etape {
 	padding-top: 9%;
 }
+
+.page-planningencours .message {
+	margin: 20px auto 0px;
+  	width: 50%;
+  	color: #3a405a;
+  	font-size: 1.4em;
+  	text-align: center;
+}
+
 
 
 
