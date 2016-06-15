@@ -42,7 +42,7 @@
     <div class="row" id="list-etapes">
 	    {% for etape in etapes %}
 	    	<div id="etape" class="col-md-2 etape" style="padding:0px">
-    			<img src="{{ asset('img/etape/') }}{{ etape.image }}" data-origin-id="{{loop.index}}" class="img-responsive" width="100">
+    			<img src="{{ asset('img/etape/') }}{{ etape.image }}" data-src="{{ etape.image }}" data-origin-id="{{loop.index}}" class="img-responsive" width="100">
 	    		<p>{{ etape.libelle }}</p>
 	    	</div>
 	    {% endfor %}
@@ -59,7 +59,11 @@
 			// console.log(this.firstChild.nextElementSibling);
 			var image = this.firstChild.nextElementSibling;
 			var clone = image.cloneNode(true);
-			clone.setAttribute('data-new-id', image.getAttribute('data-origin-id'));
+			var id = image.getAttribute('data-origin-id');
+			var p = image.nextElementSibling.innerHTML;
+			var imageSrc = image.getAttribute('data-src');
+			console.log(p +" "+ imageSrc);
+			clone.setAttribute('data-new-id', id);
 			clone.setAttribute('data-position', ++position);
 			clone.setAttribute('class', 'img-responsive in-list pull-left');
 			clone.addEventListener('click', handleRemoveEtape, false);
@@ -67,8 +71,17 @@
 			this.className = 'col-md-2 etape selected';
 			this.removeEventListener('click', handleAddEtape);
 
-			var checkBox = document.getElementById("form_etapes_"+image.getAttribute('data-origin-id'));
-			checkBox.setAttribute('checked', 'checked');
+			// var checkBox = document.getElementById("form_etapes_"+image.getAttribute('data-origin-id'));
+			// checkBox.setAttribute('checked', 'checked');
+
+			var inputLibelle = document.getElementById("form_libelleEtape"+(id-1));
+			console.log(inputLibelle);
+			var inputImage = document.getElementById("form_imageEtape"+(id-1));
+			var inputPosition = document.getElementById("form_positionEtape"+(id-1));
+			// console.log(inputLibelle);
+			inputLibelle.setAttribute('value', p);
+			inputImage.setAttribute('value', imageSrc);
+			inputPosition.setAttribute('value', position);
 		}
 
 		function handleRemoveEtape(e){
@@ -90,8 +103,23 @@
 			});
 			position--;
 
-			var checkBox = document.getElementById("form_etapes_"+newId);
-			checkBox.removeAttribute('checked');
+			// var checkBox = document.getElementById("form_etapes_"+newId);
+			// checkBox.removeAttribute('checked');
+
+			var inputLibelle = document.getElementById("form_libelleEtape"+(newId-1));
+			var inputImage = document.getElementById("form_imageEtape"+(newId-1));
+			var inputPosition = document.getElementById("form_positionEtape"+(newId-1));
+			// console.log(inputLibelle);
+			inputLibelle.setAttribute('value', '');
+			inputImage.setAttribute('value', '');
+			inputPosition.setAttribute('value', null);
+
+			var inputs = document.getElementsByClassName('inputPosition');
+			[].forEach.call(inputs, function(input) {
+				var newPosition = input.getAttribute('value') - 1;
+				if(input.getAttribute('value') > oldPosition)
+					input.setAttribute('value', newPosition);
+			});
 		}
 
 		[].forEach.call(etapes, function(etape) {
