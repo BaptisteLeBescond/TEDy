@@ -339,6 +339,99 @@ body.page-index {
 
 
 
+.exclamation{
+	height: 13vh;
+	margin-top: 6vh;
+}
+
+/*** Contrat ***/
+
+.page-contrat #casesEtapes .etape img{
+
+}
+
+.page-contrat .row{
+	height: 25vh;
+}
+
+.page-contrat #casesEtapes{
+	margin: 0px auto;
+
+}
+
+
+
+/*** creerPlanning.html.twig ***/
+
+.second-titre-page {
+ color: #3a405a;
+}
+
+.troisieme-titre-page {
+  color: #3a405a;
+  text-align: center;
+}
+
+.form-ajout-seq {
+  font-size: 1.2em;
+  text-align: center;
+}
+.form-ajout-seq-input {
+  margin-bottom: 10px;
+}
+
+#dropzone {
+  height: 200px;
+  background-color: rgb(230,230,230);
+  border-radius: 5px;
+}
+#dropzone img{
+	width: 80px;
+  height: 80px;
+}
+
+#etape{
+  cursor: pointer;
+  margin: 30px 5px 0px;
+  padding: 5px;
+}
+#etape p{
+  font-size: 1.2em;
+  text-align: center;
+  height: 30px;
+}
+.photo-etape {
+  width: 100px;
+  height: 100px;
+  margin: 0px auto 5px;
+}
+.selected{
+  background-color: #e0e3f4;
+  box-shadow: 5px 5px 15px 5px #656565;
+  transition:0.4s;
+}
+.in-list {
+  margin-right: 40px;
+}
+
+/*** ajoutEnfant.html.twig ***/
+.form-ajout-enfant {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.form-ajout-enfant-input {
+  margin-top: 10px;
+  min-width: 200px;
+}
+
+.form-ajout-enfant-bouton {
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+
 
 
 /*** responsive ***/
