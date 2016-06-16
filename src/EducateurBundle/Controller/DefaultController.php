@@ -268,6 +268,8 @@ class DefaultController extends Controller
 
     	$contrat = $em->getRepository('SequenceBundle:Contrat')->find($id);
 
+    	if(!$contrat)
+    		return $this->forward('EducateurBundle:Default:index');
     	if($contrat->getEducateur() != $user)
     		return $this->render('EducateurBundle:Default:accessDenied.html.twig');
 
