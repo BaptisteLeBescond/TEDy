@@ -28,9 +28,14 @@ class DefaultController extends Controller
 
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
-      $enfants = $user->getEnfant();
+      	$enfants = $user->getEnfant();
+      	for ($i=0; $i < sizeof($enfants); $i++) { 
+      		$contrats[$i] = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants[$i]));	
+      	}
+      	var_dump($contrats);
+      	$i--;
 
-        return $this->render('EducateurBundle:Default:index.html.twig', array('user' => $user, 'enfants' => $enfants));
+        return $this->render('EducateurBundle:Default:index.html.twig', array('compteur' => $i, 'contrats' => $contrats, 'user' => $user, 'enfants' => $enfants));
     }
 
     public function ajoutEnfantAction(Request $request)
@@ -251,6 +256,26 @@ class DefaultController extends Controller
         }
 
         return $this->render('EducateurBundle:Default:creerContrat.html.twig', array('form' => $form->createView(), 'user' => $user, 'enfant' => $enfant, 'sequences' => $sequences));
+    }
+
+    public function supprimerContratAction(Request $request, $id)
+    {
+    	if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
+            return $this->render('EducateurBundle:Default:accessDenied.html.twig');
+
+    	$em = $this->getDoctrine()->getManager();
+    	$user = $this->getUser();
+
+    	$contrat = $em->getRepository('SequenceBundle:Contrat')->find($id);
+
+    	if($contrat->getEducateur() != $user)
+    		return $this->render('EducateurBundle:Default:accessDenied.html.twig');
+
+    	$em->remove($contrat);
+    	$em->flush();
+
+    	return $this->forward('EducateurBundle:Default:index');
+
     }
 
 }

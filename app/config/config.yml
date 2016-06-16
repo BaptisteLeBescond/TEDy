@@ -12,6 +12,7 @@ imports:
 parameters:
     locale: fr
     musiques_directory: '%kernel.root_dir%/../web/uploads/musiques'
+    photosEnfant_directory: '%kernel.root_dir%/../web/uploads/photosEnfant'
 
 
 framework:
