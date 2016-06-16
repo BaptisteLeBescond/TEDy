@@ -6,6 +6,10 @@ body{
     font-family: Andika;
 }
 
+h1, h2{
+  color: #ffa527;
+}
+
 
 /*** HEADER ***/
 
@@ -81,6 +85,11 @@ img.logo {
   width: 80px;
   height: 80px;
   margin: 0px auto 5px;
+  border-radius: 100px;
+}
+
+.fc-event-container{
+  cursor: pointer;
 }
 /* modal */
 .imageEtape img{

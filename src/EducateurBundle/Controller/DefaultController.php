@@ -108,7 +108,7 @@ class DefaultController extends Controller
         ->add('adresse_postale', 'text', array('label' => 'Adresse','required' => false, 'attr' => array()))
         ->add('code_postale', 'integer', array('label' => 'Code postal','required' => false, 'attr' => array()))
         ->add('ville', 'text', array('label' => 'Ville','required' => false, 'attr' => array()))
-        ->add('photo', 'file', array('label' => 'Photo','required' => false, 'attr' => array()))
+        ->add('photo', FileType::class, array('label' => 'Photo','required' => false, 'attr' => array()))
         ->add('save',      'submit')
         ->getForm()
 	      ;
@@ -116,12 +116,21 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if($form->isValid()){
-    			var_dump('Enfant modifié avec succès');
-        $em->persist($enfant);
+        	$file = $form['photo']->getData();
+        	var_dump($file->getClientOriginalName());
+        	$fileName = md5(uniqid()).'.'.$file->getClientOriginalName();
+        	var_dump($fileName);
+        	$file->move(
+                $this->container->getParameter('photosEnfant_directory'),
+                $fileName
+            );
+        	$enfant->setPhoto($fileName	);
+
+        	$em->persist($enfant);
   			$em->flush();
         }
         else
-    			var_dump('ERREUR !');
+			var_dump('ERREUR !');
 
             return $this->render('EducateurBundle:Default:modifEnfant.html.twig', array('user' => $user, 'enfant' => $enfant, 'form' => $form->createView()));
 

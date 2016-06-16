@@ -42,7 +42,11 @@
             {% for enfant in enfants %}
               <a href="{{ path('educateur_fiche_enfant', {'username': enfant.username, 'name': enfant.name}) }}">
                 <div class="col-md-3 un-enfant">
-                    <img src="{{ asset('img/user/user.png') }}" alt="photo de profil de l'enfant" class="photo-profil-enfant img-responsive" />
+                    {% if enfant.photo %}
+                      <img src="{{ asset('uploads/photosEnfant/') }}{{enfant.photo}}" alt="photo de profil de l'enfant" class="photo-profil-enfant img-responsive" />
+                    {% else %}
+                      <img src="{{ asset('img/user/user.png') }}" alt="photo de profil de l'enfant" class="photo-profil-enfant img-responsive" />
+                    {% endif %}
                     <p>{{ enfant.username }} {{ enfant.name }}</p>
                 </div>
               </a>
