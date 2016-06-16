@@ -32,9 +32,6 @@ ul.menu-principal > li a {
 }
 ul.menu-principal > li a:hover {
   text-decoration: none;
-  padding: 0px 5px;
-  border-radius: 3px;
-  background-color: #3a405a;
 }
 img.icone-menu {
   margin: 5px auto auto 30px;
@@ -154,6 +151,41 @@ img.logo {
 .form-ajout-enfant-bouton {
   margin-top: 10px;
   font-size: 1.2em;
+}
+
+/*** ficheEnfant.html.twig ***/
+.fiche-enfant {
+  border-radius: 5px;
+  background-color: #e0e3f4;
+  margin-top: 10px;
+}
+
+.fiche-enfant-groupe {
+  margin: 20px auto;
+  font-size: 1.4em;
+}
+.fiche-enfant-input {
+  margin-bottom: 20px;
+}
+.fiche-enfant-input-vide {
+  font-style: italic;
+}
+.fiche-enfant-label {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.fiche-enfant-bouton a, .fiche-enfant-bouton a:hover, .bouton-ajout-contrat a, .bouton-ajout-contrat a:hover {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+.fiche-enfant-bouton {
+  margin-bottom: 20px;
+}
+
+.bouton-ajout-contrat {
+  margin-top: 20px;
+  background-color: #3a405a;
 }
 
 /*** RESPONSIVE ***/
