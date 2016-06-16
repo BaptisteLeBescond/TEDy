@@ -41,23 +41,32 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $contrat = $em->getRepository('SequenceBundle:Contrat')->findOneBy(array('enfant' => $user, 'enCours' => true));
-        $sequence = $contrat->getSequence();
-        $etapes = $sequence->getEtapes();
-        $nbreEtapes = sizeof($etapes);
-        if($nbreEtapes > 6)
-            $sizeCol = 1;
-        elseif ($nbreEtapes > 4)
-            $sizeCol = 2;
-        elseif ($nbreEtapes == 4)
-            $sizeCol = 3;
-        elseif ($nbreEtapes == 3)
-            $sizeCol = 4;
-        elseif ($nbreEtapes == 2)
-            $sizeCol = 6;
-        else
-            $sizeCol = 12;
 
-        return $this->render('EnfantBundle:Default:contrat.html.twig', array('sizeCol' => $sizeCol, 'nbreEtapes' => $nbreEtapes, 'etapes' => $etapes, 'contrat' => $contrat, 'user' => $user));
+        //var_dump($contrat);
+
+        if(is_null($contrat)) {
+            return $this->render('EnfantBundle:Default:contrat404.html.twig');
+        }
+        else {
+            $sequence = $contrat->getSequence();
+            $etapes = $sequence->getEtapes();
+            $nbreEtapes = sizeof($etapes);
+            if($nbreEtapes > 6)
+                $sizeCol = 1;
+            elseif ($nbreEtapes > 4)
+                $sizeCol = 2;
+            elseif ($nbreEtapes == 4)
+                $sizeCol = 3;
+            elseif ($nbreEtapes == 3)
+                $sizeCol = 4;
+            elseif ($nbreEtapes == 2)
+                $sizeCol = 6;
+            else
+                $sizeCol = 12;
+
+            return $this->render('EnfantBundle:Default:contrat.html.twig', array('sizeCol' => $sizeCol, 'nbreEtapes' => $nbreEtapes, 'etapes' => $etapes, 'contrat' => $contrat, 'user' => $user));
+        }
+        
     }
 
     public function planningAction()

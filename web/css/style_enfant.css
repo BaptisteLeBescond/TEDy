@@ -400,18 +400,52 @@ body.page-index {
 
 /*** Contrat ***/
 
-.page-contrat #casesEtapes .etape img{
+.page-contrat #casesEtapes .etape img {
 
 }
 
-.page-contrat .row{
+.page-contrat .row {
 	height: 25vh;
 }
 
-.page-contrat #casesEtapes{
+.page-contrat #casesEtapes {
 	margin: 0px auto;
 
 }
+
+
+
+
+
+
+/*** contrat404.html.twig ***/
+
+.page-contrat404 .message {
+	margin: 20px auto 0px;
+    width: 50%;
+    color: #3a405a;
+    font-size: 1.4em;
+    text-align: center;
+}
+
+.page-contrat404 .message a {
+	text-decoration: none;
+	color: #3a405a;
+}
+
+.page-contrat404 .message button {
+    background-color: #ffa527;
+    margin-top: 1%;
+    outline-style: none;
+}
+
+.page-contrat404 .message img {
+	margin-left: 36%;
+    margin-top: 5%;
+}
+
+
+
 
 
 

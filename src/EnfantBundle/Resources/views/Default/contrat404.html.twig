@@ -1,0 +1,22 @@
+{% extends 'enfantBase.html.twig' %}
+
+{% block title %}
+	Aucun Contrat En Cours
+{% endblock title %}
+
+{% block bodyclass %}
+	class="page-contrat404"
+{% endblock bodyclass %}
+
+{% block body %}
+	<div class="row message">
+		<span>Désolé, tu n'as pas de contrat à faire.</span>
+		<br />
+		<span>Retourne à la page d'accueil.</span>
+		<br />
+		<br />
+		<a href="{{ path('enfant_homepage') }}"><button class="btn">Retour</button></a>
+		<br />
+		<img src="{{ asset('img/contrat/teddyBearSorry200.png') }}" alt="teddyBear" class="img-responsive" />
+	</div>
+{% endblock body %}
