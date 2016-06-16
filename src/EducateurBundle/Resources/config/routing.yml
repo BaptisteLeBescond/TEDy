@@ -19,7 +19,7 @@ educateur_creer_contrat:
     defaults: { _controller: EducateurBundle:Default:creerContrat }
 
 educateur_supprimer_contrat:
-    path:     /{id}
+    path:     /supprimer-contrat/{id}
     defaults: { _controller: EducateurBundle:Default:supprimerContrat }
 
 
