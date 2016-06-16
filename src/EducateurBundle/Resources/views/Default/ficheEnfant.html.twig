@@ -89,7 +89,7 @@
 			</div>
 
 			<button type="button" class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-9 col-xs-5 btn btn-primary fiche-enfant-bouton">
-         <a href="{{ path('educateur_enfant_ajout') }}">Modifier</a>
+         <a href="{{ path('educateur_enfant_modif', { 'username' : enfant.username, 'name' : enfant.name }) }}">Modifier</a>
       </button>
 
 		</div>
