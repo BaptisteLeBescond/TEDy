@@ -23,51 +23,67 @@
 		</div>
 	</div>
 
-	{{form(form)}}
-
 	<div class="row musique">
 		<audio src="{{ asset('music/') }}{{planning.sequence.musique}}" controls loop preload="auto"></audio>
+	</div>
+
+	<div class="row duree">
+		La durée de ton planning précédent : <span>{{planning.duree}}</span>.
 	</div>
 
 	{% for e in planning.sequence.etapes %}
 		{% if loop.first %}
 			<div class="row etapes draggable">
 				<div class="col-md-offset-1 col-md-8 etape">
-			{% else %}
+					<div class="row">
+						<div class="col-md-1 col-color-first">
+						</div>
+						<div class="col-md-1 blanc-first">
+						</div>
+						<div class="col-md-3 blanc-first">
+							<img src="{{ asset('img/etape/') }}{{e.image}}" alt="etape" width="120" height="120" class="img-etape img-responsive" />
+						</div>
+						<div class="col-md-7 blanc-first">
+							<h3>{{e.libelle}}</h3>
+						</div>
+					</div>
+				</div> <!-- div class="etape" -->
+			</div> <!-- div class="etapes" -->
+		{% else %}
 			<div class="row etapes">
 				<div class="col-md-offset-2 col-md-6 etape">
-			{% endif %}
-				<div class="row">
-					{% if loop.first %}
-					<div class="col-md-1 col-color-first">
-					</div>
-					{% else %}
-					<div class="col-md-1 col-color">
-					</div>
-					{% endif %}
-					<div class="col-md-offset-1 col-md-3">
-						{% if loop.first %}
-							<img src="{{ asset('img/etape/') }}{{e.image}}" alt="etape" width="120" height="120" class="img-etape img-responsive" />
-						{% else %}
+					<div class="row">
+						<div class="col-md-1 col-color">
+						</div>
+						<div class="col-md-1 blanc">
+						</div>
+						<div class="col-md-3 blanc">
 							<img src="{{ asset('img/etape/') }}{{e.image}}" alt="etape" width="100" height="100" class="img-etape img-responsive" />
-						{% endif %}
+						</div>
+						<div class="col-md-7 blanc">
+							<h3>{{e.libelle}}</h3>
+						</div>
 					</div>
-					<div class="col-md-7">
-						<h3>{{e.libelle}}</h3>
-					</div>
-				</div>
-			</div> <!-- div class="etape" -->
-		</div> <!-- div class="etapes" -->
+				</div> <!-- div class="etape" -->
+			</div> <!-- div class="etapes" -->
+		{% endif %}
 	{% endfor %}
 
 	<div class="row message-ko" id="message">
 		<span>Bravo ! Tu as fini ton planning ! ;-)</span>
 		<br />
-		<button class="btn">Enregistrer</button>
+		<span id="message-duree"></span>
+		<br />
+		{{form(form)}}
+		<br />
+		<img src="{{ asset('img/planning/teddyBear200.png') }}" alt="teddyBear" class="img-responsive" />
 	</div>
 {% endblock body %}
 
 {% block javascripts %}
+	<script type="text/javascript">
+		ancienneDuree = "{{planning.duree}}";
+	</script>
 	<script type="text/javascript" src="{{ asset('js/chrono.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/interact.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/draganddrop_planning.js') }}"></script>

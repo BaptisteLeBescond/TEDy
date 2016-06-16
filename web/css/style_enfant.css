@@ -96,6 +96,11 @@ body.page-index {
    	margin-top: 7vh;
 }
 
+.page-index .exclamation{
+	height: 13vh;
+	margin-top: 6vh;
+}
+
 
 
 
@@ -249,6 +254,18 @@ body.page-index {
     top: 56%;
 }
 
+.page-planningencours .duree {
+	position: absolute;
+	right: 2%;
+    top: 65%;
+}
+
+.page-planningencours .duree span {
+	color: #3a405a;
+	font-size: 16px;
+    font-weight: 600;
+}
+
 .page-planningencours span.temps {
 	color: #ffa527;
 	font-size: 30px;
@@ -259,7 +276,7 @@ body.page-index {
 }
 
 .page-planningencours div.images {
-	padding-top: 1%;
+	padding-top: 10%;
 	padding-bottom: 2%;
 	display: flex;
 }
@@ -271,6 +288,10 @@ body.page-index {
 
 .page-planningencours .image.stop {
 	margin-left: 15%;
+}
+
+.page-planningencours div.dropzone.drop-target {
+	opacity: 0.5;
 }
 
 .page-planningencours div.corbeille.thiner {
@@ -308,12 +329,32 @@ body.page-index {
 	background-color: #ffa527;
 	width: 5vw;
     height: 25vh;
+    transition: 1s;
+}
+
+.page-planningencours div.etapes.draggable.can-drop div.col-color-first {
+	background-color: red;
+}
+
+.page-planningencours div.blanc-first {
+	background-color: white;
+	height: 25vh;
+}
+
+.page-planningencours div.blanc {
+	background-color: white;
+	height: 20vh;
 }
 
 .page-planningencours h3 {
 	color: #ffa527;
 	padding-top: 7%;
     font-size: 30px;
+    transition: 1s;
+}
+
+.page-planningencours div.etapes.draggable.can-drop h3{
+	color: red;
 }
 
 .page-planningencours .img-etape {
@@ -332,17 +373,30 @@ body.page-index {
   	text-align: center;
 }
 
+.page-planningencours .message-ok form label[for="form_duree"] {
+	display: none;
+}
+
+.page-planningencours .message-ok form input#form_duree {
+	display: none;
+}
+
 .page-planningencours .message-ok button {
 	background-color: #ffa527;
 	margin-top: 1%;
+	outline-style: none;
+}
+
+.page-planningencours .message-ok img {
+	margin-left: 36%;
+    margin-top: 5%;
 }
 
 
 
-.exclamation{
-	height: 13vh;
-	margin-top: 6vh;
-}
+
+
+
 
 /*** Contrat ***/
 

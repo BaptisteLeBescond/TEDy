@@ -88,7 +88,7 @@ class DefaultController extends Controller
 
         $form = $this->get('form.factory')->createBuilder('form')
             ->add('duree',  'text', array('required' => false, 'attr' => array('id' => 'duree')))
-            ->add('Enregistrer', 'submit')
+            ->add('Enregistrer', 'submit', array('attr' => array('class' => 'btn')))
             ->getForm();
 
         $form->handleRequest($request);

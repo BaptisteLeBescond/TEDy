@@ -108,6 +108,14 @@ interact('.dropzone').dropzone({
             color[0].classList.add('col-color-first');
             color[0].classList.remove('col-color');
 
+            var blanc = etape[0].getElementsByClassName('blanc');
+            blanc[0].classList.add('blanc-first');
+            blanc[1].classList.add('blanc-first');
+            blanc[2].classList.add('blanc-first');
+            blanc[0].classList.remove('blanc');
+            blanc[0].classList.remove('blanc');
+            blanc[0].classList.remove('blanc');
+
             var img = etape[0].getElementsByClassName('img-etape');
             img[0].setAttribute('width','120');
             img[0].setAttribute('height','120');
@@ -120,7 +128,17 @@ interact('.dropzone').dropzone({
             var heure = document.getElementById('heure').innerHTML;
             var minute = document.getElementById('minute').innerHTML;
             var seconde = document.getElementById('seconde').innerHTML;
-            inputDuree.setAttribute('value', heure+':'+minute+':'+seconde);
+
+            var messageDuree = document.getElementById('message-duree');
+
+            if(heure == '00' && minute == '00' && seconde == '00') {
+                inputDuree.setAttribute('value', ancienneDuree);
+            }
+            else {
+                clearTimeout(compte);
+                inputDuree.setAttribute('value', heure+':'+minute+':'+seconde);
+                messageDuree.textContent = "Voici la durée de ton planning : " +heure+':'+minute+':'+seconde;
+            }
         }
         
     },
