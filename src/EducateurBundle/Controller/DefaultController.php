@@ -85,6 +85,43 @@ class DefaultController extends Controller
         return $this->render('EducateurBundle:Default:ajoutEnfant.html.twig', array('user' => $user, 'form' => $form->createView()));
     }
 
+    public function modifEnfantAction($username, $name, Request $request)
+    {
+      if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
+            return $this->render('EducateurBundle:Default:accessDenied.html.twig');
+
+      $em = $this->getDoctrine()->getManager();
+    	$user = $this->getUser();
+
+    	$enfant = $em->getRepository('UserBundle:User')->findOneBy(array('username' => $username, 'name' => $name));
+
+      $form = $this->get('form.factory')->createBuilder('form', $enfant)
+      ->add('username',  'text', array('label' => 'Prénom','required' => true, 'attr' => array('class' => 'form-required')))
+        ->add('name',     'text', array('label' => 'Nom','required' => true, 'attr' => array('class' => 'form-required')))
+        ->add('age',   'integer', array('label' => 'Âge','required' => false, 'attr' => array()))
+        ->add('telephone', 'integer', array('label' => 'Téléphone','required' => false, 'attr' => array()))
+        ->add('adresse_postale', 'text', array('label' => 'Adresse','required' => false, 'attr' => array()))
+        ->add('code_postale', 'integer', array('label' => 'Code postal','required' => false, 'attr' => array()))
+        ->add('ville', 'text', array('label' => 'Ville','required' => false, 'attr' => array()))
+        ->add('photo', 'file', array('label' => 'Photo','required' => false, 'attr' => array()))
+        ->add('save',      'submit')
+        ->getForm()
+	      ;
+
+        $form->handleRequest($request);
+
+        if($form->isValid()){
+    			var_dump('Enfant modifié avec succès');
+        $em->persist($enfant);
+  			$em->flush();
+        }
+        else
+    			var_dump('ERREUR !');
+
+            return $this->render('EducateurBundle:Default:modifEnfant.html.twig', array('user' => $user, 'enfant' => $enfant, 'form' => $form->createView()));
+
+    }
+
     public function creerSequenceAction(Request $request)
     {
     	if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
@@ -102,7 +139,7 @@ class DefaultController extends Controller
 	      ->add('save', 'submit')
 	      ;
 
-	      for ($i=0; $i < sizeof($etapes) ; $i++) { 
+	      for ($i=0; $i < sizeof($etapes) ; $i++) {
 	      	$form->add('libelleEtape'.$i, 'text', array('required' => false, 'attr' => array('id' => 'libelleEtape'.$i, 'class' => 'inputLibelle hidden'), 'label_attr' => array('class' => 'hidden')));
 	      	$form->add('imageEtape'.$i, 'text', array('required' => false, 'attr' => array('id' => 'imageEtape'.$i, 'class' => 'inputImage hidden'), 'label_attr' => array('class' => 'hidden')));
 	      	$form->add('positionEtape'.$i, 'integer', array('required' => false, 'attr' => array('id' => 'positionEtape'.$i, 'class' => 'inputPosition hidden'), 'label_attr' => array('class' => 'hidden')));
@@ -113,7 +150,7 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if($form->isValid()){
-        	for ($i=0; $i < sizeof($etapes) ; $i++) { 
+        	for ($i=0; $i < sizeof($etapes) ; $i++) {
         		$etape = new Etape();
         		$libelle = $form['libelleEtape'.$i]->getData();
         		$image = $form['imageEtape'.$i]->getData();
@@ -207,7 +244,7 @@ class DefaultController extends Controller
         	$contrat->setFini(false);
         	$contrat->setEducateur($user);
         	$contrat->setEnfant($enfant);
-        	
+
         	$em->persist($contrat);
         	$em->flush();
 

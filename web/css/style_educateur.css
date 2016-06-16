@@ -136,21 +136,29 @@ img.logo {
   margin-right: 40px;
 }
 
-/*** ajoutEnfant.html.twig ***/
-.form-ajout-enfant {
+/*** ajoutEnfant.html.twig + modifEnfant.html.twig ***/
+.form-ajout-enfant, .form-modif-enfant {
   text-align: center;
   font-size: 1.2em;
   margin-top: 10px;
 }
 
 .form-ajout-enfant-input {
-  margin-top: 10px;
+  margin-bottom: 10px;
   min-width: 200px;
+  font-size: 1em;
 }
 
 .form-ajout-enfant-bouton {
   margin-top: 10px;
   font-size: 1.2em;
+}
+
+.form-modif {
+  border-radius: 5px;
+  background-color: #e0e3f4;
+  margin-top: 10px;
+  padding: 20px;
 }
 
 /*** ficheEnfant.html.twig ***/

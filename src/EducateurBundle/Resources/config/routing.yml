@@ -17,3 +17,7 @@ educateur_fiche_enfant:
 educateur_creer_contrat:
     path:     /{username}-{name}/creer-contrat
     defaults: { _controller: EducateurBundle:Default:creerContrat }
+
+educateur_enfant_modif:
+    path:     /{username}-{name}/modif-enfant
+    defaults: { _controller: EducateurBundle:Default:modifEnfant }
