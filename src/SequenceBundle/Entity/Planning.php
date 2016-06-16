@@ -48,7 +48,7 @@ class Planning
     /**
      * @var string
      *
-     * @ORM\Column(name="duree", type="string", length=255)
+     * @ORM\Column(name="duree", type="string", length=255, nullable=true)
      */
     private $duree;
 
