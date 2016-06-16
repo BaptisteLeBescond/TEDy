@@ -3,6 +3,7 @@
 namespace SequenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Sequence
@@ -36,9 +37,10 @@ class Sequence
     private $description;
 
     /**
-     * @var string
+     * @ORM\Column(type="string")
      *
-     * @ORM\Column(name="musique", type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Veuillez uploader un fichier webm / ogg / mp3 / wav.")
+     * @Assert\File(mimeTypes={ "webm/ogg/mp3/wav" })
      */
     private $musique;
 

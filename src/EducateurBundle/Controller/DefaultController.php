@@ -10,6 +10,7 @@ use SequenceBundle\Entity\Contrat;
 // use EducateurBundle\Form\EnfantType;
 use EducateurBundle\Form\SequenceType;
 use EducateurBundle\Form\EtapeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -97,7 +98,7 @@ class DefaultController extends Controller
     	$form = $this->get('form.factory')->createBuilder('form')
     	  ->add('libelle',  'text', array('label' => 'Titre','required' => true, 'attr' => array('class' => 'form-required')))
 	      ->add('description',     'textarea', array('label' => 'Description','required' => true, 'attr' => array('class' => 'form-required')))
-	      // ->add('musique',   'integer', array('label' => 'Âge','required' => false, 'attr' => array('class' => 'form-required')))
+	      ->add('musique',   FileType::class, array('label' => 'Musique','required' => false, 'attr' => array('class' => 'form-required')))
 	      ->add('save', 'submit')
 	      ;
 
@@ -129,6 +130,16 @@ class DefaultController extends Controller
         		}
         	}
 
+        	$file = $form['musique']->getData();
+        	var_dump($file->getClientOriginalName());
+        	$fileName = md5(uniqid()).'.'.$file->getClientOriginalName();
+        	var_dump($fileName);
+        	$file->move(
+                $this->container->getParameter('musiques_directory'),
+                $fileName
+            );
+
+        	$sequence->setMusique($file);
         	$sequence->setCreateur($user);
         	$sequence->setLibelle($form['libelle']->getData());
         	$sequence->setDescription($form['description']->getData());
