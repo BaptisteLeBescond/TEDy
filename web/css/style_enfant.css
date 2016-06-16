@@ -398,20 +398,42 @@ body.page-index {
 
 
 
-/*** Contrat ***/
-
-.page-contrat #casesEtapes .etape img {
-
-}
+/*** contrat.html.twig ***/
 
 .page-contrat .row {
 	height: 25vh;
 }
 
+.page-contrat .row#casesJetons {
+	height: 15vh;
+	
+}
+
 .page-contrat #casesEtapes {
 	margin: 0px auto;
-
+	height: 30vh;
 }
+
+.page-contrat .jeton img {
+	margin: 4% auto;
+	/*display: none;*/
+	border: 3px solid yellow;
+    border-radius: 25px;
+}
+
+.page-contrat img.grid {
+	padding-left: 20%;
+}
+
+.page-contrat .clavier table {
+	text-align: center;
+}
+
+.page-contrat #boutonClavier {
+	outline-style: none;
+}
+
+
 
 
 

@@ -42,8 +42,6 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $contrat = $em->getRepository('SequenceBundle:Contrat')->findOneBy(array('enfant' => $user, 'enCours' => true));
 
-        //var_dump($contrat);
-
         if(is_null($contrat)) {
             return $this->render('EnfantBundle:Default:contrat404.html.twig');
         }
@@ -181,4 +179,5 @@ class DefaultController extends Controller
 
         return $this->render('EnfantBundle:Default:creerPlanning.html.twig', array('form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
     }
+
 }
