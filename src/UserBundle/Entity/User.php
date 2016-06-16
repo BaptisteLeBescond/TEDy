@@ -4,6 +4,7 @@ namespace UserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -65,7 +66,9 @@ class User extends BaseUser
 
     /**
      * @var string
-     * @ORM\Column(name="photo", type="string", length=255, nullable=true, unique=false)
+     * @ORM\Column(name="photo", type="string", nullable=true, unique=false)
+     * @Assert\NotBlank(message="Veuillez uploader un fichier jpg / png / gif / bitmap.")
+     * @Assert\File(mimeTypes={ "image/jpeg", "image/jpg", "image/png", "image/gif", "image/bitmap" })
      */
     private $photo;
 

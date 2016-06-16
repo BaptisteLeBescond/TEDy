@@ -1,5 +1,68 @@
 {% extends 'educateurBase.html.twig' %}
 
 {% block body %}
-	{{ form(form) }}
+<div class="row">
+	<div class="col-md-2 col-sm-2 col-xs-2 user-present">
+		{{user}}  |
+
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				<a href="{{ path('fos_user_security_logout') }}">
+						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+				</a>
+		{% endif %}
+	</div>
+</div>
+
+<div class="row">
+	<h1 class="titre-page col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-12">
+			Créer un contrat
+	</h1>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 form-modif">
+    {{ form_start(form, {'attr': {'class': 'form-ajout-contrat'}}) }}
+			<div class="form-group">
+				<div class="row">
+					{{ form_label(form.libelle,"Titre", {'label_attr': {'class': 'col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1 col-xs-3 control-label form-required'}}) }}
+					<div class="col-md-4 col-sm-4 col-xs-4">
+	          {{ form_widget(form.libelle, {'attr': {'class': 'form-control form-ajout-enfant-input', 'required' :'required'}}) }}
+	        </div>
+				</div>
+
+				<div class="row">
+					{{ form_label(form.description,"Description", {'label_attr': {'class': 'col-md-4 col-sm-4 control-label form-required', 'type': 'TextareaType'}}) }}
+					<div class="col-md-6 col-sm-6">
+						{{ form_widget(form.description, {'attr': {'class': 'form-control form-ajout-seq-input', 'required' :'required'}}) }}
+					</div>
+				</div>
+
+				<div class="row">
+					{{ form_label(form.date,"Date", {'label_attr': {'class': 'col-md-4 col-sm-4 control-label form-required', 'type': 'DateTimeType'}}) }}
+					<div class="col-md-6 col-sm-6">
+						{{ form_widget(form.date, {'attr': {'class': 'form-control form-ajout-seq-input', 'required' :'required', 'date_widget':'single_text'}}) }}
+					</div>
+				</div>
+
+				<div class="row">
+					{{ form_label(form.recompense,"Sélectionnez une récompense", {'label_attr': {'class': 'col-md-4 col-sm-4 control-label form-required', 'type': 'ChoiceType'}}) }}
+					<div class="col-md-6 col-sm-6">
+						{{ form_widget(form.recompense, {'attr': {'class': 'form-control form-ajout-seq-input', 'required' :'required'}}) }}
+					</div>
+				</div>
+
+				<div class="row">
+					{{ form_label(form.sequence,"Sélectionnez une séquence", {'label_attr': {'class': 'col-md-4 col-sm-4 control-label form-required', 'type': 'ChoiceType'}}) }}
+					<div class="col-md-6 col-sm-6">
+						{{ form_widget(form.sequence, {'attr': {'class': 'form-control form-ajout-seq-input', 'required' :'required'}}) }}
+					</div>
+				</div>
+
+				<div class="col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-5 col-xs-4 form-ajout-enfant-bouton">
+					{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}, 'label': 'Enregistrer'}) }}
+				</div>
+			</div>
+	</div>
+		{{ form_end(form) }}
+</div>
 {% endblock %}

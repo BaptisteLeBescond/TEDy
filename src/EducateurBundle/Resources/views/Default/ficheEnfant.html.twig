@@ -30,8 +30,12 @@
 
 		<div class="fiche-enfant-groupe">
 			<div class="row">
+				{% if enfant.photo %}
+					<img src="{{ asset('uploads/photosEnfant/') }}{{enfant.photo}}" alt="photo de profil de l'enfant" class="photo-profil-enfant img-responsive" />
+				{% else %}
 					<img src="{{ asset('img/user/user.png') }}" alt="photo de profil de l'enfant" class="photo-profil-enfant img-responsive" />
-				</div>
+				{% endif %}
+			</div>
 
 			<div class="row">
 				<div class="col-md-4 col-md-offset-3 col-sm-4 col-sm-offset-3 col-xs-6 fiche-enfant-label">Nom : </div>
@@ -89,7 +93,7 @@
 			</div>
 
 			<button type="button" class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-9 col-xs-5 btn btn-primary fiche-enfant-bouton">
-         <a href="{{ path('educateur_enfant_ajout') }}">Modifier</a>
+         <a href="{{ path('educateur_enfant_modif', { 'username' : enfant.username, 'name' : enfant.name }) }}">Modifier</a>
       </button>
 
 		</div>

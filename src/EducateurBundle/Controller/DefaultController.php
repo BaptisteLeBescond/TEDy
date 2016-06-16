@@ -29,8 +29,8 @@ class DefaultController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
       	$enfants = $user->getEnfant();
-      	for ($i=0; $i < sizeof($enfants); $i++) { 
-      		$contrats[$i] = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants[$i]));	
+      	for ($i=0; $i < sizeof($enfants); $i++) {
+      		$contrats[$i] = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants[$i]));
       	}
       	var_dump($contrats);
       	$i--;
@@ -108,7 +108,7 @@ class DefaultController extends Controller
         ->add('adresse_postale', 'text', array('label' => 'Adresse','required' => false, 'attr' => array()))
         ->add('code_postale', 'integer', array('label' => 'Code postal','required' => false, 'attr' => array()))
         ->add('ville', 'text', array('label' => 'Ville','required' => false, 'attr' => array()))
-        ->add('photo', 'file', array('label' => 'Photo','required' => false, 'attr' => array()))
+        ->add('photo', FileType::class, array('label' => 'Photo','required' => false, 'attr' => array()))
         ->add('save',      'submit')
         ->getForm()
 	      ;
@@ -116,12 +116,21 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if($form->isValid()){
-    			var_dump('Enfant modifié avec succès');
-        $em->persist($enfant);
+        	$file = $form['photo']->getData();
+        	var_dump($file->getClientOriginalName());
+        	$fileName = md5(uniqid()).'.'.$file->getClientOriginalName();
+        	var_dump($fileName);
+        	$file->move(
+                $this->container->getParameter('photosEnfant_directory'),
+                $fileName
+            );
+        	$enfant->setPhoto($fileName	);
+
+        	$em->persist($enfant);
   			$em->flush();
         }
         else
-    			var_dump('ERREUR !');
+			var_dump('ERREUR !');
 
             return $this->render('EducateurBundle:Default:modifEnfant.html.twig', array('user' => $user, 'enfant' => $enfant, 'form' => $form->createView()));
 
@@ -224,8 +233,9 @@ class DefaultController extends Controller
 
     	$form = $this->get('form.factory')->createBuilder('form', $contrat)
     	  ->add('libelle',  'text', array('label' => 'Titre','required' => true, 'attr' => array('class' => 'form-required')))
-	      ->add('description',     'textarea', array('label' => 'Description','required' => true, 'attr' => array('class' => 'form-required')))
-	      ->add('date',     'datetime', array('date_format' => 'yyyy-MM-dd  HH:i', 'label' => 'Date','required' => true, 'attr' => array('class' => 'form-required')))
+	      ->add('description',  'textarea', array('label' => 'Description','required' => true, 'attr' => array('class' => 'form-required')))
+	      ->add('date',  'datetime', array('date_format' => 'yyyy-MM-dd  HH:i', 'widget' => 'single_text', 'label' => 'Date','required' => true, 'attr' => array('class' => 'form-required input-inline datepicker',
+        'data-provide' => 'datepicker', 'data-date-format' => 'yyyy-mm-dd HH:i')))
 	      ->add('recompense',     EntityType::class, array('class' => 'SequenceBundle:Recompense', 'label' => 'Sélectionnez une récompense','required' => true, 'attr' => array('class' => 'form-required')))
 	      ->add('sequence',     EntityType::class, array('class' => 'SequenceBundle:Sequence', 'choices' => $sequences, 'label' => 'Sélectionnez une séquence','required' => true, 'attr' => array('class' => 'form-required')))
 	      ->add('save', 'submit')
