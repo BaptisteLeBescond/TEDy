@@ -29,8 +29,8 @@ class DefaultController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
       	$enfants = $user->getEnfant();
-      	for ($i=0; $i < sizeof($enfants); $i++) { 
-      		$contrats[$i] = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants[$i]));	
+      	for ($i=0; $i < sizeof($enfants); $i++) {
+      		$contrats[$i] = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants[$i]));
       	}
       	var_dump($contrats);
       	$i--;
@@ -224,8 +224,9 @@ class DefaultController extends Controller
 
     	$form = $this->get('form.factory')->createBuilder('form', $contrat)
     	  ->add('libelle',  'text', array('label' => 'Titre','required' => true, 'attr' => array('class' => 'form-required')))
-	      ->add('description',     'textarea', array('label' => 'Description','required' => true, 'attr' => array('class' => 'form-required')))
-	      ->add('date',     'datetime', array('date_format' => 'yyyy-MM-dd  HH:i', 'label' => 'Date','required' => true, 'attr' => array('class' => 'form-required')))
+	      ->add('description',  'textarea', array('label' => 'Description','required' => true, 'attr' => array('class' => 'form-required')))
+	      ->add('date',  'datetime', array('date_format' => 'yyyy-MM-dd  HH:i', 'widget' => 'single_text', 'label' => 'Date','required' => true, 'attr' => array('class' => 'form-required input-inline datepicker',
+        'data-provide' => 'datepicker', 'data-date-format' => 'yyyy-mm-dd HH:i')))
 	      ->add('recompense',     EntityType::class, array('class' => 'SequenceBundle:Recompense', 'label' => 'Sélectionnez une récompense','required' => true, 'attr' => array('class' => 'form-required')))
 	      ->add('sequence',     EntityType::class, array('class' => 'SequenceBundle:Sequence', 'choices' => $sequences, 'label' => 'Sélectionnez une séquence','required' => true, 'attr' => array('class' => 'form-required')))
 	      ->add('save', 'submit')
