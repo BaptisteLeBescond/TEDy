@@ -236,10 +236,10 @@ class DefaultController extends Controller
     	$form = $this->get('form.factory')->createBuilder('form', $contrat)
     	  ->add('libelle',  'text', array('label' => 'Titre','required' => true, 'attr' => array('class' => 'form-required')))
 	      ->add('description',  'textarea', array('label' => 'Description','required' => true, 'attr' => array('class' => 'form-required')))
-	      ->add('date',  'datetime', array('date_format' => 'yyyy-MM-dd  HH:i', 'widget' => 'single_text', 'label' => 'Date','required' => true, 'attr' => array('class' => 'form-required input-inline datepicker',
-        'data-provide' => 'datepicker', 'data-date-format' => 'yyyy-mm-dd HH:i')))
+	      ->add('date',  'datetime', array('date_format' => 'yyyy-MM-dd', 'widget' => 'single_text', 'label' => 'Date','required' => true, 'attr' => array('id' => 'champ_date',  'class' => 'form-required')))
 	      ->add('recompense',     EntityType::class, array('class' => 'SequenceBundle:Recompense', 'label' => 'Sélectionnez une récompense','required' => true, 'attr' => array('class' => 'form-required')))
 	      ->add('sequence',     EntityType::class, array('class' => 'SequenceBundle:Sequence', 'choices' => $sequences, 'label' => 'Sélectionnez une séquence','required' => true, 'attr' => array('class' => 'form-required')))
+        ->add('code',  'integer', array('label' => 'Code de validation','required' => true, 'attr' => array('class' => 'form-required')))
 	      ->add('save', 'submit')
 	      ->getForm()
 	      ;
