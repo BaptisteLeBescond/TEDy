@@ -30,11 +30,15 @@ class DefaultController extends Controller
     	$user = $this->getUser();
       	$enfants = $user->getEnfant();
       	for ($i=0; $i < sizeof($enfants); $i++) {
-      		$contrats[$i] = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants[$i]));
-            if($contrats[$i]->getFini() == false && $contrats[$i]->getDate()->format('Y-m-d H:i') < date('Y-m-d H:i'))
-                $contrats[$i]->setEnCours(true);
-      	}
-      	var_dump($contrats);
+            $contrats[$i] = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants[$i]));
+            for ($j=0; $j < sizeof($contrats[$i]); $j++) {
+                if($contrats[$i][$j]->getEnCours() == false && $contrats[$i][$j]->getFini() == false && $contrats[$i][$j]->getDate()->format('Y-m-d H:i') < date('Y-m-d H:i')){
+                    $contrats[$i][$j]->setEnCours(true);
+                    $em->persist($contrats[$i][$j]);
+                    $em->flush();
+                }
+            }
+        }
       	$i--;
 
         return $this->render('EducateurBundle:Default:index.html.twig', array('compteur' => $i, 'contrats' => $contrats, 'user' => $user, 'enfants' => $enfants));
