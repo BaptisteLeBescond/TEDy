@@ -31,6 +31,8 @@ class DefaultController extends Controller
       	$enfants = $user->getEnfant();
       	for ($i=0; $i < sizeof($enfants); $i++) {
       		$contrats[$i] = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants[$i]));
+            if($contrats[$i]->getFini() == false && $contrats[$i]->getDate()->format('Y-m-d H:i') < date('Y-m-d H:i'))
+                $contrats[$i]->setEnCours(true);
       	}
       	var_dump($contrats);
       	$i--;

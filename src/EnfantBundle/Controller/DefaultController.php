@@ -21,6 +21,16 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $contrat = $em->getRepository('SequenceBundle:Contrat')->findOneBy(array('enfant' => $user, 'enCours' => true));
 
+        if(!$contrat){
+            $contrats = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants));
+            for ($i=0; $i < sizeof($contrats); $i++) {
+                if($contrats[$i]->getFini() == false && $contrats[$i]->getDate()->format('Y-m-d H:i') < date('Y-m-d H:i')){
+                    $contrats[$i]->setEnCours(true);
+                    $contrat = $contrats[$i];
+                }
+            }
+        }
+
         return $this->render('EnfantBundle:Default:index.html.twig', array('contrat' => $contrat, 'user' => $user));
     }
 
