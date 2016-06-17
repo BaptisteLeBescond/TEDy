@@ -20,14 +20,21 @@
 	<div class="row" id="casesJetons">
 		{% for etape in etapes %}
 			<div class="col-md-{{sizeCol}} jeton">
-				<span><img src="{{ asset('img/contrat/JetonVide.png') }}" class="img-responsive" /></span>
+				{% if loop.last %}
+				<div class="drop-jeton last"></div>
+				{% else %}
+				<div class="drop-jeton"></div>
+				{% endif %}
 			</div>
 		{% endfor %}
 	</div>
 
-	<div class="row clavier">
+	<div id="img-jeton">
+	</div>
+
+	<div class="row clavier">		
 		<div class="col-md-offset-9 col-md-2">
-			<table class="table table-bordered table-condensed">
+			<table class="table table-bordered table-condensed none" id="table">
 				<tr>
 					<td colspan="2"><input type="text" id="inputClavier" /></td>
 					<td><button class="btn" id="boutonClavier">OK</button></td>
@@ -53,8 +60,37 @@
 			<img src="{{ asset('img/contrat/grid24.png') }}" class="img-responsive grid" id="grid" />
 		</div>
 	</div>
+
+	<!-- Modal -->
+    <div class="modal fade" id="contratFiniModal" tabindex="-1" role="dialog" aria-labelledby="contratFiniModalLabel" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+          </div>
+          <div id="modal-body">
+          	<p>Bravo, {{user}} !!</p>
+          	<p>Tu as fini ton contrat avec succès !</p>
+          	<p>Tu as gagné : {{nbreEtapes}} points.</p>
+          	<p>Voici ta récompense : </p>
+          	<p class="libelle">{{contrat.recompense.libelle}}</p>
+          	<p><img src="{{asset('img/recompense/')}}{{contrat.recompense.image}}" alt="recompense" width="100" height="100" /></p>
+          </div>
+          <div class="modal-footer">
+            <a id="validContrat" href="{{ path('enfant_homepage', {'points' : nbreEtapes , 'id_contrat' : contrat.id , 'id_user' : user.id }) }}">
+              <button type="button" class="btn">Enregistrer</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock body %}
 
 {% block javascripts %}
+	<script>
+		password = "{{contrat.code}}";
+		$('#contratFiniModal').modal('show');
+	</script>
 	<script type="text/javascript" src="{{ asset('js/clavier.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/interact.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/draganddrop_contrat.js') }}"></script>
 {% endblock javascripts %}

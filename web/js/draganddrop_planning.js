@@ -39,9 +39,9 @@ interact('.draggable').draggable({
 
 function dragMoveListener (event) {
     var target = event.target,
-        // keep the dragged position in the data-x/data-y attributes
-        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+    // keep the dragged position in the data-x/data-y attributes
+    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
     // translate the element
     target.style.webkitTransform = target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
@@ -75,9 +75,7 @@ interact('.dropzone').dropzone({
 
         // feedback the possibility of a drop
         dropzoneElement.classList.add('drop-target');
-        draggableElement.classList.add('can-drop');
-
-        
+        draggableElement.classList.add('can-drop');        
     },
     ondragleave: function (event) {
         // remove the drop feedback style
@@ -88,7 +86,6 @@ interact('.dropzone').dropzone({
         console.log('Dropped');
 
         // draggable disapears
-        //$('.draggable').css('display','none');
         var parent = event.relatedTarget.parentNode;
         parent.removeChild(event.relatedTarget);
 

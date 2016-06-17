@@ -21,3 +21,7 @@ enfant_creerplanning:
 enfant_planningencours:
     path:     /planning/{id}
     defaults: { _controller: EnfantBundle:Default:planningencours }
+
+enfant_contratindex:
+    path:     /index
+    defaults: { _controller: EnfantBundle:Default:contratIndex }
