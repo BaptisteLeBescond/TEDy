@@ -3,6 +3,7 @@
 namespace SequenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Contrat
@@ -78,6 +79,13 @@ class Contrat
 
     /**
      * @var integer
+     *
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 6,
+     *      minMessage = "Votre code doit faire au minimum {{ limit }} chiffres",
+     *      maxMessage = "Votre code doit faire au maximum {{ limit }} chiffres"
+     * )
      *
      * @ORM\Column(name="code", type="integer", length=4)
      */
