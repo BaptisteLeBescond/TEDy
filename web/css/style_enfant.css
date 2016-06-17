@@ -414,15 +414,29 @@ body.page-index {
 	height: 30vh;
 }
 
-.page-contrat .jeton img {
+.page-contrat .etape img {
+	margin: 0 auto;
+}
+
+.page-contrat .jeton div.drop-jeton {
 	margin: 4% auto;
 	/*display: none;*/
 	border: 3px solid yellow;
     border-radius: 25px;
+    width: 55px;
+    height: 55px;
+}
+
+.page-contrat .jeton div.drop-jeton.fini {
+	background-image: url('../img/contrat/Jeton.png');
 }
 
 .page-contrat img.grid {
 	padding-left: 20%;
+}
+
+.page-contrat .clavier table.none {
+	display: none;
 }
 
 .page-contrat .clavier table {
@@ -433,6 +447,32 @@ body.page-index {
 	outline-style: none;
 }
 
+.page-contrat #new-jeton {
+	margin: 0 auto;
+}
+
+.page-contrat #modal-body {
+	text-align: center;
+	color: #3a405a;
+}
+
+.page-contrat #modal-body p {
+	font-size: 17px;
+}
+
+.page-contrat #modal-body p.libelle {
+	font-weight: 600;
+	color: #ffa527;
+}
+
+.page-contrat .modal-footer a {
+	text-decoration: none;
+}
+
+.page-contrat .modal-footer .btn {
+	background-color: #ffa527;
+	color: #3a405a;
+}
 
 
 

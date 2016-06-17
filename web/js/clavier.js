@@ -3,10 +3,22 @@
  */
 
 
+
+
+
+
+
+
 var imageGrid = document.getElementById('grid');
+var table = document.getElementById('table');
 
 $(imageGrid).click(function() {
-	/**** Faire apparaître le clavier au clic sur le grid *****/
+	if($(table).hasClass('none')) {
+		table.classList.remove('none');
+	}
+	else {
+		table.classList.add('none');
+	}
 });
 
 
@@ -54,10 +66,15 @@ $(clavier9).click(function() {
 
 
 var boutonClavier = document.getElementById('boutonClavier');
+var imageJeton = document.getElementById('img-jeton');
 
 $(boutonClavier).click(function() {
-	console.log($(inputClavier).val());
+	if(password == $(inputClavier).val()) {
+		$(imageJeton).html('<img src="../../img/contrat/Jeton.png" alt="img-jeton" id="new-jeton" class="draggable" />');
+	}
+	else{
+		console.log('ko');
+	}
 	$(inputClavier).val('');
-	/***** Faire disparaître le clavier *****/
-	/***** Faire apparaître un jeton *****/
-})
+	table.classList.add('none');
+});

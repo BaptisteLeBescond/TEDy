@@ -53,7 +53,9 @@ class DefaultController extends Controller
         $contrat = $em->getRepository('SequenceBundle:Contrat')->findOneBy(array('enfant' => $user, 'enCours' => true));
 
         if(is_null($contrat)) {
-            return $this->render('EnfantBundle:Default:contrat404.html.twig');
+            $points = $user->getPoints();
+            $contratsFinis = $em->getRepository('SequenceBundle:Contrat')->findOneBy(array('enfant' => $user));
+            return $this->render('EnfantBundle:Default:contrat404.html.twig' , array('points' => $points));
         }
         else {
             $sequence = $contrat->getSequence();
@@ -188,6 +190,26 @@ class DefaultController extends Controller
             var_dump('ERREUR !');
 
         return $this->render('EnfantBundle:Default:creerPlanning.html.twig', array('form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
+    }
+
+    public function contratIndexAction($points,$id_contrat,$id_user) {
+        if($this->container->get('security.authorization_checker')->isGranted('ROLE_EDUCATEUR'))
+            return $this->render('EnfantBundle:Default:accessDenied.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+
+        // $contrat = $em->getRepository('SequenceBundle:Contrat')->find($id_contrat);
+        // $contrat->setFini(true);
+        // $contrat->setEnCours(false);
+        // $em->persist($planning);
+
+        // $user = $em->getRepository('UserBundle:User')->find($id_user);
+        // $user->setPoint($user->getPoint() + $point);
+        // $em->persist($user);
+
+        // $em->flush();
+
+        return $this->render('EnfantBundle:Default:index.html.twig');
     }
 
 }
