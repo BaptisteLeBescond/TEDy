@@ -121,24 +121,36 @@ img.logo {
 }
 
 #dropzone {
-  height: 200px;
+  min-height: 200px;
   background-color: rgb(230,230,230);
   border-radius: 5px;
+  padding: 20px;
 }
 #dropzone img{
 	width: 80px;
   height: 80px;
+  background-color: #e0e3f4;
+  box-shadow: 5px 5px 15px 5px #656565;
+  transition:0.4s;
+  padding: 10px;
 }
 
-#etape{
-  cursor: pointer;
-  margin: 30px 5px 0px;
-  padding: 5px;
+.case-etape{
+  height: 230px;
+  margin-bottom: 20px;
 }
-#etape p{
+.etape{
+  cursor: pointer;
+  background-color: inherit;
+  box-shadow: none;
+  transition:0.4s;
+
+  padding: 20px;
+}
+.etape p{
   font-size: 1.2em;
   text-align: center;
-  height: 30px;
+  height: 50px;
 }
 .photo-etape {
   width: 100px;
@@ -151,8 +163,30 @@ img.logo {
   transition:0.4s;
 }
 .in-list {
-  margin-right: 40px;
+  margin: 10px;
 }
+
+.indicateurPosition{
+  background-color: #e0e3f4;
+  border-radius: 50px;
+  border: 4px solid #6f7aa9;
+  color: #ffa524;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 5px;
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  right: -10px;
+  z-index: 999;
+  opacity: 0;
+}
+.indicateurPosition.shown{
+  opacity: 1;
+  transition:0.2s;
+}
+
 
 /*** ajoutEnfant.html.twig + modifEnfant.html.twig + creerContrat.html.twig ***/
 .form-ajout-enfant, .form-modif-enfant, .form-ajout-contrat {

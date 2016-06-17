@@ -39,24 +39,29 @@
 								{{ form_widget(form.description, {'attr': {'class': 'form-control form-ajout-seq-input', 'required' :'required'}}) }}
 							</div>
 						</div>
+
+						<div class="row">
+							{{ form_label(form.musique,"Musique", {'label_attr': {'class': 'col-md-4 col-sm-4 control-label form-required'}}) }}
+							<div class="col-md-6 col-sm-6">
+								{{ form_widget(form.musique, {'attr': {'class': 'form-control form-ajout-seq-input', 'required' :'required'}}) }}
+							</div>
+						</div>
 					</div>
 
 					<div class="form-ajout-seq-bouton">
-            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}, 'label': 'Enregistrer'}) }}
-          </div>
+			            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}, 'label': 'Enregistrer'}) }}
+			        </div>
 				{{ form_end(form) }}
 	    </div>
 
-	    <div class="col-md-6 col-sm-12 col-xs-12">
-	    	<div id="dropzone">
-
-	    	</div>
+	    <div id="dropzone" class="col-md-6 col-sm-12 col-xs-12">
+	    	
 	    </div>
     </div>
 
 		<div class="row">
 			<h3 class="troisieme-titre-page col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-				Clique sur une étape pour l'ajouter à ta séquence !
+				Cliquez sur une étape pour l'ajouter à votre séquence !
 			</h3>
 		</div>
 
@@ -64,10 +69,13 @@
       <div class="col-md-10 col-md-offset-1">
 		    <div class="row" id="list-etapes">
 			    {% for etape in etapes %}
-			    	<div id="etape" class="col-md-2 col-sm-4 col-xs-6 etape">
-		    			<img src="{{ asset('img/etape/') }}{{ etape.image }}" data-src="{{ etape.image }}"
-							data-origin-id="{{loop.index}}" class="photo-etape img-responsive">
-			    		<p>{{ etape.libelle }}</p>
+			    	<div class="col-md-2 col-sm-4 col-xs-6 case-etape">
+			    		<div class="etape">
+			    			<img src="{{ asset('img/etape/') }}{{ etape.image }}" data-src="{{ etape.image }}"
+								data-origin-id="{{loop.index}}" class="photo-etape img-responsive">
+				    		<p>{{ etape.libelle }}</p>
+				    		<div class="indicateurPosition"></div>
+				    	</div>
 			    	</div>
 			    {% endfor %}
 			</div>
@@ -82,18 +90,21 @@
 		var position = 0;
 
 		function handleAddEtape(e){
-			// console.log(this.firstChild.nextElementSibling);
+			console.log(this.firstChild.nextElementSibling);
 			var image = this.firstChild.nextElementSibling;
 			var clone = image.cloneNode(true);
 			var id = image.getAttribute('data-origin-id');
 			var p = image.nextElementSibling.innerHTML;
+			var indicateurPosition = this.lastChild.previousElementSibling;
 			var imageSrc = image.getAttribute('data-src');
 			clone.setAttribute('data-new-id', id);
 			clone.setAttribute('data-position', ++position);
 			clone.setAttribute('class', 'img-responsive in-list pull-left');
 			clone.addEventListener('click', handleRemoveEtape, false);
 			dropzone.appendChild(clone);
-			this.className = 'col-md-2 col-sm-4 col-xs-6 etape selected';
+			this.className = 'etape selected';
+			indicateurPosition.setAttribute('class', 'indicateurPosition shown');
+			indicateurPosition.innerHTML = position;
 			this.removeEventListener('click', handleAddEtape);
 			this.addEventListener('click', handleRemoveInListEtape);
 
@@ -113,16 +124,22 @@
 			dropzone.removeChild(this);
 			var newId = this.getAttribute('data-new-id');
 			var origin = document.querySelector('[data-origin-id="'+newId+'"]');
-			origin.parentNode.className = 'col-md-2 etape';
+			origin.parentNode.className = 'etape';
+			origin.parentNode.lastChild.previousElementSibling.className = 'indicateurPosition';
 			origin.parentNode.addEventListener('click', handleAddEtape, false);
 
-			var etapeSelected = document.getElementsByClassName('in-list');
+			var etapesSelected = document.getElementsByClassName('in-list');
 			var oldPosition = this.getAttribute('data-position');
-			[].forEach.call(etapeSelected, function(etape) {
+			[].forEach.call(etapesSelected, function(etape) {
 				if(etape.getAttribute('data-position') > oldPosition)
 					etape.setAttribute('data-position', etape.getAttribute('data-position')-1);
 			});
 			position--;
+			var etapesSelectedOrigin = document.getElementsByClassName('selected');
+			[].forEach.call(etapesSelectedOrigin, function(etape) {
+				if(etape.lastChild.previousElementSibling.innerHTML > oldPosition)
+					etape.lastChild.previousElementSibling.innerHTML = etape.lastChild.previousElementSibling.innerHTML - 1;
+			});
 
 
 			var inputLibelle = document.getElementById("form_libelleEtape"+(newId-1));
@@ -142,6 +159,7 @@
 
 		function handleRemoveInListEtape(e){
 			var origin = this.firstChild.nextElementSibling;
+			origin.parentNode.lastChild.previousElementSibling.className = 'indicateurPosition';
 			var originId = origin.getAttribute('data-origin-id');
 			console.log(originId);
 			var etapesInList = document.getElementsByClassName('in-list');
@@ -171,9 +189,15 @@
 					input.setAttribute('value', newPosition);
 			});
 
-			this.className = 'col-md-2 etape';
+			this.className = 'etape';
 			this.addEventListener('click', handleAddEtape, false);
 			this.removeEventListener('click', handleRemoveInListEtape);
+
+			var etapesSelectedOrigin = document.getElementsByClassName('selected');
+			[].forEach.call(etapesSelectedOrigin, function(etape) {
+				if(etape.lastChild.previousElementSibling.innerHTML > oldPosition)
+					etape.lastChild.previousElementSibling.innerHTML = etape.lastChild.previousElementSibling.innerHTML - 1;
+			});
 		}
 
 		[].forEach.call(etapes, function(etape) {
