@@ -21,6 +21,18 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class DefaultController extends Controller
 {
+    public function menuAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $enfants = $user->getEnfant();
+
+        return $this->render(
+            'menu/menu.html.twig',
+            array('enfants' => $enfants)
+        );
+    }
+
     public function indexAction()
     {
     	if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
