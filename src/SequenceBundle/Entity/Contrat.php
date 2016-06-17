@@ -76,6 +76,13 @@ class Contrat
       */
     private $sequence;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="code", type="integer", length=4)
+     */
+    private $code;
+
     public function __construct()
     {
         $this->date = new \DateTime('now');
@@ -296,5 +303,28 @@ class Contrat
     public function getFini()
     {
         return $this->fini;
+    }
+
+    /**
+     * Set code
+     *
+     * @param integer $code
+     * @return Contrat
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return integer 
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }
