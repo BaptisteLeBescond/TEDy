@@ -10,6 +10,27 @@ h1, h2{
   color: #ffa527;
 }
 
+.navbar-nav>li>a{
+  color:white;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: inherit;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: inherit;
+    border: none;
+}
+
+.navbar-toggle{
+  background-color: #3a405a;
+  margin-right: 30px;
+}
+.navbar-toggle .icon-bar{
+  background-color: #6f7aa9;
+}
 
 /*** HEADER ***/
 
@@ -303,4 +324,25 @@ img.logo {
 	.etape p{
     	font-size: 10px;
     }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-nav{
+    background-color: #6f7aa9;
+    z-index: 999;
+  }
+  .navbar-nav>li>a{
+    color:white;
+    
+    background-color: #6f7aa9;
+  }
+  .nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    color:#3a405a;
+    background-color: white;
+  }
+  .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: #6f7aa9;
+    border: none;
+  }
 }
