@@ -173,9 +173,7 @@ class DefaultController extends Controller
 
         if($form->isValid()){
         	$file = $form['photo']->getData();
-        	var_dump($file->getClientOriginalName());
         	$fileName = md5(uniqid()).'.'.$file->getClientOriginalName();
-        	var_dump($fileName);
         	$file->move(
                 $this->container->getParameter('photosEnfant_directory'),
                 $fileName
@@ -317,12 +315,7 @@ class DefaultController extends Controller
 	    $form->handleRequest($request);
 
         if($form->isValid()){
-        	var_dump($contrat->getDate()->format('Y-m-d H:i'));
-        	var_dump(date('Y-m-d H:i'));
-        	var_dump($contrat->getDate()->format('Y-m-d H:i') < date('Y-m-d H:i'));
-
         	if($contrat->getDate()->format('Y-m-d H:i') < date('Y-m-d H:i')){
-        		var_dump("To launch now");
         		$contrat->setEnCours(true);
         	}
         	else
@@ -360,6 +353,40 @@ class DefaultController extends Controller
 
     	return $this->forward('EducateurBundle:Default:index');
 
+    }
+
+    public function creerEtapeAction(Request $request){
+        if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
+            return $this->render('EducateurBundle:Default:accessDenied.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+
+        $form = $this->get('form.factory')->createBuilder('form')
+          ->add('libelle',  'text', array('label' => 'Titre','required' => true, 'attr' => array('class' => 'form-required')))
+          ->add('image',  FileType::class, array('label' => 'Image','required' => true, 'attr' => array('class' => 'form-required')))
+          ->add('save', 'submit')
+          ->getForm()
+          ;
+
+        if($form->isValid()){
+            $etape = new Etape;
+            $etape->setLibelle($form['libelle']->getData());
+            $file = $form['image']->getData();
+            $fileName = md5(uniqid()).'.'.$file->getClientOriginalName();
+            $file->move(
+                $this->container->getParameter('imageEtapes_directory'),
+                $fileName
+            );
+            $etape->setImage($fileName);
+            $etape->setPosition(0);
+
+            $em->persist($etape);
+            $em->flush();
+        }
+        else
+            var_dump('ERROR');
+        return $this->render('EducateurBundle:Default:creerEtape.html.twig', array('form' => $form->createView(), 'user' => $user));
     }
 
 }

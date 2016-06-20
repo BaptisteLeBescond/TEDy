@@ -9,6 +9,10 @@
 {% endblock bodyclass %}
 
 {% block body %}
+	{% if firstVisit %}
+        <video src="{{asset('img/tuto/TutoEnfantPlanning.mp4')}}" id="tutoriel" class="img-responsive" alt="tutoriel" preload controls autoplay> </video>
+        <button class="btn btn-danger" id="btnCloseVideo" onclick="closeVideo();">Fermer la video</button>
+    {% endif %}
 	<div class="row dropzone">
 		<div class="col-md-12 corbeille thiner">
 			<img src="{{ asset('img/planning/waste-bin24.png') }}" alt="corbeille" class="img-corbeille img-responsive" />
@@ -81,10 +85,20 @@
 {% endblock body %}
 
 {% block javascripts %}
-	<script type="text/javascript">
-		ancienneDuree = "{{planning.duree}}";
-	</script>
 	<script type="text/javascript" src="{{ asset('js/chrono.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/interact.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/draganddrop_planning.js') }}"></script>
+	<script type="text/javascript">
+		ancienneDuree = "{{planning.duree}}";
+
+		{% if firstVisit %}
+            var video = document.getElementById('tutoriel');
+            var btnCloseVideo = document.getElementById('btnCloseVideo');
+
+            function closeVideo(e){
+                video.setAttribute('class', 'hidden');
+                btnCloseVideo.setAttribute('class', 'hidden');
+            }
+        {% endif %}
+	</script>
 {% endblock javascripts %}

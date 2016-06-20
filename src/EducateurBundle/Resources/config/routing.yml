@@ -14,6 +14,10 @@ educateur_creer_sequence:
     path:     /creer-sequence
     defaults: { _controller: EducateurBundle:Default:creerSequence }
 
+educateur_creer_etape:
+    path:     /creer-etape
+    defaults: { _controller: EducateurBundle:Default:creerEtape }
+
 educateur_fiche_enfant:
     path:     /{username}-{name}
     defaults: { _controller: EducateurBundle:Default:ficheEnfant }
@@ -30,3 +34,5 @@ educateur_supprimer_contrat:
 educateur_enfant_modif:
     path:     /{username}-{name}/modif-enfant
     defaults: { _controller: EducateurBundle:Default:modifEnfant }
+
+

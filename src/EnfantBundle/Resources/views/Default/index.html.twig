@@ -13,6 +13,10 @@
 {% endblock hidden %}
 
 {% block body %}
+    {% if firstVisit %}
+        <video src="{{asset('img/tuto/TutoEnfantAccueil.mp4')}}" id="tutoriel" class="img-responsive" alt="tutoriel" preload controls autoplay> </video>
+        <button class="btn btn-danger" id="btnCloseVideo" onclick="closeVideo();">Fermer la video</button>
+    {% endif %}
     <a href="{{ path('enfant_calendrier') }}">
         <div class="row calendrier">
             <div class="col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">
@@ -49,3 +53,17 @@
         </div>
     </a>
 {% endblock body %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        {% if firstVisit %}
+            var video = document.getElementById('tutoriel');
+            var btnCloseVideo = document.getElementById('btnCloseVideo');
+
+            function closeVideo(e){
+                video.setAttribute('class', 'hidden');
+                btnCloseVideo.setAttribute('class', 'hidden');
+            }
+        {% endif %}
+    </script>
+{% endblock %}

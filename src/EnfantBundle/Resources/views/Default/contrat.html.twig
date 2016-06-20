@@ -9,6 +9,10 @@
 {% endblock bodyclass %}
 
 {% block body %}
+	{% if firstVisit %}
+        <video src="{{asset('img/tuto/TutoEnfantContrat.mp4')}}" id="tutoriel" class="img-responsive" alt="tutoriel" preload controls autoplay> </video>
+        <button class="btn btn-danger" id="btnCloseVideo" onclick="closeVideo();">Fermer la video</button>
+    {% endif %}
 	<div class="row" id="casesEtapes">
 		{% for etape in etapes %}
 			<div class="col-md-{{sizeCol}} etape">
@@ -86,10 +90,21 @@
 {% endblock body %}
 
 {% block javascripts %}
-	<script>
-		password = "{{contrat.code}}";
-	</script>
 	<script type="text/javascript" src="{{ asset('js/clavier.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/interact.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/draganddrop_contrat.js') }}"></script>
+
+	<script>
+		password = "{{contrat.code}}";
+
+		{% if firstVisit %}
+            var video = document.getElementById('tutoriel');
+            var btnCloseVideo = document.getElementById('btnCloseVideo');
+
+            function closeVideo(e){
+                video.setAttribute('class', 'hidden');
+                btnCloseVideo.setAttribute('class', 'hidden');
+            }
+        {% endif %}
+    </script>
 {% endblock javascripts %}

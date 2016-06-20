@@ -3,6 +3,7 @@
 namespace SequenceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Etape
@@ -32,6 +33,9 @@ class Etape
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=true, unique=false)
+     *
+     * @Assert\NotBlank(message="Veuillez uploader un fichier jpg / png / gif / bitmap")
+     * @Assert\File(mimeTypes={ "image/jpeg", "image/jpg", "image/png", "image/gif", "image/bitmap" })
      */
     private $image;
 

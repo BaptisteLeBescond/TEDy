@@ -94,9 +94,9 @@ class User extends BaseUser
     /**
      * @var bool
      *
-     * @ORM\Column(name="calendrierVisited", type="boolean", nullable=true, options={"default": false})
+     * @ORM\Column(name="accueilVisited", type="boolean", nullable=true, options={"default": false})
      */
-    private $calendrierVisited = false;
+    private $accueilVisited = false;
 
     /**
      * Get id
@@ -308,5 +308,74 @@ class User extends BaseUser
     public function getEnfant()
     {
         return $this->enfant;
+    }
+
+    /**
+     * Set planningVisited
+     *
+     * @param boolean $planningVisited
+     * @return User
+     */
+    public function setPlanningVisited($planningVisited)
+    {
+        $this->planningVisited = $planningVisited;
+    
+        return $this;
+    }
+
+    /**
+     * Get planningVisited
+     *
+     * @return boolean 
+     */
+    public function getPlanningVisited()
+    {
+        return $this->planningVisited;
+    }
+
+    /**
+     * Set contratVisited
+     *
+     * @param boolean $contratVisited
+     * @return User
+     */
+    public function setContratVisited($contratVisited)
+    {
+        $this->contratVisited = $contratVisited;
+    
+        return $this;
+    }
+
+    /**
+     * Get contratVisited
+     *
+     * @return boolean 
+     */
+    public function getContratVisited()
+    {
+        return $this->contratVisited;
+    }
+
+    /**
+     * Set accueilVisited
+     *
+     * @param boolean $accueilVisited
+     * @return User
+     */
+    public function setAccueilVisited($accueilVisited)
+    {
+        $this->accueilVisited = $accueilVisited;
+    
+        return $this;
+    }
+
+    /**
+     * Get accueilVisited
+     *
+     * @return boolean 
+     */
+    public function getAccueilVisited()
+    {
+        return $this->accueilVisited;
     }
 }

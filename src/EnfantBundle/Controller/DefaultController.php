@@ -31,7 +31,15 @@ class DefaultController extends Controller
             }
         }
 
-        return $this->render('EnfantBundle:Default:index.html.twig', array('contrat' => $contrat, 'user' => $user));
+        $firstVisit = false;
+        if(! $user->getAccueilVisited()){
+            $user->setAccueilVisited(true);
+            $em->persist($user);
+            $em->flush();
+            $firstVisit = true;
+        }
+
+        return $this->render('EnfantBundle:Default:index.html.twig', array('firstVisit' => $firstVisit,  'contrat' => $contrat, 'user' => $user));
     }
 
     public function calendrierAction()
@@ -79,7 +87,15 @@ class DefaultController extends Controller
             else
                 $sizeCol = 12;
 
-            return $this->render('EnfantBundle:Default:contrat.html.twig', array('sizeCol' => $sizeCol, 'nbreEtapes' => $nbreEtapes, 'etapes' => $etapes, 'contrat' => $contrat, 'user' => $user));
+            $firstVisit = false;
+            if(! $user->getContratVisited()){
+                $user->setContratVisited(true);
+                $em->persist($user);
+                $em->flush();
+                $firstVisit = true;
+            }
+
+            return $this->render('EnfantBundle:Default:contrat.html.twig', array('firstVisit' => $firstVisit, 'sizeCol' => $sizeCol, 'nbreEtapes' => $nbreEtapes, 'etapes' => $etapes, 'contrat' => $contrat, 'user' => $user));
         }
 
     }
@@ -93,7 +109,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $plannings = $em->getRepository('SequenceBundle:Planning')->findBy(array('enfant' => $user));
 
-        return $this->render('EnfantBundle:Default:planning.html.twig', array('user' => $user , 'plannings' => $plannings));
+        return $this->render('EnfantBundle:Default:planning.html.twig', array('firstVisit' => $firstVisit, 'user' => $user , 'plannings' => $plannings));
     }
 
     public function planningencoursAction(Request $request, $id)
@@ -109,6 +125,14 @@ class DefaultController extends Controller
         $planning->setEnCours(true);
         $em->persist($planning);
         $em->flush();
+
+        $firstVisit = false;
+        if(! $user->getPlanningVisited()){
+            $user->setPlanningVisited(true);
+            $em->persist($user);
+            $em->flush();
+            $firstVisit = true;
+        }
 
         $form = $this->get('form.factory')->createBuilder('form')
             ->add('duree',  'text', array('required' => false, 'attr' => array('id' => 'duree')))
@@ -127,7 +151,7 @@ class DefaultController extends Controller
             return $this->render('EnfantBundle:Default:planning.html.twig', array('user' => $user , 'plannings' => $plannings));
         }
 
-        return $this->render('EnfantBundle:Default:planningencours.html.twig', array('planning' => $planning, 'form' => $form->createView()));
+        return $this->render('EnfantBundle:Default:planningencours.html.twig', array('firstVisit' => $firstVisit, 'planning' => $planning, 'form' => $form->createView()));
     }
 
     public function creerPlanningAction(Request $request)

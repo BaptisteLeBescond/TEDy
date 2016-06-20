@@ -13,6 +13,7 @@ parameters:
     locale: fr
     musiques_directory: '%kernel.root_dir%/../web/uploads/musiques'
     photosEnfant_directory: '%kernel.root_dir%/../web/uploads/photosEnfant'
+    imageEtapes_directory: '%kernel.root_dir%/../web/img/etape'
 
 
 framework:

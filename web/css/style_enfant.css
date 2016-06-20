@@ -10,8 +10,20 @@ body{
 	margin: 0;
 }
 
+#tutoriel{
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 998;
+}
 
-
+#btnCloseVideo{
+	position: absolute;
+	top: 5vh;
+	left:5vh;
+	z-index: 999;
+}
 
 
 
