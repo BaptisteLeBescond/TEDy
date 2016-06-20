@@ -109,7 +109,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $plannings = $em->getRepository('SequenceBundle:Planning')->findBy(array('enfant' => $user));
 
-        return $this->render('EnfantBundle:Default:planning.html.twig', array('firstVisit' => $firstVisit, 'user' => $user , 'plannings' => $plannings));
+        return $this->render('EnfantBundle:Default:planning.html.twig', array('user' => $user , 'plannings' => $plannings));
     }
 
     public function planningencoursAction(Request $request, $id)
@@ -233,7 +233,7 @@ class DefaultController extends Controller
         $em->persist($planning);
 
         $user = $em->getRepository('UserBundle:User')->find($id_user);
-        $user->setPoint($user->getPoint() + $point);
+        $user->setPoints($user->getPoints() + $point);
         $em->persist($user);
 
         $em->flush();
