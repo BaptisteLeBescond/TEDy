@@ -2,6 +2,10 @@ educateur_homepage:
     path:     /
     defaults: { _controller: EducateurBundle:Default:index }
 
+educateur_compte:
+    path:     /mon-compte
+    defaults: { _controller: EducateurBundle:Default:compte }
+
 educateur_enfant_ajout:
     path:     /ajout-enfant
     defaults: { _controller: EducateurBundle:Default:ajoutEnfant }

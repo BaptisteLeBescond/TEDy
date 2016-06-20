@@ -56,6 +56,44 @@ class DefaultController extends Controller
         return $this->render('EducateurBundle:Default:index.html.twig', array('compteur' => $i, 'contrats' => $contrats, 'user' => $user, 'enfants' => $enfants));
     }
 
+    public function compteAction(Request $request){
+        if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
+            return $this->render('EducateurBundle:Default:accessDenied.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+
+        $form = $this->get('form.factory')->createBuilder('form', $user)
+          ->add('username',  'text', array('label' => 'Identifiant','required' => true, 'attr' => array('class' => 'form-required')))
+          ->add('email',     'text', array('label' => 'Email','required' => true, 'attr' => array('class' => 'form-required')))
+          ->add('password',    RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'first_options'  => array('label' => 'Mot de passe'),
+                'second_options' => array('label' => 'Vérification du mot de passe')))
+          ->add('save',      'submit')
+          ->getForm()
+          ;
+
+        $form->handleRequest($request);
+
+        if($form->isValid()){
+          var_dump('Compte modifié avec succès');
+
+          $factory = $this->get('security.encoder_factory');
+          $encoder = $factory->getEncoder($user);
+          $password = $encoder->encodePassword($form->get('password')->getData(), $user->getSalt());
+          $user->setPassword($password);
+
+          $em->persist($user);
+          $em->flush();
+
+        }
+        else
+            var_dump('ERREUR !');
+
+        return $this->render('EducateurBundle:Default:monCompte.html.twig', array('user' => $user, 'form' => $form->createView()));
+    }
+
     public function ajoutEnfantAction(Request $request)
     {
     	if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
