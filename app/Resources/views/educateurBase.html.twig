@@ -8,19 +8,6 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style_educateur.css') }}">
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-
-        <script type="text/javascript">
-            function openmenu()   {
-                var div = document.getElementById('conteneur-menu'),
-                display = getComputedStyle(div, null).display;
-
-                if(display == "block")  {
-                    document.getElementById('conteneur-menu').style.display = "none";
-                }else   {
-                    document.getElementById('conteneur-menu').style.display = "block";
-                }
-            }
-        </script>
     </head>
     <body {% block bodyclass %}{% endblock %}>
         <div class="container-fluid">
