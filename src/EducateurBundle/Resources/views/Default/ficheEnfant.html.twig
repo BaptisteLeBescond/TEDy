@@ -1,5 +1,7 @@
 {% extends 'educateurBase.html.twig' %}
 
+{% block title %}Fiche Enfant{% endblock title %}
+
 {% block bodyclass %} class="page-fiche-enfant" {% endblock %}
 
 {% block stylesheets %} 
@@ -103,6 +105,28 @@
 <br><br>
 <div class="container" id="calendar">
 
+</div>
+
+<div class="container">
+	<div class="row">
+		<h3>Contrat en cours</h3>
+	</diV>
+	<div class="row contratEnCours">
+		{% for c in contratEnCours %}
+			{{c.libelle}}
+		{% endfor %}
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<h3>Planning en cours</h3>
+	</diV>
+	<div class="row planningEnCours">
+		{% for p in planningEnCours %}
+			{{p.libelle}}
+		{% endfor %}
+	</div>
 </div>
 
 <!-- Modal -->

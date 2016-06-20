@@ -268,10 +268,26 @@ class DefaultController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
 
+        $contrat = array();
+        $planning = array();
+
     	$enfant = $em->getRepository('UserBundle:User')->findOneBy(array('username' => $username, 'name' => $name));
     	$contrats = $em->getRepository('SequenceBundle:Contrat')->findByEnfant($enfant);
+        $plannings = $em->getRepository('SequenceBundle:Planning')->findByEnfant($enfant);
 
-        return $this->render('EducateurBundle:Default:ficheEnfant.html.twig', array('contrats' => $contrats, 'user' => $user, 'enfant' => $enfant));
+        for ($i = 0 ; $i < count($contrats) ; $i++) {
+            if($contrats[$i]->getEnCours() == true) {
+                array_push($contrat, $contrats[$i]);
+            }
+        }
+
+        for ($i = 0 ; $i < count($plannings) ; $i++) {
+            if($plannings[$i]->getEnCours() == true) {
+                array_push($planning, $plannings[$i]);
+            }
+        }
+
+        return $this->render('EducateurBundle:Default:ficheEnfant.html.twig', array('contrats' => $contrats, 'user' => $user, 'enfant' => $enfant, 'contratEnCours' => $contrat, 'planningEnCours' => $planning));
     }
 
     public function creerContratAction(Request $request, $username, $name)
