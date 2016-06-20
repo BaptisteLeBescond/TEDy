@@ -217,4 +217,69 @@ class DefaultController extends Controller
         return $this->render('EnfantBundle:Default:index.html.twig');
     }
 
+    public function ajouteplanningAction() {
+        if($this->container->get('security.authorization_checker')->isGranted('ROLE_EDUCATEUR'))
+            return $this->render('EnfantBundle:Default:accessDenied.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+
+        $form = $this->get('form.factory')->createBuilder('form')
+          ->add('libelle',  'text', array('label' => 'Titre','required' => true, 'attr' => array('class' => 'form-required')))
+          ->add('description',     'textarea', array('label' => 'Description','required' => true, 'attr' => array('class' => 'form-required')))
+          ->add('musique',   FileType::class, array('label' => 'Musique','required' => false, 'attr' => array('class' => 'form-required')))
+          ->add('save', 'submit')
+          ;
+
+        for ($i=0; $i < sizeof($etapes) ; $i++) {
+            $form->add('libelleEtape'.$i, 'text', array('required' => false, 'attr' => array('id' => 'libelleEtape'.$i, 'class' => 'inputLibelle hidden'), 'label_attr' => array('class' => 'hidden')));
+            $form->add('imageEtape'.$i, 'text', array('required' => false, 'attr' => array('id' => 'imageEtape'.$i, 'class' => 'inputImage hidden'), 'label_attr' => array('class' => 'hidden')));
+            $form->add('positionEtape'.$i, 'integer', array('required' => false, 'attr' => array('id' => 'positionEtape'.$i, 'class' => 'inputPosition hidden'), 'label_attr' => array('class' => 'hidden')));
+        }
+
+        if($form->isValid()){
+            for ($i=0; $i < sizeof($etapes) ; $i++) {
+                $etape = new Etape();
+                $libelle = $form['libelleEtape'.$i]->getData();
+                $image = $form['imageEtape'.$i]->getData();
+                $position = $form['positionEtape'.$i]->getData();
+                if($libelle != '' && $image != '' && $position != ''){
+                    $etape->setLibelle($libelle);
+                    $etape->setImage($image);
+                    $etape->setPosition($position);
+                    var_dump($etape);
+
+                    $sequence->addEtape($etape);
+
+                    $em->persist($etape);
+                }
+            }
+
+            $file = $form['musique']->getData();
+            var_dump($file->getClientOriginalName());
+            $fileName = md5(uniqid()).'.'.$file->getClientOriginalName();
+            var_dump($fileName);
+            $file->move(
+                $this->container->getParameter('musiques_directory'),
+                $fileName
+            );
+
+            $sequence->setMusique($file);
+            $sequence->setCreateur($user);
+            $sequence->setLibelle($form['libelle']->getData());
+            $sequence->setDescription($form['description']->getData());
+            $em->persist($sequence);
+
+            $em->flush();
+        }
+        else
+            var_dump('ERREUR !');
+
+        $form = $form->getForm();
+
+        $form->handleRequest($request);
+
+        return $this->render('EnfantBundle:Default:ajouteplanning.html.twig', array('form' => $form->createView()));
+    }
+
 }

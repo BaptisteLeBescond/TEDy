@@ -9,26 +9,35 @@
 {% endblock bodyclass %}
 
 {% block body %}
-	<div class="row accueil">
-		<a href="{{ path('enfant_homepage') }}"><img src="{{ asset( 'img/fleche/back24.png' ) }}" alt="fleche" />Accueil</a>
-		<h1>Choisis ton planning</h1>
-	</div>
-	<div class="row plannings">
-		{% for planning in plannings %}
-			<a href="{{ path('enfant_planningencours' , { 'id' : planning.id }) }}">
-				<div class="col-md-5 planning">
-					<div class="row libelle">
-						<h3>{{planning.libelle}}</h3>
-					</div>
-					<div class="row images">
-						{% for etape in planning.sequence.etapes | slice(0,4) %}
-							<div class="col-md-6 image">
-								<img src="{{ asset( 'img/etape/' ) }}{{etape.image}}" alt="image" width="100" height="100" class="img-responsive" />
+	<a href="{{ path('enfant_homepage') }}" class="fleche"><img src="{{ asset( 'img/fleche/back24.png' ) }}" alt="fleche" />Accueil</a>
+	<div class="container accueil">
+		
+		<div class="col-md-6 col-md-offset-3">
+			<h1>Choisis ton planning</h1>
+		</div>
+		<div class="col-md-3 button-ajout">
+			<a href="{{ path('enfant_ajouteplanning') }}" class="ajoute"><button class="btn ajoute"><img src="{{ asset('img/planning/plus24.png') }}" alt="plus" />Ajoute un planning</button></a>
+		</div>
+
+		<div class="row plannings">
+			{% for planning in plannings %}
+				<div class="col-md-6 col-sm-12">
+					<a href="{{ path('enfant_planningencours' , { 'id' : planning.id }) }}">
+						<div class="planning">
+							<div class="libelle">
+								<h3>{{planning.libelle}}</h3>
 							</div>
-						{% endfor %}
-					</div>
+							<div class="row images">
+								{% for etape in planning.sequence.etapes | slice(0,4) %}
+									<div class="col-md-6 image">
+										<img src="{{ asset( 'img/etape/' ) }}{{etape.image}}" alt="image" width="100" height="100" class="img-responsive" />
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</a>
 				</div>
-			</a>
-		{% endfor %}
+			{% endfor %}
+		</div>
 	</div>
 {% endblock body %}
