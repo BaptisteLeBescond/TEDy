@@ -5,8 +5,6 @@ namespace UserBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Mapping\AttributeOverrides;
-use Doctrine\ORM\Mapping\AttributeOverride;
 
 /**
  * User
@@ -65,7 +63,8 @@ class User extends BaseUser
     /**
      * @var string
      * @ORM\Column(name="photo", type="string", nullable=true, unique=false)
-     * @Assert\File(mimeTypes={ "image/jpeg", "image/jpg", "image/png", "image/gif", "image/bitmap", "" })
+     * @Assert\NotBlank(message="Veuillez uploader un fichier jpg / png / gif / bitmap.")
+     * @Assert\File(mimeTypes={ "image/jpeg", "image/jpg", "image/png", "image/gif", "image/bitmap" })
      */
     private $photo;
 
@@ -77,24 +76,23 @@ class User extends BaseUser
     /**
      * @var bool
      *
-     * @ORM\Column(name="planningVisited", type="boolean")
+     * @ORM\Column(name="planningVisited", type="boolean", nullable=true, options={"default": false})
      */
     private $planningVisited = false;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="contratVisited", type="boolean")
+     * @ORM\Column(name="contratVisited", type="boolean", nullable=true, options={"default": false})
      */
     private $contratVisited = false;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="calendrierVisited", type="boolean")
+     * @ORM\Column(name="accueilVisited", type="boolean", nullable=true, options={"default": false})
      */
-    private $calendrierVisited = false;
-
+    private $accueilVisited = false;
 
     /**
      * Get id
