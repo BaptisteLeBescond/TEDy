@@ -86,6 +86,13 @@
   <script type="text/javascript" src="{{ asset('js/fullcalendar.min.js') }}"></script>
   <script src="{{ asset('js/fr.js') }}"></script>
   <script type="text/javascript">
+    var colors = ["#ad3a3a", "#3a48ad", "#a13aad", "#3aad98", "#76ad3a", "#794300", "#790000", "#8c8c8c", "#000000"];
+    var enfantsPhoto = document.getElementsByClassName('un-enfant');
+    [].forEach.call(enfantsPhoto, function(enfantPhoto, i) {
+      var enfantNom = enfantPhoto.lastElementChild;
+      console.log(enfantNom);
+      enfantNom.setAttribute("style", "color:"+colors[i]);
+    });
     $(document).ready(function() {
         $('#calendar').fullCalendar({
           header:{
@@ -98,10 +105,13 @@
               {% for contrat in contrats[i] %}
                 {
                   id: '{{contrat.id}}',
+                  enfant: '{{contrat.enfant.username}}',
+                  date:'{{contrat.date | date("Y-m-d H:i")}}',
                   title: 'Titre : {{contrat.libelle}}',
                   start: '{{contrat.date | date("Y-m-d H-i-s")}}',
-                  description: '<div class="col-md-12"><h3>Description : {{contrat.description}}</h3></div><div class="clearfix"></div> {% for etape in contrat.sequence.etapes %}<hr><div class="nomEtape col-md-6"> {{ etape }}</div><div class="imageEtape col-md-6"> <img class="img-responsive" src="{{asset("img/etape/")}}{{etape.image}}"/></div><div class="clearfix"></div>{% endfor %}',
-                  className: 'clickable'
+                  description: '<div class="col-md-12"><h3>Description : {{contrat.description}}</h3></div><div class="clearfix"></div> <div class="col-md-12"><h4>Enfant : {{contrat.enfant.username}}</h4></div><div class="clearfix"></div> <div class="col-md-12"><h4>Date : {{contrat.date | date("Y-m-d H:i")}}</h4></div><div class="clearfix"></div> {% for etape in contrat.sequence.etapes %}<hr><div class="nomEtape col-md-6"> {{ etape }}</div><div class="imageEtape col-md-6"> <img class="img-responsive" src="{{asset("img/etape/")}}{{etape.image}}"/></div><div class="clearfix"></div>{% endfor %}',
+                  className: 'clickable',
+                  color: colors[{{i}}]
                 },
               {% endfor %}
             {% endfor %}
@@ -109,7 +119,7 @@
           eventRender: function(event, element) {
               element.attr("data-toggle", "modal");
               element.attr("data-target", "#contratModal");
-              element.attr("data-enfant", "");
+              element.attr("style", "background-color:"+event.color);
           },
           eventClick: function(calEvent, jsEvent, view) {
             var title = calEvent.title;

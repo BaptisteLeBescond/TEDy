@@ -40,7 +40,7 @@ h1, h2{
 }
 .bleuclair {
     background-color: #6f7aa9;
-    height: 50px;
+    min-height: 50px;
 }
 
 ul.menu-principal {

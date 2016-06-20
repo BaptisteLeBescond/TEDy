@@ -1,0 +1,7 @@
+{% for enfant in enfants %}
+	<li>
+	    <a href="{{ path('educateur_fiche_enfant', {'username': enfant.username, 'name': enfant.name}) }}">
+	        {{ enfant.username }}
+	    </a>
+	</li>
+{% endfor %}
