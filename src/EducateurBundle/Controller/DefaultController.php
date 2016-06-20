@@ -369,6 +369,8 @@ class DefaultController extends Controller
           ->getForm()
           ;
 
+        $form->handleRequest($request);
+
         if($form->isValid()){
             $etape = new Etape;
             $etape->setLibelle($form['libelle']->getData());
@@ -384,8 +386,7 @@ class DefaultController extends Controller
             $em->persist($etape);
             $em->flush();
         }
-        else
-            var_dump('ERROR');
+        
         return $this->render('EducateurBundle:Default:creerEtape.html.twig', array('form' => $form->createView(), 'user' => $user));
     }
 
