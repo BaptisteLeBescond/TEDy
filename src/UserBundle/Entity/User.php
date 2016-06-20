@@ -99,6 +99,12 @@ class User extends BaseUser
     private $accueilVisited = false;
 
     /**
+     * @var int
+     * @ORM\Column(name="points", type="integer", nullable=true, unique=false)
+     */
+    private $points;
+
+    /**
      * Get id
      *
      * @return integer 
