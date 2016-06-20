@@ -48,6 +48,11 @@ class Sequence
     private $etapes;
 
     /**
+      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+      */
+    private $createur;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -124,5 +129,45 @@ class Sequence
     public function getMusique()
     {
         return $this->musique;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->etapes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add etapes
+     *
+     * @param \SequenceBundle\Entity\Etape $etapes
+     * @return Sequence
+     */
+    public function addEtape(\SequenceBundle\Entity\Etape $etapes)
+    {
+        $this->etapes[] = $etapes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove etapes
+     *
+     * @param \SequenceBundle\Entity\Etape $etapes
+     */
+    public function removeEtape(\SequenceBundle\Entity\Etape $etapes)
+    {
+        $this->etapes->removeElement($etapes);
+    }
+
+    /**
+     * Get etapes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEtapes()
+    {
+        return $this->etapes;
     }
 }

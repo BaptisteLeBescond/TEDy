@@ -77,6 +77,26 @@ class User extends BaseUser
       */
     private $enfant;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="planningVisited", type="boolean", nullable=true, options={"default": false})
+     */
+    private $planningVisited = false;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="contratVisited", type="boolean", nullable=true, options={"default": false})
+     */
+    private $contratVisited = false;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="calendrierVisited", type="boolean", nullable=true, options={"default": false})
+     */
+    private $calendrierVisited = false;
 
     /**
      * Get id

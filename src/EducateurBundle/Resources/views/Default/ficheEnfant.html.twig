@@ -107,26 +107,20 @@
 
 </div>
 
-<div class="container">
-	<div class="row">
-		<h3>Contrat en cours</h3>
-	</diV>
-	<div class="row contratEnCours">
-		{% for c in contratEnCours %}
-			{{c.libelle}}
-		{% endfor %}
-	</div>
+<div class="container contratEnCours">
+	{% for c in contratEnCours %}
+		<div class="row">
+			<h3>Contrat en cours : {{c.libelle}}</h3>
+		</div>
+	{% endfor %}
 </div>
 
-<div class="container">
-	<div class="row">
-		<h3>Planning en cours</h3>
-	</diV>
-	<div class="row planningEnCours">
-		{% for p in planningEnCours %}
-			{{p.libelle}}
-		{% endfor %}
-	</div>
+<div class="container planningEnCours">
+	{% for p in planningEnCours %}
+		<div class="row">
+			<h3>Planning en cours : {{p.libelle}}</h3>
+		</div>
+	{% endfor %}	
 </div>
 
 <!-- Modal -->

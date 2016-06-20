@@ -36,7 +36,7 @@
 		<div class="col-md-offset-9 col-md-2">
 			<table class="table table-bordered table-condensed none" id="table">
 				<tr>
-					<td colspan="2"><input type="text" id="inputClavier" /></td>
+					<td colspan="2"><input type="password" id="inputClavier" /></td>
 					<td><button class="btn" id="boutonClavier">OK</button></td>
 				</tr>
 				<tr>
@@ -88,7 +88,6 @@
 {% block javascripts %}
 	<script>
 		password = "{{contrat.code}}";
-		$('#contratFiniModal').modal('show');
 	</script>
 	<script type="text/javascript" src="{{ asset('js/clavier.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/interact.min.js') }}"></script>

@@ -10,6 +10,11 @@ body{
 	margin: 0;
 }
 
+
+
+
+
+
 /*** HEADER ***/
 
 body.page-planning,
@@ -45,6 +50,11 @@ img.logo {
   border-radius: 5px;
   min-width: 150px;
 }
+
+
+
+
+
 
 /*** index.html.twig ***/
 
@@ -111,18 +121,10 @@ body.page-index {
 
 /*** calendrier.html.twig ***/
 
-.page-calendrier div.button {
-	padding-top: 1%;
-	outline-style: none;
-}
-
-.page-calendrier button.btn {
-	background-color: #ffa527;
-	font-size: 40px;
-	padding-left: 5%;
-	padding-right: 5%;
-	outline-style: none;
-
+.page-calendrier a.accueil {
+	text-decoration: none;
+	color: #3a405a;
+	font-size: 20px;
 }
 
 
@@ -194,13 +196,10 @@ body.page-index {
 
 /*** planning.html.twig ***/
 
-.page-planning div.accueil a.fleche {
+.page-planning a.fleche {
 	text-decoration: none;
 	color: #3a405a;
 	font-size: 20px;
-    position: absolute;
-    top: 25%;
-    left: 2%;
 }
 
 .page-planning div.accueil a.ajoute {
@@ -253,6 +252,11 @@ body.page-index {
 .page-planning div.images img{
 	margin: 0px auto;
 }
+
+
+
+
+
 
 
 /*** planningencours.html.twig ***/
@@ -415,13 +419,16 @@ body.page-index {
 
 /*** contrat.html.twig ***/
 
+.page-contrat {
+	overflow-y: hidden;
+}
+
 .page-contrat .row {
 	height: 25vh;
 }
 
 .page-contrat .row#casesJetons {
 	height: 15vh;
-
 }
 
 .page-contrat #casesEtapes {
@@ -546,24 +553,36 @@ body.page-index {
 }
 
 #dropzone {
-  height: 200px;
+  min-height: 200px;
   background-color: rgb(230,230,230);
   border-radius: 5px;
+  padding: 20px;
 }
 #dropzone img{
 	width: 80px;
   height: 80px;
+  background-color: #e0e3f4;
+  box-shadow: 5px 5px 15px 5px #656565;
+  transition:0.4s;
+  padding: 10px;
 }
 
-#etape{
-  cursor: pointer;
-  margin: 30px 5px 0px;
-  padding: 5px;
+.case-etape{
+  height: 230px;
+  margin-bottom: 20px;
 }
-#etape p{
+.etape{
+  cursor: pointer;
+  background-color: inherit;
+  box-shadow: none;
+  transition:0.4s;
+
+  padding: 20px;
+}
+.etape p{
   font-size: 1.2em;
   text-align: center;
-  height: 30px;
+  height: 50px;
 }
 .photo-etape {
   width: 100px;
@@ -576,25 +595,30 @@ body.page-index {
   transition:0.4s;
 }
 .in-list {
-  margin-right: 40px;
+  margin: 10px;
 }
 
-/*** ajoutEnfant.html.twig ***/
-.form-ajout-enfant {
+.indicateurPosition{
+  background-color: #e0e3f4;
+  border-radius: 50px;
+  border: 4px solid #6f7aa9;
+  color: #ffa524;
   text-align: center;
-  font-size: 1.2em;
-  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 5px;
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  right: -10px;
+  z-index: 999;
+  opacity: 0;
+}
+.indicateurPosition.shown{
+  opacity: 1;
+  transition:0.2s;
 }
 
-.form-ajout-enfant-input {
-  margin-top: 10px;
-  min-width: 200px;
-}
-
-.form-ajout-enfant-bouton {
-  margin-top: 10px;
-  font-size: 1.2em;
-}
 
 
 

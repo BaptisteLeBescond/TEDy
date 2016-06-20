@@ -14,17 +14,9 @@
 
 {% block body %}
 
-<div class="row">
-	<div class="col-md-2 col-sm-2 col-xs-2 user-present">
-		{{user}}  |
 
-		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-				<a href="{{ path('fos_user_security_logout') }}">
-						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-				</a>
-		{% endif %}
-	</div>
-</div>
+  <a href="{{ path('enfant_homepage') }}" class="accueil"><img src="{{ asset( 'img/fleche/back24.png' ) }}" alt="fleche" />Accueil</a>
+
 
 <br><br>
 <div class="container" id="calendar">
@@ -68,7 +60,7 @@
 	          {% for contrat in contrats %}
 	            {
 	              id: '{{contrat.id}}',
-	              enfant: '{{enfant.username}}',
+	              enfant: '{{user.username}}',
 	              date:'{{contrat.date | date("Y-m-d H:i")}}',
 	              title: 'Titre : {{contrat.libelle}}',
 	              start: '{{contrat.date | date("Y-m-d H-i-s")}}',

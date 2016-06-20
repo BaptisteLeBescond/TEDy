@@ -2,6 +2,7 @@
     font-family: "Andika";
     src: url("../font/AndBasR.ttf");
 }
+
 body{
     font-family: Andika;
 }
@@ -28,45 +29,55 @@ h1, h2{
   background-color: #3a405a;
   margin-right: 30px;
 }
+
 .navbar-toggle .icon-bar{
   background-color: #6f7aa9;
 }
 
+
+
+
+
 /*** HEADER ***/
 
 .bleu {
-    background-color: #3a405a;
-    height: 80px;
+  background-color: #3a405a;
+  height: 80px;
 }
+
 .bleuclair {
-    background-color: #6f7aa9;
-    height: 50px;
+  background-color: #6f7aa9;
+  height: 50px;
 }
 
 ul.menu-principal {
   list-style: none;
   text-align: center;
 }
+
 ul.menu-principal > li {
   display: inline;
   font-size: 1.6em;
 }
+
 ul.menu-principal > li a {
   color: white;
   vertical-align: middle;
 }
+
 ul.menu-principal > li a:hover {
   text-decoration: none;
 }
+
 img.icone-menu {
   margin: 5px auto auto 30px;
   display: none;
 }
 
 img.logo {
-    margin: 0px auto;
-    position: relative;
-    z-index: 2;
+  margin: 0px auto;
+  position: relative;
+  z-index: 2;
 }
 
 .user-present {
@@ -80,7 +91,13 @@ img.logo {
   min-width: 150px;
 }
 
+
+
+
+
+
 /*** index.html.twig ***/
+
 .titre-page {
   color: #ffa524;
   text-align: center;
@@ -91,6 +108,7 @@ img.logo {
   margin-top: 20px;
   min-width: 180px;
 }
+
 .bouton-ajout-enfant a, .bouton-ajout-enfant a:hover {
     color: white;
     text-decoration: none;
@@ -102,6 +120,7 @@ img.logo {
   text-align: center;
   margin-top: 20px;
 }
+
 .photo-profil-enfant {
   width: 80px;
   height: 80px;
@@ -112,15 +131,22 @@ img.logo {
 .fc-event-container{
   cursor: pointer;
 }
+
 /* modal */
 .imageEtape img{
   max-width: 100px;
   margin: 0px auto;
 }
+
 .nomEtape{
   text-align: center;
   font-size: 18px;
 }
+
+
+
+
+
 
 /*** creerSequence.html.twig ***/
 
@@ -137,6 +163,7 @@ img.logo {
   font-size: 1.2em;
   text-align: center;
 }
+
 .form-ajout-seq-input {
   margin-bottom: 10px;
 }
@@ -147,6 +174,7 @@ img.logo {
   border-radius: 5px;
   padding: 20px;
 }
+
 #dropzone img{
 	width: 80px;
   height: 80px;
@@ -156,33 +184,37 @@ img.logo {
   padding: 10px;
 }
 
-.case-etape{
+.case-etape {
   height: 230px;
   margin-bottom: 20px;
 }
-.etape{
+
+.etape {
   cursor: pointer;
   background-color: inherit;
   box-shadow: none;
   transition:0.4s;
-
   padding: 20px;
 }
-.etape p{
+
+.etape p {
   font-size: 1.2em;
   text-align: center;
   height: 50px;
 }
+
 .photo-etape {
   width: 100px;
   height: 100px;
   margin: 0px auto 5px;
 }
+
 .selected{
   background-color: #e0e3f4;
   box-shadow: 5px 5px 15px 5px #656565;
   transition:0.4s;
 }
+
 .in-list {
   margin: 10px;
 }
@@ -203,13 +235,19 @@ img.logo {
   z-index: 999;
   opacity: 0;
 }
+
 .indicateurPosition.shown{
   opacity: 1;
   transition:0.2s;
 }
 
 
+
+
+
+
 /*** ajoutEnfant.html.twig + modifEnfant.html.twig + creerContrat.html.twig ***/
+
 .fond-form {
   border-radius: 5px;
   background-color: #e0e3f4;
@@ -233,7 +271,28 @@ div#ui-datepicker-div {
     z-index: 12 !important;
 }
 
+.form-ajout-enfant {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.form-ajout-enfant-input {
+  margin-top: 10px;
+  min-width: 200px;
+}
+
+.form-ajout-enfant-bouton {
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+
+
+
+
 /*** ficheEnfant.html.twig ***/
+
 .fiche-enfant {
   border-radius: 5px;
   background-color: #e0e3f4;
@@ -244,21 +303,26 @@ div#ui-datepicker-div {
   margin: 20px auto;
   font-size: 1.4em;
 }
+
 .fiche-enfant-input {
   margin-bottom: 20px;
 }
+
 .fiche-enfant-input-vide {
   font-style: italic;
 }
+
 .fiche-enfant-label {
   font-weight: bold;
   margin-bottom: 20px;
 }
+
 .fiche-enfant-bouton a, .fiche-enfant-bouton a:hover, .bouton-ajout-contrat a, .bouton-ajout-contrat a:hover {
   color: white;
   text-decoration: none;
   font-size: 1.2em;
 }
+
 .fiche-enfant-bouton {
   margin-bottom: 20px;
 }
@@ -267,6 +331,25 @@ div#ui-datepicker-div {
   margin-top: 20px;
   background-color: #3a405a;
 }
+
+.page-fiche-enfant .container.contratEnCours,
+.page-fiche-enfant .container.planningEnCours {
+    border-radius: 5px;
+    background-color: #e0e3f4;
+    margin-top: 10px;
+}
+
+.page-fiche-enfant .container.contratEnCours h3,
+.page-fiche-enfant .container.planningEnCours h3 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+
+
+
+
 
 /*** RESPONSIVE ***/
 
