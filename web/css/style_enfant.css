@@ -10,10 +10,6 @@ body{
 	margin: 0;
 }
 
-
-
-
-
 /*** HEADER ***/
 
 body.page-planning,
@@ -39,8 +35,16 @@ img.logo {
 	margin: 0px auto;
 }
 
-
-
+.user-present {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: rgb(230,230,230);
+  padding: 5px;
+  border-radius: 5px;
+  min-width: 150px;
+}
 
 /*** index.html.twig ***/
 
@@ -311,7 +315,7 @@ body.page-index {
 }
 
 .page-planningencours div.etapes {
-	margin-top: 3%;	
+	margin-top: 3%;
 }
 
 .page-planningencours div.etape {
@@ -406,7 +410,7 @@ body.page-index {
 
 .page-contrat .row#casesJetons {
 	height: 15vh;
-	
+
 }
 
 .page-contrat #casesEtapes {

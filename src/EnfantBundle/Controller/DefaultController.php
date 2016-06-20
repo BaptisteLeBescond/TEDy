@@ -22,7 +22,7 @@ class DefaultController extends Controller
         $contrat = $em->getRepository('SequenceBundle:Contrat')->findOneBy(array('enfant' => $user, 'enCours' => true));
 
         if(!$contrat){
-            $contrats = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants));
+            $contrats = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $user));
             for ($i=0; $i < sizeof($contrats); $i++) {
                 if($contrats[$i]->getFini() == false && $contrats[$i]->getDate()->format('Y-m-d H:i') < date('Y-m-d H:i')){
                     $contrats[$i]->setEnCours(true);
@@ -39,7 +39,12 @@ class DefaultController extends Controller
         if($this->container->get('security.authorization_checker')->isGranted('ROLE_EDUCATEUR'))
             return $this->render('EnfantBundle:Default:accessDenied.html.twig');
 
-        return $this->render('EnfantBundle:Default:calendrier.html.twig');
+        $user = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $contrats = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $user));
+
+        return $this->render('EnfantBundle:Default:calendrier.html.twig', array('contrats' => $contrats, 'user' => $user));
     }
 
     public function contratAction()
@@ -76,7 +81,7 @@ class DefaultController extends Controller
 
             return $this->render('EnfantBundle:Default:contrat.html.twig', array('sizeCol' => $sizeCol, 'nbreEtapes' => $nbreEtapes, 'etapes' => $etapes, 'contrat' => $contrat, 'user' => $user));
         }
-        
+
     }
 
     public function planningAction()
@@ -142,7 +147,7 @@ class DefaultController extends Controller
           ->add('save', 'submit')
           ;
 
-          for ($i=0; $i < sizeof($etapes) ; $i++) { 
+          for ($i=0; $i < sizeof($etapes) ; $i++) {
             $form->add('libelleEtape'.$i, 'text', array('required' => false, 'attr' => array('id' => 'libelleEtape'.$i, 'class' => 'inputLibelle hidden'), 'label_attr' => array('class' => 'hidden')));
             $form->add('imageEtape'.$i, 'text', array('required' => false, 'attr' => array('id' => 'imageEtape'.$i, 'class' => 'inputImage hidden'), 'label_attr' => array('class' => 'hidden')));
             $form->add('positionEtape'.$i, 'integer', array('required' => false, 'attr' => array('id' => 'positionEtape'.$i, 'class' => 'inputPosition hidden'), 'label_attr' => array('class' => 'hidden')));
@@ -153,7 +158,7 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if($form->isValid()){
-            for ($i=0; $i < sizeof($etapes) ; $i++) { 
+            for ($i=0; $i < sizeof($etapes) ; $i++) {
                 $etape = new Etape();
                 $libelle = $form['libelleEtape'.$i]->getData();
                 $image = $form['imageEtape'.$i]->getData();

@@ -8,13 +8,97 @@
 	class="page-calendrier"
 {% endblock bodyclass %}
 
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/fullcalendar.min.css') }}">
+{% endblock %}
+
 {% block body %}
-	<div class="row button">
-		<div class="col-md-offset-2 col-md-4">
-			<button class="btn">Jour</button>
-		</div>
-		<div class="col-md-offset-2 col-md-4">
-			<button class="btn">Semaine</button>
-		</div>
+
+<div class="row">
+	<div class="col-md-2 col-sm-2 col-xs-2 user-present">
+		{{user}}  |
+
+		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+				<a href="{{ path('fos_user_security_logout') }}">
+						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+				</a>
+		{% endif %}
 	</div>
+</div>
+
+<br><br>
+<div class="container" id="calendar">
+
+</div>
+
+<!-- Modal -->
+    <div class="modal fade" id="contratModal" tabindex="-1" role="dialog" aria-labelledby="contratModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title" id="contratModalLabel"></h2>
+          </div>
+          <div id="modal-body">
+          </div>
+          <div class="modal-footer">
+            <a id="deleteContrat" href="">
+              <button type="button" class="btn btn-danger">Supprimer ce contrat</button>
+            </a>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock body %}
+
+{% block javascripts %}
+  <script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/fullcalendar.min.js') }}"></script>
+  <script src="{{ asset('js/fr.js') }}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#calendar').fullCalendar({
+          header:{
+            left:   'month,agendaWeek,agendaDay',
+            center: 'title',
+            right:  'today prev,next'
+          },
+          events: [
+	          {% for contrat in contrats %}
+	            {
+	              id: '{{contrat.id}}',
+	              enfant: '{{enfant.username}}',
+	              date:'{{contrat.date | date("Y-m-d H:i")}}',
+	              title: 'Titre : {{contrat.libelle}}',
+	              start: '{{contrat.date | date("Y-m-d H-i-s")}}',
+	              description: '<div class="col-md-12"><h3>Description : {{contrat.description}}</h3></div><div class="clearfix"></div> <div class="col-md-12"><h4>Enfant : {{contrat.enfant.username}}</h4></div><div class="clearfix"></div> <div class="col-md-12"><h4>Date : {{contrat.date | date("Y-m-d H:i")}}</h4></div><div class="clearfix"></div> {% for etape in contrat.sequence.etapes %}<hr><div class="nomEtape col-md-6"> {{ etape }}</div><div class="imageEtape col-md-6"> <img class="img-responsive" src="{{asset("img/etape/")}}{{etape.image}}"/></div><div class="clearfix"></div>{% endfor %}',
+	              className: 'clickable',
+	            },
+	          {% endfor %}
+          ],
+          eventRender: function(event, element) {
+              element.attr("data-toggle", "modal");
+              element.attr("data-target", "#contratModal");
+              // element.attr("style", "background-color:"+event.color);
+          },
+          eventClick: function(calEvent, jsEvent, view) {
+            var title = calEvent.title;
+            var description = calEvent.description;
+            var modalTitle = document.getElementById("contratModalLabel");
+            modalTitle.innerHTML = title;
+            var modalBody = document.getElementById("modal-body");
+            modalBody.innerHTML = description;
+            var deleteContrat = document.getElementById("deleteContrat");
+            var path = "{{path('educateur_supprimer_contrat', {'id': "PLACEHOLDER"})}}";
+            path = path.replace("PLACEHOLDER", calEvent.id);
+            console.log(path);
+            deleteContrat.setAttribute('href', path);
+
+        }
+
+        })
+
+    });
+  </script>
+{% endblock %}
