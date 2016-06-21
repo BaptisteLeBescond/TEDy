@@ -77,8 +77,6 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if($form->isValid()){
-          var_dump('Compte modifié avec succès');
-
           $factory = $this->get('security.encoder_factory');
           $encoder = $factory->getEncoder($user);
           $password = $encoder->encodePassword($form->get('password')->getData(), $user->getSalt());
@@ -87,11 +85,13 @@ class DefaultController extends Controller
           $em->persist($user);
           $em->flush();
 
+          $message = "Votre compte à été modifié avec succès."
+
         }
         else
-            var_dump('ERREUR !');
+          $message = "Une erreur s'est produite lors de la modification de votre compte."
 
-        return $this->render('EducateurBundle:Default:monCompte.html.twig', array('user' => $user, 'form' => $form->createView()));
+        return $this->render('EducateurBundle:Default:monCompte.html.twig', array('message' => $message, 'user' => $user, 'form' => $form->createView()));
     }
 
     public function ajoutEnfantAction(Request $request)
@@ -126,8 +126,6 @@ class DefaultController extends Controller
 	      $form->handleRequest($request);
 
 		if($form->isValid()){
-			var_dump('Enfant créé avec succès');
-
 			$user->addEnfant($enfant);
 
 			$factory = $this->get('security.encoder_factory');
@@ -139,9 +137,11 @@ class DefaultController extends Controller
 			$em->persist($enfant);
 			$em->flush();
 
+            $message = $enfant->getUsername()." à été ajouté avec succès."
+
 		}
 		else
-			var_dump('ERREUR !');
+			$message = "Une erreur s'est produite lors de l'ajout d'un enfant."
 
         return $this->render('EducateurBundle:Default:ajoutEnfant.html.twig', array('user' => $user, 'form' => $form->createView()));
     }
@@ -182,11 +182,13 @@ class DefaultController extends Controller
 
         	$em->persist($enfant);
   			$em->flush();
+
+            $message = $enfant->getUsername()." à été modifié avec succès."
         }
         else
-			var_dump('ERREUR !');
+			$message = "Une erreur s'est produite lors de la modification d'un enfant."
 
-            return $this->render('EducateurBundle:Default:modifEnfant.html.twig', array('user' => $user, 'enfant' => $enfant, 'form' => $form->createView()));
+            return $this->render('EducateurBundle:Default:modifEnfant.html.twig', array('message' => $message, 'user' => $user, 'enfant' => $enfant, 'form' => $form->createView()));
 
     }
 
@@ -235,7 +237,6 @@ class DefaultController extends Controller
         			$etape->setLibelle($libelle);
         			$etape->setImage($image);
         			$etape->setPosition($position);
-        			var_dump($etape);
 
         			$sequence->addEtape($etape);
 
@@ -245,9 +246,7 @@ class DefaultController extends Controller
 
         	$file = $form['musique']->getData();
             if($file != null){
-            	var_dump($file->getClientOriginalName());
             	$fileName = md5(uniqid()).'.'.$file->getClientOriginalName();
-            	var_dump($fileName);
             	$file->move(
                     $this->container->getParameter('musiques_directory'),
                     $fileName
@@ -261,11 +260,13 @@ class DefaultController extends Controller
         	$em->persist($sequence);
 
         	$em->flush();
+
+            $message = "La séquence a été créée avec succès."
 		}
 		else
-			var_dump('ERREUR !');
+			$message = "Une erreur s'est produite lors de la création de la séquence."
 
-        return $this->render('EducateurBundle:Default:creerSequence.html.twig', array('form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
+        return $this->render('EducateurBundle:Default:creerSequence.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
     }
 
     public function ficheEnfantAction($username, $name)
@@ -338,9 +339,13 @@ class DefaultController extends Controller
         	$em->persist($contrat);
         	$em->flush();
 
-        }
+            $message = "Le contrat a été créé avec succès."
 
-        return $this->render('EducateurBundle:Default:creerContrat.html.twig', array('form' => $form->createView(), 'user' => $user, 'enfant' => $enfant, 'sequences' => $sequences));
+        }
+        else
+            $message = "Une erreur s'est produite lors de la création du contrat."
+
+        return $this->render('EducateurBundle:Default:creerContrat.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user, 'enfant' => $enfant, 'sequences' => $sequences));
     }
 
     public function supprimerContratAction(Request $request, $id)
@@ -396,9 +401,13 @@ class DefaultController extends Controller
 
             $em->persist($etape);
             $em->flush();
-        }
 
-        return $this->render('EducateurBundle:Default:creerEtape.html.twig', array('form' => $form->createView(), 'user' => $user));
+            $message = "L'étape a été créée avec succès."
+        }
+        else
+            $message = "Une erreur s'est produite lors de la création de l'étape."
+
+        return $this->render('EducateurBundle:Default:creerEtape.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user));
     }
 
 }
