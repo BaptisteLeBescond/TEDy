@@ -215,10 +215,10 @@ class DefaultController extends Controller
 
             $em->flush();
 
-            $message = "Le planning a été créé avec succès."
+            $message = "Le planning a été créé avec succès.";
         }
         else
-            $message = "Une erreur s'est produite lors de la création du planning."
+            $message = "Une erreur s'est produite lors de la création du planning.";
 
         return $this->render('EnfantBundle:Default:creerPlanning.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
     }

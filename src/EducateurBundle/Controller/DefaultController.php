@@ -85,11 +85,11 @@ class DefaultController extends Controller
           $em->persist($user);
           $em->flush();
 
-          $message = "Votre compte à été modifié avec succès."
+          $message = "Votre compte à été modifié avec succès.";
 
         }
         else
-          $message = "Une erreur s'est produite lors de la modification de votre compte."
+          $message = "Une erreur s'est produite lors de la modification de votre compte.";
 
         return $this->render('EducateurBundle:Default:monCompte.html.twig', array('message' => $message, 'user' => $user, 'form' => $form->createView()));
     }
@@ -137,11 +137,11 @@ class DefaultController extends Controller
 			$em->persist($enfant);
 			$em->flush();
 
-            $message = $enfant->getUsername()." à été ajouté avec succès."
+            $message = $enfant->getUsername()." à été ajouté avec succès.";
 
 		}
 		else
-			$message = "Une erreur s'est produite lors de l'ajout d'un enfant."
+			$message = "Une erreur s'est produite lors de l'ajout d'un enfant.";
 
         return $this->render('EducateurBundle:Default:ajoutEnfant.html.twig', array('user' => $user, 'form' => $form->createView()));
     }
@@ -183,10 +183,10 @@ class DefaultController extends Controller
         	$em->persist($enfant);
   			$em->flush();
 
-            $message = $enfant->getUsername()." à été modifié avec succès."
+            $message = $enfant->getUsername()." à été modifié avec succès.";
         }
         else
-			$message = "Une erreur s'est produite lors de la modification d'un enfant."
+			$message = "Une erreur s'est produite lors de la modification d'un enfant.";
 
             return $this->render('EducateurBundle:Default:modifEnfant.html.twig', array('message' => $message, 'user' => $user, 'enfant' => $enfant, 'form' => $form->createView()));
 
@@ -261,10 +261,10 @@ class DefaultController extends Controller
 
         	$em->flush();
 
-            $message = "La séquence a été créée avec succès."
+            $message = "La séquence a été créée avec succès.";
 		}
 		else
-			$message = "Une erreur s'est produite lors de la création de la séquence."
+			$message = "Une erreur s'est produite lors de la création de la séquence.";
 
         return $this->render('EducateurBundle:Default:creerSequence.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
     }
@@ -339,11 +339,11 @@ class DefaultController extends Controller
         	$em->persist($contrat);
         	$em->flush();
 
-            $message = "Le contrat a été créé avec succès."
+            $message = "Le contrat a été créé avec succès.";
 
         }
         else
-            $message = "Une erreur s'est produite lors de la création du contrat."
+            $message = "Une erreur s'est produite lors de la création du contrat.";
 
         return $this->render('EducateurBundle:Default:creerContrat.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user, 'enfant' => $enfant, 'sequences' => $sequences));
     }
@@ -402,10 +402,10 @@ class DefaultController extends Controller
             $em->persist($etape);
             $em->flush();
 
-            $message = "L'étape a été créée avec succès."
+            $message = "L'étape a été créée avec succès.";
         }
         else
-            $message = "Une erreur s'est produite lors de la création de l'étape."
+            $message = "Une erreur s'est produite lors de la création de l'étape.";
 
         return $this->render('EducateurBundle:Default:creerEtape.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user));
     }
