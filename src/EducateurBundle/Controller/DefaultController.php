@@ -244,15 +244,17 @@ class DefaultController extends Controller
         	}
 
         	$file = $form['musique']->getData();
-        	var_dump($file->getClientOriginalName());
-        	$fileName = md5(uniqid()).'.'.$file->getClientOriginalName();
-        	var_dump($fileName);
-        	$file->move(
-                $this->container->getParameter('musiques_directory'),
-                $fileName
-            );
+            if($file != null){
+            	var_dump($file->getClientOriginalName());
+            	$fileName = md5(uniqid()).'.'.$file->getClientOriginalName();
+            	var_dump($fileName);
+            	$file->move(
+                    $this->container->getParameter('musiques_directory'),
+                    $fileName
+                );
+                $sequence->setMusique($file);
+            }
 
-        	$sequence->setMusique($file);
         	$sequence->setCreateur($user);
         	$sequence->setLibelle($form['libelle']->getData());
         	$sequence->setDescription($form['description']->getData());
