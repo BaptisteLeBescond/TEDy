@@ -46,6 +46,11 @@ class Etape
      */
     private $position;
 
+    /**
+      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
+      */
+    private $createur;
+
 
     /**
      * Get id
@@ -128,5 +133,28 @@ class Etape
 
     public function __toString(){
         return $this->libelle;
+    }
+
+    /**
+     * Set createur
+     *
+     * @param string $createur
+     * @return Etape
+     */
+    public function setCreateur($createur)
+    {
+        $this->createur = $createur;
+    
+        return $this;
+    }
+
+    /**
+     * Get createur
+     *
+     * @return string 
+     */
+    public function getCreateur()
+    {
+        return $this->createur;
     }
 }

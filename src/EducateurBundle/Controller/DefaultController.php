@@ -198,7 +198,15 @@ class DefaultController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
     	$sequence = new Sequence;
-    	$etapes = $em->getRepository('SequenceBundle:Etape')->findByPosition(0);
+    	// $etapes = $em->getRepository('SequenceBundle:Etape')->findByPosition(0);
+        $repository = $this->getDoctrine()->getRepository('SequenceBundle:Etape');
+        $etapes = $repository->createQueryBuilder('e')
+            ->where('e.position = :position')
+            ->orWhere('e.createur = :user')
+            ->setParameter('position', 0)
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
 
     	$form = $this->get('form.factory')->createBuilder('form')
     	  ->add('libelle',  'text', array('label' => 'Titre','required' => true, 'attr' => array('class' => 'form-required')))
@@ -381,12 +389,13 @@ class DefaultController extends Controller
                 $fileName
             );
             $etape->setImage($fileName);
-            $etape->setPosition(0);
+            $etape->setPosition(99);
+            $etape->setCreateur($user);
 
             $em->persist($etape);
             $em->flush();
         }
-        
+
         return $this->render('EducateurBundle:Default:creerEtape.html.twig', array('form' => $form->createView(), 'user' => $user));
     }
 
