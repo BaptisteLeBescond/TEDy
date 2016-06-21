@@ -19,11 +19,11 @@ educateur_creer_etape:
     defaults: { _controller: EducateurBundle:Default:creerEtape }
 
 educateur_fiche_enfant:
-    path:     /{username}-{name}
+    path:     /enfant/{username}-{name}
     defaults: { _controller: EducateurBundle:Default:ficheEnfant }
 
 educateur_creer_contrat:
-    path:     /{username}-{name}/creer-contrat
+    path:     /enfant/{username}-{name}/creer-contrat
     defaults: { _controller: EducateurBundle:Default:creerContrat }
 
 educateur_supprimer_contrat:
@@ -32,7 +32,7 @@ educateur_supprimer_contrat:
 
 
 educateur_enfant_modif:
-    path:     /{username}-{name}/modif-enfant
+    path:     /enfant/{username}-{name}/modif-enfant
     defaults: { _controller: EducateurBundle:Default:modifEnfant }
 
 
