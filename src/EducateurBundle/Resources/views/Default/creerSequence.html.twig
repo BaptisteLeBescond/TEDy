@@ -78,6 +78,11 @@
 				    	</div>
 			    	</div>
 			    {% endfor %}
+			    <div class="col-md-2 col-sm-4 col-xs-6 case-etape">
+			    	<a href="{{path('educateur_creer_etape')}}">
+			    		<img src="{{asset('img/etape/plus.png')}}" style="margin: 0px auto;" class="img-responsive" width="100px" height="100px" data-toggle="tooltip" data-placement="top" title="Ajouter une étape">
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -203,5 +208,9 @@
 		[].forEach.call(etapes, function(etape) {
 			etape.addEventListener('click', handleAddEtape, false);
 		});
+
+		$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
 	</script>
 {% endblock %}
