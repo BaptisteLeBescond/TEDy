@@ -64,6 +64,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $contrat = $em->getRepository('SequenceBundle:Contrat')->findOneBy(array('enfant' => $user, 'enCours' => true));
+        $offset = 0;
 
         if(is_null($contrat)) {
             $points = $user->getPoints();
@@ -74,18 +75,26 @@ class DefaultController extends Controller
             $sequence = $contrat->getSequence();
             $etapes = $sequence->getEtapes();
             $nbreEtapes = sizeof($etapes);
-            if($nbreEtapes > 6)
+            if($nbreEtapes > 6){
                 $sizeCol = 1;
-            elseif ($nbreEtapes > 4)
+                $offset = round((12 - $nbreEtapes) / 2);
+            }
+            elseif ($nbreEtapes == 6)
                 $sizeCol = 2;
+            elseif ($nbreEtapes == 5){
+                $sizeCol = 2;
+                $offset = 1;
+            }
             elseif ($nbreEtapes == 4)
                 $sizeCol = 3;
             elseif ($nbreEtapes == 3)
                 $sizeCol = 4;
             elseif ($nbreEtapes == 2)
                 $sizeCol = 6;
-            else
-                $sizeCol = 12;
+            else{
+                $sizeCol = 8;
+                $offset = 2;
+            }
 
             $firstVisit = false;
             if(! $user->getContratVisited()){
@@ -95,7 +104,7 @@ class DefaultController extends Controller
                 $firstVisit = true;
             }
 
-            return $this->render('EnfantBundle:Default:contrat.html.twig', array('firstVisit' => $firstVisit, 'sizeCol' => $sizeCol, 'nbreEtapes' => $nbreEtapes, 'etapes' => $etapes, 'contrat' => $contrat, 'user' => $user));
+            return $this->render('EnfantBundle:Default:contrat.html.twig', array('offset' => $offset, 'firstVisit' => $firstVisit, 'sizeCol' => $sizeCol, 'nbreEtapes' => $nbreEtapes, 'etapes' => $etapes, 'contrat' => $contrat, 'user' => $user));
         }
 
     }
@@ -191,7 +200,6 @@ class DefaultController extends Controller
                     $etape->setLibelle($libelle);
                     $etape->setImage($image);
                     $etape->setPosition($position);
-                    var_dump($etape);
 
                     $sequence->addEtape($etape);
 

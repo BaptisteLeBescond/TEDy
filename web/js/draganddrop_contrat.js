@@ -93,6 +93,7 @@ interact('.dropzone').dropzone({
         event.relatedTarget.classList.remove('can-drop');
     },
     ondrop: function (event) {
+        console.log('Dropped');
         for (var i = 0 ; i < jeton.length ; i++) {
              if($(jeton[i]).hasClass('dropzone')) {
                 jeton[i].classList.remove('dropzone');
