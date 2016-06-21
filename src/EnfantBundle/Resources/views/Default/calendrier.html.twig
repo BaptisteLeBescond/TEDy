@@ -52,10 +52,11 @@
     $(document).ready(function() {
         $('#calendar').fullCalendar({
           header:{
-            left:   'month,agendaWeek,agendaDay',
+            left:   'agendaWeek,agendaDay',
             center: 'title',
             right:  'today prev,next'
           },
+          defaultView: 'agendaWeek',
           events: [
 	          {% for contrat in contrats %}
 	            {
