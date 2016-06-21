@@ -33,7 +33,17 @@
                       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav col-sm-12">
                           <li class="col-sm-2 col-sm-offset-1"><a href="{{ path('educateur_homepage') }}">Tableau de bord</a></li>
-                          <li class="col-sm-2"><a href="{{ path('educateur_creer_sequence') }}">Créer une séquence</a></li>
+                          <li class="col-sm-2">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Séquences / étapes <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li>
+                                <a href="{{ path('educateur_creer_sequence') }}">Créer une séquence</a>
+                              </li>
+                              <li>
+                                <a href="{{ path('educateur_creer_etape') }}">Créer une étape</a>
+                              </li>
+                            </ul>
+                          </li>
                           <li class="dropdown col-sm-2 col-sm-offset-2">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Enfants <span class="caret"></span></a>
                             <ul class="dropdown-menu">
