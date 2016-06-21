@@ -49,7 +49,7 @@
 					</div>
 
 					<div class="form-ajout-seq-bouton">
-			            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}, 'label': 'Enregistrer'}) }}
+			            {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}, 'label': 'Enregistrer', 'disabled': 'disabled'}) }}
 			        </div>
 				{{ form_end(form) }}
 	    </div>
@@ -95,13 +95,13 @@
 		var position = 0;
 
 		function handleAddEtape(e){
-			console.log(this.firstChild.nextElementSibling);
 			var image = this.firstChild.nextElementSibling;
 			var clone = image.cloneNode(true);
 			var id = image.getAttribute('data-origin-id');
 			var p = image.nextElementSibling.innerHTML;
 			var indicateurPosition = this.lastChild.previousElementSibling;
 			var imageSrc = image.getAttribute('data-src');
+			var formSave = document.getElementById('form_save');
 			clone.setAttribute('data-new-id', id);
 			clone.setAttribute('data-position', ++position);
 			clone.setAttribute('class', 'img-responsive in-list pull-left');
@@ -113,16 +113,14 @@
 			this.removeEventListener('click', handleAddEtape);
 			this.addEventListener('click', handleRemoveInListEtape);
 
-			// var checkBox = document.getElementById("form_etapes_"+image.getAttribute('data-origin-id'));
-			// checkBox.setAttribute('checked', 'checked');
-
 			var inputLibelle = document.getElementById("form_libelleEtape"+(id-1));
 			var inputImage = document.getElementById("form_imageEtape"+(id-1));
 			var inputPosition = document.getElementById("form_positionEtape"+(id-1));
-			// console.log(inputLibelle);
 			inputLibelle.setAttribute('value', p);
 			inputImage.setAttribute('value', imageSrc);
 			inputPosition.setAttribute('value', position);
+
+			formSave.removeAttribute('disabled');
 		}
 
 		function handleRemoveEtape(e){
@@ -132,6 +130,7 @@
 			origin.parentNode.className = 'etape';
 			origin.parentNode.lastChild.previousElementSibling.className = 'indicateurPosition';
 			origin.parentNode.addEventListener('click', handleAddEtape, false);
+			origin.parentNode.removeEventListener('click', handleRemoveInListEtape);
 
 			var etapesSelected = document.getElementsByClassName('in-list');
 			var oldPosition = this.getAttribute('data-position');
@@ -166,7 +165,6 @@
 			var origin = this.firstChild.nextElementSibling;
 			origin.parentNode.lastChild.previousElementSibling.className = 'indicateurPosition';
 			var originId = origin.getAttribute('data-origin-id');
-			console.log(originId);
 			var etapesInList = document.getElementsByClassName('in-list');
 			[].forEach.call(etapesInList, function(etapeRemoved) {
 				if(etapeRemoved.getAttribute('data-new-id') == originId){
@@ -197,6 +195,7 @@
 			this.className = 'etape';
 			this.addEventListener('click', handleAddEtape, false);
 			this.removeEventListener('click', handleRemoveInListEtape);
+			this.removeEventListener('click', handleRemoveEtape);
 
 			var etapesSelectedOrigin = document.getElementsByClassName('selected');
 			[].forEach.call(etapesSelectedOrigin, function(etape) {
