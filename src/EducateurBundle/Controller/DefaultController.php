@@ -146,6 +146,24 @@ class DefaultController extends Controller
         return $this->render('EducateurBundle:Default:ajoutEnfant.html.twig', array('user' => $user, 'form' => $form->createView()));
     }
 
+    public function supprimerEnfantAction(Request $request, $id)
+    {
+        if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))
+            return $this->render('EducateurBundle:Default:accessDenied.html.twig');
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $enfant = $em->getRepository('UserBundle:User')->find($id);
+
+        $em->remove($enfant);
+        $em->flush();
+
+        $message = "Cette fiche enfant a été supprimée.";
+
+        return $this->forward('EducateurBundle:Default:index');
+
+    }
+
     public function modifEnfantAction($username, $name, Request $request)
     {
       if($this->container->get('security.authorization_checker')->isGranted('ROLE_ENFANT'))

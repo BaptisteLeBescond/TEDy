@@ -318,7 +318,7 @@ div#ui-datepicker-div {
   margin-bottom: 20px;
 }
 
-.fiche-enfant-bouton a, .fiche-enfant-bouton a:hover, .bouton-ajout-contrat a, .bouton-ajout-contrat a:hover {
+.fiche-enfant-bouton a, .fiche-enfant-bouton a:hover, .bouton-ajout-contrat a, .bouton-ajout-contrat a:hover{
   color: white;
   text-decoration: none;
   font-size: 1.2em;
@@ -331,6 +331,10 @@ div#ui-datepicker-div {
 .bouton-ajout-contrat {
   margin-top: 20px;
   background-color: #3a405a;
+}
+
+.btn-supprimer-enfant{
+  margin-top: 20px;
 }
 
 .page-fiche-enfant .container.contratEnCours,

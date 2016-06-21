@@ -14,6 +14,7 @@
 
 {% block body %}
     {% if firstVisit %}
+        <div id="fondNoir"></div>
         <video src="{{asset('img/tuto/TutoEnfantAccueil.mp4')}}" id="tutoriel" class="img-responsive" alt="tutoriel" preload controls autoplay> </video>
         <button class="btn btn-danger" id="btnCloseVideo" onclick="closeVideo();">Fermer la video</button>
     {% endif %}
@@ -59,10 +60,12 @@
         {% if firstVisit %}
             var video = document.getElementById('tutoriel');
             var btnCloseVideo = document.getElementById('btnCloseVideo');
+            var fondNoir = document.getElementById('fondNoir');
 
             function closeVideo(e){
                 video.setAttribute('class', 'hidden');
                 btnCloseVideo.setAttribute('class', 'hidden');
+                fondNoir.setAttribute('class', 'hidden');
             }
         {% endif %}
     </script>

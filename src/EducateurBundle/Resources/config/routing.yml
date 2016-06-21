@@ -10,6 +10,11 @@ educateur_enfant_ajout:
     path:     /ajout-enfant
     defaults: { _controller: EducateurBundle:Default:ajoutEnfant }
 
+educateur_enfant_supprimer:
+    path:     /supprimer-enfant/{id}
+    defaults: { _controller: EducateurBundle:Default:supprimerEnfant }
+
+
 educateur_creer_sequence:
     path:     /creer-sequence
     defaults: { _controller: EducateurBundle:Default:creerSequence }
