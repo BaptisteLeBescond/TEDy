@@ -384,4 +384,27 @@ class User extends BaseUser
     {
         return $this->accueilVisited;
     }
+
+    /**
+     * Set points
+     *
+     * @param integer $points
+     * @return User
+     */
+    public function setPoints($points)
+    {
+        $this->points = $points;
+    
+        return $this;
+    }
+
+    /**
+     * Get points
+     *
+     * @return integer 
+     */
+    public function getPoints()
+    {
+        return $this->points;
+    }
 }
