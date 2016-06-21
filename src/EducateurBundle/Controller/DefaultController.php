@@ -76,7 +76,7 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
+        if($form->isSubmitted() && $form->isValid()){
           $factory = $this->get('security.encoder_factory');
           $encoder = $factory->getEncoder($user);
           $password = $encoder->encodePassword($form->get('password')->getData(), $user->getSalt());
@@ -125,7 +125,7 @@ class DefaultController extends Controller
 
 	      $form->handleRequest($request);
 
-		if($form->isValid()){
+		if($form->isSubmitted() && $form->isValid()){
 			$user->addEnfant($enfant);
 
 			$factory = $this->get('security.encoder_factory');
@@ -171,7 +171,7 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
+        if($form->isSubmitted() && $form->isValid()){
         	$file = $form['photo']->getData();
         	$fileName = md5(uniqid()).'.'.$file->getClientOriginalName();
         	$file->move(
@@ -227,7 +227,7 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
+        if($form->isSubmitted() && $form->isValid()){
         	for ($i=0; $i < sizeof($etapes) ; $i++) {
         		$etape = new Etape();
         		$libelle = $form['libelleEtape'.$i]->getData();
@@ -325,7 +325,7 @@ class DefaultController extends Controller
 
 	    $form->handleRequest($request);
 
-        if($form->isValid()){
+        if($form->isSubmitted() && $form->isValid()){
         	if($contrat->getDate()->format('Y-m-d H:i') < date('Y-m-d H:i')){
         		$contrat->setEnCours(true);
         	}
@@ -386,7 +386,7 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
+        if($form->isSubmitted() && $form->isValid()){
             $etape = new Etape;
             $etape->setLibelle($form['libelle']->getData());
             $file = $form['image']->getData();

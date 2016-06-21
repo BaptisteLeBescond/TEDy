@@ -141,7 +141,7 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
+        if($form->isSubmitted() && $form->isValid()){
             $planning->setEnCours(false);
             $planning->setDuree($form['duree']->getData());
 
@@ -181,7 +181,7 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
+        if($form->isSubmitted() && $form->isValid()){
             for ($i=0; $i < sizeof($etapes) ; $i++) {
                 $etape = new Etape();
                 $libelle = $form['libelleEtape'.$i]->getData();
