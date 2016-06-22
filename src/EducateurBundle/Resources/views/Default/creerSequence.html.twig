@@ -17,6 +17,12 @@
 	</div>
 </div>
 
+{% if message is defined %}
+	<div id="message">
+		{{message}}
+	</div>
+{% endif %}
+
     <div class="row">
 	    <h1 class="titre-page col-md-12 col-sm-12">Créez votre séquence</h1>
 	    <h2 class="second-titre-page col-md-12 col-sm-12">Pour l'utiliser dans vos contrats ou vos plannings</h2>
@@ -160,6 +166,7 @@
 				if(input.getAttribute('value') > oldPosition)
 					input.setAttribute('value', newPosition);
 			});
+		}
 
 		function handleRemoveInListEtape(e){
 			var origin = this.firstChild.nextElementSibling;

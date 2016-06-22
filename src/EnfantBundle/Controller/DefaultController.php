@@ -69,7 +69,8 @@ class DefaultController extends Controller
         if(is_null($contrat)) {
             $points = $user->getPoints();
             $contratsFinis = $em->getRepository('SequenceBundle:Contrat')->findOneBy(array('enfant' => $user));
-            return $this->render('EnfantBundle:Default:contrat404.html.twig' , array('points' => $points));
+            $recompenses = sizeof($contratsFinis);
+            return $this->render('EnfantBundle:Default:contrat404.html.twig' , array('recompenses' => $recompenses, 'points' => $points));
         }
         else {
             $sequence = $contrat->getSequence();
@@ -224,11 +225,12 @@ class DefaultController extends Controller
             $em->flush();
 
             $message = "Le planning a été créé avec succès.";
-        }
-        else
-            $message = "Une erreur s'est produite lors de la création du planning.";
+            $plannings = $em->getRepository('SequenceBundle:Planning')->findBy(array('enfant' => $user));
 
-        return $this->render('EnfantBundle:Default:creerPlanning.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
+            return $this->render('EnfantBundle:Default:planning.html.twig', array('message' => $message, 'user' => $user, 'plannings' => $plannings));
+        }
+
+        return $this->render('EnfantBundle:Default:creerPlanning.html.twig', array('form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
     }
 
     public function contratIndexAction($points,$id_contrat,$id_user) {

@@ -5,17 +5,12 @@
 {% block bodyclass %} class="page-creer-planning" {% endblock %}
 
 {% block body %}
-<div class="row">
-	<div class="col-md-2 col-sm-2 col-xs-2 user-present">
-		{{user}}  |
 
-		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-				<a href="{{ path('fos_user_security_logout') }}">
-						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-				</a>
-		{% endif %}
+{% if message is defined %}
+	<div id="message">
+		{{message}}
 	</div>
-</div>
+{% endif %}
 
     <div class="row">
 	    <h1 class="titre-page col-md-12 col-sm-12">Crée ton planning</h1>
@@ -88,6 +83,7 @@
 			var p = image.nextElementSibling.innerHTML;
 			var indicateurPosition = this.lastChild.previousElementSibling;
 			var imageSrc = image.getAttribute('data-src');
+			var formSave = document.getElementById('form_save');
 			clone.setAttribute('data-new-id', id);
 			clone.setAttribute('data-position', ++position);
 			clone.setAttribute('class', 'img-responsive in-list pull-left');
@@ -97,10 +93,7 @@
 			indicateurPosition.setAttribute('class', 'indicateurPosition shown');
 			indicateurPosition.innerHTML = position;
 			this.removeEventListener('click', handleAddEtape);
-			this.addEventListener('click', handleRemoveInListEtape);
-
-			// var checkBox = document.getElementById("form_etapes_"+image.getAttribute('data-origin-id'));
-			// checkBox.setAttribute('checked', 'checked');
+			this.addEventListener('click', handleRemoveInListEtape, false);
 
 			var inputLibelle = document.getElementById("form_libelleEtape"+(id-1));
 			var inputImage = document.getElementById("form_imageEtape"+(id-1));
@@ -108,6 +101,8 @@
 			inputLibelle.setAttribute('value', p);
 			inputImage.setAttribute('value', imageSrc);
 			inputPosition.setAttribute('value', position);
+
+			formSave.removeAttribute('disabled');
 		}
 
 		function handleRemoveEtape(e){
@@ -117,17 +112,19 @@
 			origin.parentNode.className = 'etape';
 			origin.parentNode.lastChild.previousElementSibling.className = 'indicateurPosition';
 			origin.parentNode.addEventListener('click', handleAddEtape, false);
+			origin.parentNode.removeEventListener('click', handleRemoveInListEtape);
+			origin.parentNode.removeEventListener('click', handleRemoveEtape);
 
 			var etapesSelected = document.getElementsByClassName('in-list');
 			var oldPosition = this.getAttribute('data-position');
 			[].forEach.call(etapesSelected, function(etape) {
-				if(etape.getAttribute('data-position') > oldPosition)
+				if(parseInt(etape.getAttribute('data-position')) > oldPosition)
 					etape.setAttribute('data-position', etape.getAttribute('data-position')-1);
 			});
 			position--;
 			var etapesSelectedOrigin = document.getElementsByClassName('selected');
 			[].forEach.call(etapesSelectedOrigin, function(etape) {
-				if(etape.lastChild.previousElementSibling.innerHTML > oldPosition)
+				if(parseInt(etape.lastChild.previousElementSibling.innerHTML) > oldPosition)
 					etape.lastChild.previousElementSibling.innerHTML = etape.lastChild.previousElementSibling.innerHTML - 1;
 			});
 
@@ -159,8 +156,9 @@
 				}
 			});
 			[].forEach.call(etapesInList, function(etape) {
-				if(etape.getAttribute('data-position') > oldPosition)
+				if(parseInt(etape.attributes[5].nodeValue) > oldPosition){
 					etape.setAttribute('data-position', etape.getAttribute('data-position')-1);
+				}
 			});
 			position--;
 
@@ -173,18 +171,20 @@
 
 			var inputs = document.getElementsByClassName('inputPosition');
 			[].forEach.call(inputs, function(input) {
-				var newPosition = input.getAttribute('value') - 1;
-				if(input.getAttribute('value') > oldPosition)
+				var x = input.getAttribute('value');
+				var newPosition = x - 1;
+				if(parseInt(input.getAttribute('value')) > oldPosition)
 					input.setAttribute('value', newPosition);
 			});
 
 			this.className = 'etape';
 			this.addEventListener('click', handleAddEtape, false);
 			this.removeEventListener('click', handleRemoveInListEtape);
+			this.removeEventListener('click', handleRemoveEtape);
 
 			var etapesSelectedOrigin = document.getElementsByClassName('selected');
 			[].forEach.call(etapesSelectedOrigin, function(etape) {
-				if(etape.lastChild.previousElementSibling.innerHTML > oldPosition)
+				if(parseInt(etape.lastChild.previousElementSibling.innerHTML) > oldPosition)
 					etape.lastChild.previousElementSibling.innerHTML = etape.lastChild.previousElementSibling.innerHTML - 1;
 			});
 		}

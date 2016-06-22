@@ -19,7 +19,11 @@
 		<br />
 		<img src="{{ asset('img/contrat/teddyBearSorry200.png') }}" alt="teddyBear" class="img-responsive" />
 		<br />
-		<span>Total de points : {{points}}</span>
-		<span>Nombre de récompenses gagnées : </span>
+		{% if points > 0 %}
+			<span>Total de points : {{ points }}</span>
+		{% endif %}
+		{% if recompenses > 0 %}
+			<span>Nombre de récompenses gagnées : {{ recompenses }}</span>
+		{% endif %}
 	</div>
 {% endblock body %}
