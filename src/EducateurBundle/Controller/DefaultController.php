@@ -441,7 +441,7 @@ class DefaultController extends Controller
       $enfant = $em->getRepository('UserBundle:User')->findOneBy(array('username' => $username, 'name' => $name));
 
       $transport = \Swift_SmtpTransport::newInstance()
-            ->setUsername('sevrine-vincent@hotmail.fr')->setPassword('020188')
+            ->setUsername('sevrine-vincent@hotmail.fr')->setPassword('')
             ->setHost('smtp-mail.outlook.com')
             ->setPort(587)->setEncryption('tls');
 
