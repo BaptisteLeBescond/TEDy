@@ -23,5 +23,5 @@ enfant_planningencours:
     defaults: { _controller: EnfantBundle:Default:planningencours }
 
 enfant_contratindex:
-    path:     /index
+    path:     /contrat-fini-{points}-{id_contrat}-{id_user}
     defaults: { _controller: EnfantBundle:Default:contratIndex }

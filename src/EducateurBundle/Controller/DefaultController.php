@@ -128,6 +128,13 @@ class DefaultController extends Controller
 		if($form->isSubmitted() && $form->isValid()){
 			$user->addEnfant($enfant);
 
+            $file = $form['photo']->getData();
+            $fileName = md5(uniqid()).'.'.$file->getClientOriginalName();
+            $file->move(
+                $this->container->getParameter('photosEnfant_directory'),
+                $fileName
+            );
+            $enfant->setPhoto($fileName);
 			$factory = $this->get('security.encoder_factory');
             $encoder = $factory->getEncoder($enfant);
             $password = $encoder->encodePassword($form->get('password')->getData(), $enfant->getSalt());
@@ -143,7 +150,7 @@ class DefaultController extends Controller
 		else
 			$message = "Une erreur s'est produite lors de l'ajout d'un enfant.";
 
-        return $this->render('EducateurBundle:Default:ajoutEnfant.html.twig', array('user' => $user, 'form' => $form->createView()));
+        return $this->render('EducateurBundle:Default:ajoutEnfant.html.twig', array('message' => $message,  'user' => $user, 'form' => $form->createView()));
     }
 
     public function supprimerEnfantAction(Request $request, $id)

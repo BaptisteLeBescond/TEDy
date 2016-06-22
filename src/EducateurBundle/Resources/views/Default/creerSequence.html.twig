@@ -111,7 +111,7 @@
 			indicateurPosition.setAttribute('class', 'indicateurPosition shown');
 			indicateurPosition.innerHTML = position;
 			this.removeEventListener('click', handleAddEtape);
-			this.addEventListener('click', handleRemoveInListEtape);
+			this.addEventListener('click', handleRemoveInListEtape, false);
 
 			var inputLibelle = document.getElementById("form_libelleEtape"+(id-1));
 			var inputImage = document.getElementById("form_imageEtape"+(id-1));
@@ -131,17 +131,18 @@
 			origin.parentNode.lastChild.previousElementSibling.className = 'indicateurPosition';
 			origin.parentNode.addEventListener('click', handleAddEtape, false);
 			origin.parentNode.removeEventListener('click', handleRemoveInListEtape);
+			origin.parentNode.removeEventListener('click', handleRemoveEtape);
 
 			var etapesSelected = document.getElementsByClassName('in-list');
 			var oldPosition = this.getAttribute('data-position');
 			[].forEach.call(etapesSelected, function(etape) {
-				if(etape.getAttribute('data-position') > oldPosition)
+				if(parseInt(etape.getAttribute('data-position')) > oldPosition)
 					etape.setAttribute('data-position', etape.getAttribute('data-position')-1);
 			});
 			position--;
 			var etapesSelectedOrigin = document.getElementsByClassName('selected');
 			[].forEach.call(etapesSelectedOrigin, function(etape) {
-				if(etape.lastChild.previousElementSibling.innerHTML > oldPosition)
+				if(parseInt(etape.lastChild.previousElementSibling.innerHTML) > oldPosition)
 					etape.lastChild.previousElementSibling.innerHTML = etape.lastChild.previousElementSibling.innerHTML - 1;
 			});
 
@@ -159,8 +160,6 @@
 				if(input.getAttribute('value') > oldPosition)
 					input.setAttribute('value', newPosition);
 			});
-			console.log(position);
-		}
 
 		function handleRemoveInListEtape(e){
 			var origin = this.firstChild.nextElementSibling;
@@ -174,8 +173,9 @@
 				}
 			});
 			[].forEach.call(etapesInList, function(etape) {
-				if(etape.getAttribute('data-position') > oldPosition)
+				if(parseInt(etape.attributes[5].nodeValue) > oldPosition){
 					etape.setAttribute('data-position', etape.getAttribute('data-position')-1);
+				}
 			});
 			position--;
 
@@ -188,8 +188,9 @@
 
 			var inputs = document.getElementsByClassName('inputPosition');
 			[].forEach.call(inputs, function(input) {
-				var newPosition = input.getAttribute('value') - 1;
-				if(input.getAttribute('value') > oldPosition)
+				var x = input.getAttribute('value');
+				var newPosition = x - 1;
+				if(parseInt(input.getAttribute('value')) > oldPosition)
 					input.setAttribute('value', newPosition);
 			});
 
@@ -200,7 +201,7 @@
 
 			var etapesSelectedOrigin = document.getElementsByClassName('selected');
 			[].forEach.call(etapesSelectedOrigin, function(etape) {
-				if(etape.lastChild.previousElementSibling.innerHTML > oldPosition)
+				if(parseInt(etape.lastChild.previousElementSibling.innerHTML) > oldPosition)
 					etape.lastChild.previousElementSibling.innerHTML = etape.lastChild.previousElementSibling.innerHTML - 1;
 			});
 		}

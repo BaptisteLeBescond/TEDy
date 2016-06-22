@@ -81,7 +81,7 @@
           	<p><img src="{{asset('img/recompense/')}}{{contrat.recompense.image}}" alt="recompense" width="100" height="100" /></p>
           </div>
           <div class="modal-footer">
-            <a id="validContrat" href="{{ path('enfant_homepage', {'points' : nbreEtapes , 'id_contrat' : contrat.id , 'id_user' : user.id }) }}">
+            <a id="validContrat" href="{{ path('enfant_contratindex', {'points' : nbreEtapes , 'id_contrat' : contrat.id , 'id_user' : user.id }) }}">
               <button type="button" class="btn">Enregistrer</button>
             </a>
           </div>

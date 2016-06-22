@@ -240,15 +240,15 @@ class DefaultController extends Controller
         $contrat = $em->getRepository('SequenceBundle:Contrat')->find($id_contrat);
         $contrat->setFini(true);
         $contrat->setEnCours(false);
-        $em->persist($planning);
+        $em->persist($contrat);
 
         $user = $em->getRepository('UserBundle:User')->find($id_user);
-        $user->setPoints($user->getPoints() + $point);
+        $user->setPoints($user->getPoints() + $points);
         $em->persist($user);
 
         $em->flush();
 
-        return $this->render('EnfantBundle:Default:index.html.twig');
+        return $this->forward('EnfantBundle:Default:index');
     }
 
 }
