@@ -14,31 +14,10 @@
         <video src="{{asset('img/tuto/TutoEnfantContrat.mp4')}}" id="tutoriel" class="img-responsive" alt="tutoriel" preload controls autoplay> </video>
         <button class="btn btn-danger" id="btnCloseVideo" onclick="closeVideo();">Fermer la video</button>
     {% endif %}
-	<div class="row" id="casesEtapes">
-		{% for etape in etapes %}
-			<div class="etape col-xs-{{sizeCol}} {% if loop.first %}col-xs-offset-{{offset}}{% endif %}">
-				<img class="img-responsive" src="{{asset('img/etape/')}}{{etape.image}}" width="200" height="200">
-			</div>
-		{% endfor %}
-	</div>
 
-	<div class="row" id="casesJetons">
-		{% for etape in etapes %}
-			<div class="col-xs-{{sizeCol}} {% if loop.first %}col-xs-offset-{{offset}}{% endif %} jeton">
-				{% if loop.last %}
-				<div class="drop-jeton last"></div>
-				{% else %}
-				<div class="drop-jeton"></div>
-				{% endif %}
-			</div>
-		{% endfor %}
-	</div>
-
-	<div id="img-jeton" class="col-xs-1">
-	</div>
-
-	<div class="row clavier">		
-		<div class="col-md-offset-9 col-md-2">
+    <div class="row clavier">		
+		<div class="col-md-11"></div>
+		<div class="col-md-2 clavier-absolute">
 			<table class="table table-bordered table-condensed none" id="table">
 				<tr>
 					<td colspan="2"><input type="password" id="inputClavier" /></td>
@@ -62,8 +41,29 @@
 			</table>
 		</div>
 		<div class="col-md-1">
-			<img src="{{ asset('img/contrat/grid24.png') }}" class="img-responsive grid" id="grid" />
+			<img src="{{ asset('img/contrat/grid32.png') }}" class="img-responsive grid" id="grid" />
 		</div>
+	</div>
+
+	<div class="row" id="casesEtapes">
+		{% for etape in etapes %}
+			<div class="etape col-xs-{{sizeCol}} {% if loop.first %}col-xs-offset-{{offset}}{% endif %}">
+				<img class="img-responsive" src="{{asset('img/etape/')}}{{etape.image}}" width="200" height="200">
+				<br />
+				{% if loop.last %}
+				<div class="jeton">
+					<div class="drop-jeton last"></div>
+				</div>
+				{% else %}
+				<div class="jeton">
+					<div class="drop-jeton"></div>
+				</div>
+				{% endif %}
+			</div>
+		{% endfor %}
+	</div>
+
+	<div id="img-jeton" class="col-xs-1">
 	</div>
 
 	<!-- Modal -->

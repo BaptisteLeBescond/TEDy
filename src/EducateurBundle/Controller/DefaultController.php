@@ -41,6 +41,7 @@ class DefaultController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$user = $this->getUser();
       	$enfants = $user->getEnfant();
+        $contrats = null;
       	for ($i=0; $i < sizeof($enfants); $i++) {
             $contrats[$i] = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants[$i]));
             for ($j=0; $j < sizeof($contrats[$i]); $j++) {
@@ -427,11 +428,11 @@ class DefaultController extends Controller
             $em->flush();
 
             $message = "L'étape a été créée avec succès.";
-        }
-        else
-            $message = "Une erreur s'est produite lors de la création de l'étape.";
 
-        return $this->render('EducateurBundle:Default:creerEtape.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user));
+            return $this->render('EducateurBundle:Default:creerEtape.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user));
+        }
+
+        return $this->render('EducateurBundle:Default:creerEtape.html.twig', array('form' => $form->createView(), 'user' => $user));
     }
 
     public function inviterAction($username, $name) {

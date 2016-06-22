@@ -52,6 +52,11 @@ h1, h2 {
 }
 
 
+
+
+
+
+
 /*** HEADER ***/
 
 body.page-planning,
@@ -179,6 +184,10 @@ body.page-index {
 }
 
 
+
+
+
+
 /*** login.html.twig ***/
 
 .erreur {
@@ -237,6 +246,7 @@ body.page-index {
   text-align: center;
   font-size: 1.2em;
 }
+
 
 
 
@@ -467,12 +477,8 @@ body.page-index {
 
 /*** contrat.html.twig ***/
 
-.page-contrat {
-	overflow-y: hidden;
-}
-
-.page-contrat .row {
-	height: 25vh;
+.page-contrat .row.clavier {
+	height: 7vh;
 }
 
 .page-contrat .row#casesJetons {
@@ -515,6 +521,8 @@ body.page-index {
 
 .page-contrat img.grid {
 	padding-left: 20%;
+	padding-top: 10%;
+	cursor: pointer;
 }
 
 .page-contrat .clavier table.none {
@@ -523,6 +531,13 @@ body.page-index {
 
 .page-contrat .clavier table {
 	text-align: center;
+	background-color: white;
+}
+
+.page-contrat .clavier-absolute {
+	position: absolute;
+	right: 2%;
+    top: 1%;
 }
 
 .page-contrat #boutonClavier {
@@ -532,6 +547,10 @@ body.page-index {
 .page-contrat #new-jeton {
 	margin: 0 auto;
 }
+
+/*.page-contrat #img-jeton {
+	float: right;
+}*/
 
 .page-contrat #modal-body {
 	text-align: center;
@@ -595,30 +614,32 @@ body.page-index {
 
 /*** creerPlanning.html.twig ***/
 
-.second-titre-page {
+.page-creer-planning .second-titre-page {
  color: #3a405a;
 }
 
-.troisieme-titre-page {
+.page-creer-planning .troisieme-titre-page {
   color: #3a405a;
   text-align: center;
 }
 
-.form-ajout-seq {
+.page-creer-planning .form-ajout-seq {
   font-size: 1.2em;
   text-align: center;
 }
-.form-ajout-seq-input {
+
+.page-creer-planning .form-ajout-seq-input {
   margin-bottom: 10px;
 }
 
-#dropzone {
+.page-creer-planning #dropzone {
   min-height: 200px;
   background-color: rgb(230,230,230);
   border-radius: 5px;
   padding: 20px;
 }
-#dropzone img{
+
+.page-creer-planning #dropzone img {
 	width: 80px;
   height: 80px;
   background-color: #e0e3f4;
@@ -627,11 +648,12 @@ body.page-index {
   padding: 10px;
 }
 
-.case-etape{
+.page-creer-planning .case-etape {
   height: 230px;
   margin-bottom: 20px;
 }
-.etape{
+
+.page-creer-planning .etape {
   cursor: pointer;
   background-color: inherit;
   box-shadow: none;
@@ -639,26 +661,30 @@ body.page-index {
 
   padding: 20px;
 }
-.etape p{
+
+.page-creer-planning .etape p {
   font-size: 1.2em;
   text-align: center;
   height: 50px;
 }
-.photo-etape {
+
+.page-creer-planning .photo-etape {
   width: 100px;
   height: 100px;
   margin: 0px auto 5px;
 }
-.selected{
+
+.page-creer-planning .selected {
   background-color: #e0e3f4;
   box-shadow: 5px 5px 15px 5px #656565;
   transition:0.4s;
 }
-.in-list {
+
+.page-creer-planning .in-list {
   margin: 10px;
 }
 
-.indicateurPosition{
+.page-creer-planning .indicateurPosition {
   background-color: #e0e3f4;
   border-radius: 50px;
   border: 4px solid #6f7aa9;
@@ -674,7 +700,8 @@ body.page-index {
   z-index: 999;
   opacity: 0;
 }
-.indicateurPosition.shown{
+
+.page-creer-planning .indicateurPosition.shown {
   opacity: 1;
   transition:0.2s;
 }

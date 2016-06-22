@@ -2,13 +2,6 @@
  * Gestion du clavier numérique de la Page Contrat
  */
 
-
-
-
-
-
-
-
 var imageGrid = document.getElementById('grid');
 var table = document.getElementById('table');
 
@@ -77,7 +70,7 @@ $(boutonClavier).click(function() {
 		imageJeton.setAttribute('style', 'transfom: translate(0px, 0px)');
 	}
 	else{
-		console.log('ko');
+		alert("Le mot de passe est incorrect.");
 	}
 	$(inputClavier).val('');
 	table.classList.add('none');
