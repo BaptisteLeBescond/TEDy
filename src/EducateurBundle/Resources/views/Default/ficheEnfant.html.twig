@@ -4,7 +4,7 @@
 
 {% block bodyclass %} class="page-fiche-enfant" {% endblock %}
 
-{% block stylesheets %} 
+{% block stylesheets %}
   <link rel="stylesheet" type="text/css" href="{{ asset('css/fullcalendar.min.css') }}">
 {% endblock %}
 
@@ -39,10 +39,11 @@
     </div>
   </div>
 </div>
+
 <div class="container">
-	<div class="col-md-2">
-		<button class="btn btn-danger btn-supprimer-enfant" data-toggle="modal" data-target="#supprimerEnfantModal">Supprimer la fiche</button>
-	</div>
+  <button type="button" class="col-md-2 btn bouton-inviter">
+    <a href="{{ path('educateur_inviter', { 'username' : enfant.username, 'name' : enfant.name }) }}">Inviter</a>
+  </button>
 	<h1 class="titre-page col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-2 col-xs-12">
 			Fiche de l'enfant
 	</h1>
@@ -78,7 +79,7 @@
 				{% if enfant.age is null %}
 					<div class="col-md-4 col-sm-4 col-xs-6 fiche-enfant-input-vide">Champ non renseigné</div>
 				{% else %}
-					<div class="col-md-4 col-sm-4 col-xs-6 fiche-enfant-input">{{enfant.age}}</div>
+					<div class="col-md-4 col-sm-4 col-xs-6 fiche-enfant-input">{{enfant.age}} ans</div>
 				{% endif %}
 		</div>
 
@@ -118,9 +119,12 @@
 				{% endif %}
 		</div>
 
-		<button type="button" class="col-md-3 col-md-offset-9 col-sm-3 col-sm-offset-9 col-xs-5 btn btn-primary fiche-enfant-bouton">
-		    <a href="{{ path('educateur_enfant_modif', { 'username' : enfant.username, 'name' : enfant.name }) }}">Modifier</a>
-		</button>
+      <button class="col-md-2 pull-left btn btn-danger btn-supprimer-enfant" data-toggle="modal" data-target="#supprimerEnfantModal">Supprimer la fiche</button>
+
+      <button type="button" class="col-md-2 pull-right col-sm-2 col-sm-offset-6 col-xs-5 btn btn-primary fiche-enfant-bouton">
+		      <a href="{{ path('educateur_enfant_modif', { 'username' : enfant.username, 'name' : enfant.name }) }}">Modifier</a>
+		  </button>
+
 	</div>
 </div>
 <br><br>
@@ -141,7 +145,7 @@
 		<div class="row">
 			<h3>Planning en cours : {{p.libelle}}</h3>
 		</div>
-	{% endfor %}	
+	{% endfor %}
 </div>
 
 <!-- Modal -->

@@ -329,10 +329,10 @@ div#ui-datepicker-div {
   margin-bottom: 20px;
 }
 
-.fiche-enfant-bouton a, .fiche-enfant-bouton a:hover, .bouton-ajout-contrat a, .bouton-ajout-contrat a:hover{
+.fiche-enfant-bouton a, .fiche-enfant-bouton a:hover, .bouton-ajout-contrat a, .bouton-ajout-contrat a:hover, .bouton-inviter a, .bouton-inviter a:hover {
   color: white;
   text-decoration: none;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .fiche-enfant-bouton {
@@ -344,9 +344,11 @@ div#ui-datepicker-div {
   background-color: #3a405a;
 }
 
-.btn-supprimer-enfant{
+.bouton-inviter {
   margin-top: 20px;
+  background-color: #6f7aa9;
 }
+
 
 .page-fiche-enfant .container.contratEnCours,
 .page-fiche-enfant .container.planningEnCours {
