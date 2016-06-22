@@ -435,4 +435,30 @@ class DefaultController extends Controller
         return $this->render('EducateurBundle:Default:creerEtape.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user));
     }
 
+    public function inviterAction($name) {
+
+      $transport = \Swift_SmtpTransport::newInstance()
+            ->setUsername('sevrine-vincent@hotmail.fr')->setPassword('020188')
+            ->setHost('smtp-mail.outlook.com')
+            ->setPort(587)->setEncryption('tls');
+
+      $mailer = \Swift_Mailer::newInstance($transport);
+
+      $message = \Swift_Message::newInstance()
+        ->setSubject('Hello Email')
+        ->setFrom('sevrine-vincent@hotmail.fr')
+        ->setTo('sevrine-vincent@hotmail.fr')
+        ->setBody(
+            $this->renderView(
+                // app/Resources/views/Emails/registration.html.twig
+                'Emails/registration.html.twig',
+                array('name' => $name)
+            ),
+            'text/html'
+        );
+
+        $result = $mailer->send($message);
+      //var_dump($this->get('mailer')->send($message));
+      return $this->forward('EducateurBundle:Default:index');
+    }
 }

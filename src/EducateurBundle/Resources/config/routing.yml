@@ -40,4 +40,6 @@ educateur_enfant_modif:
     path:     /enfant/{username}-{name}/modif-enfant
     defaults: { _controller: EducateurBundle:Default:modifEnfant }
 
-
+educateur_inviter:
+    path:     /enfant/{username}-{name}/inviter
+    defaults: { _controller: EducateurBundle:Default:inviter }
