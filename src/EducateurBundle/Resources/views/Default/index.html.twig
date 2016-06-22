@@ -90,7 +90,6 @@
     var enfantsPhoto = document.getElementsByClassName('un-enfant');
     [].forEach.call(enfantsPhoto, function(enfantPhoto, i) {
       var enfantNom = enfantPhoto.lastElementChild;
-      console.log(enfantNom);
       enfantNom.setAttribute("style", "color:"+colors[i]);
     });
     $(document).ready(function() {
@@ -131,7 +130,6 @@
             var deleteContrat = document.getElementById("deleteContrat");
             var path = "{{path('educateur_supprimer_contrat', {'id': "PLACEHOLDER"})}}";
             path = path.replace("PLACEHOLDER", calEvent.id);
-            console.log(path);
             deleteContrat.setAttribute('href', path);
 
         }

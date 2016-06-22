@@ -43,7 +43,7 @@
 						<div class="row">
 							{{ form_label(form.musique,"Musique", {'label_attr': {'class': 'col-md-4 col-sm-4 control-label form-required'}}) }}
 							<div class="col-md-6 col-sm-6">
-								{{ form_widget(form.musique, {'attr': {'class': 'form-control form-ajout-seq-input', 'required' :'required'}}) }}
+								{{ form_widget(form.musique, {'attr': {'class': 'form-control form-ajout-seq-input'}}) }}
 							</div>
 						</div>
 					</div>
@@ -159,6 +159,7 @@
 				if(input.getAttribute('value') > oldPosition)
 					input.setAttribute('value', newPosition);
 			});
+			console.log(position);
 		}
 
 		function handleRemoveInListEtape(e){

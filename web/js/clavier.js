@@ -70,7 +70,11 @@ var imageJeton = document.getElementById('img-jeton');
 
 $(boutonClavier).click(function() {
 	if(password == $(inputClavier).val()) {
-		$(imageJeton).html('<img src="../../img/contrat/Jeton.png" alt="img-jeton" id="new-jeton" class="draggable" />');
+		imageJeton.setAttribute('class', 'draggable col-md-1 col-xs-1');
+		$(imageJeton).html('<img src="../../img/contrat/Jeton.png" alt="img-jeton" id="new-jeton" />');
+		imageJeton.setAttribute('data-x', '0');
+		imageJeton.setAttribute('data-y', '0');
+		imageJeton.setAttribute('style', 'transfom: translate(0px, 0px)');
 	}
 	else{
 		console.log('ko');
