@@ -14,9 +14,10 @@ h1, h2{
 #message{
   text-align: center;
   background-color: #76ad3a;
-  border-radius: 5px;
-  margin: 0px auto;
-  font-size: 14px;
+  border-radius: 2px;
+  color: white;
+  margin: 15px auto;
+  font-size: 18px;
   width: 50%;
 }
 

@@ -225,8 +225,9 @@ class DefaultController extends Controller
             $em->flush();
 
             $message = "Le planning a été créé avec succès.";
+            $plannings = $em->getRepository('SequenceBundle:Planning')->findBy(array('enfant' => $user));
 
-            return $this->render('EnfantBundle:Default:creerPlanning.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
+            return $this->render('EnfantBundle:Default:planning.html.twig', array('message' => $message, 'user' => $user, 'plannings' => $plannings));
         }
 
         return $this->render('EnfantBundle:Default:creerPlanning.html.twig', array('form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
