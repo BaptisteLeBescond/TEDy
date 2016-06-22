@@ -5,17 +5,6 @@
 {% block bodyclass %} class="page-creer-planning" {% endblock %}
 
 {% block body %}
-<div class="row">
-	<div class="col-md-2 col-sm-2 col-xs-2 user-present">
-		{{user}}  |
-
-		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-				<a href="{{ path('fos_user_security_logout') }}">
-						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-				</a>
-		{% endif %}
-	</div>
-</div>
 
 {% if message is defined %}
 	<div id="message">
