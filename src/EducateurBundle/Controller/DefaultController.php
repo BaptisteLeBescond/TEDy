@@ -461,6 +461,23 @@ class DefaultController extends Controller
 
       $result = $mailer->send($message);
 
-      return $this->forward('EducateurBundle:Default:index');
+      $user = $this->getUser();
+      $enfants = $user->getEnfant();
+      $contrats = null;
+        for ($i=0; $i < sizeof($enfants); $i++) {
+            $contrats[$i] = $em->getRepository('SequenceBundle:Contrat')->findBy(array('enfant' => $enfants[$i]));
+            for ($j=0; $j < sizeof($contrats[$i]); $j++) {
+                if($contrats[$i][$j]->getEnCours() == false && $contrats[$i][$j]->getFini() == false && $contrats[$i][$j]->getDate()->format('Y-m-d H:i') < date('Y-m-d H:i')){
+                    $contrats[$i][$j]->setEnCours(true);
+                    $em->persist($contrats[$i][$j]);
+                    $em->flush();
+                }
+            }
+        }
+        $i--;
+
+        $message = "L'educateur à bien été invité";
+
+        return $this->render('EducateurBundle:Default:index.html.twig', array('message' => $message, 'compteur' => $i, 'contrats' => $contrats, 'user' => $user, 'enfants' => $enfants));
     }
 }
