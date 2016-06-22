@@ -106,7 +106,7 @@
                   id: '{{contrat.id}}',
                   enfant: '{{contrat.enfant.username}}',
                   date:'{{contrat.date | date("Y-m-d H:i")}}',
-                  title: 'Titre : {{contrat.libelle}}',
+                  title: 'Titre : {{contrat.libelle}} {% if contrat.enCours == true %}(en cours){% elseif contrat.fini == true %}(fini){% endif %}',
                   start: '{{contrat.date | date("Y-m-d H-i-s")}}',
                   description: '<div class="col-md-12"><h3>Description : {{contrat.description}}</h3></div><div class="clearfix"></div> <div class="col-md-12"><h4>Enfant : {{contrat.enfant.username}}</h4></div><div class="clearfix"></div> <div class="col-md-12"><h4>Date : {{contrat.date | date("Y-m-d H:i")}}</h4></div><div class="clearfix"></div> {% for etape in contrat.sequence.etapes %}<hr><div class="nomEtape col-md-6"> {{ etape }}</div><div class="imageEtape col-md-6"> <img class="img-responsive" src="{{asset("img/etape/")}}{{etape.image}}"/></div><div class="clearfix"></div>{% endfor %}',
                   className: 'clickable',
