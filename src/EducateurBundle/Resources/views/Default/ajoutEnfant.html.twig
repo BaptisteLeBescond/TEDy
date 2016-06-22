@@ -17,8 +17,8 @@
     </div>
   </div>
 
-  {% if message %}
-    <div class="row message">
+  {% if message is defined %}
+    <div id="message">
       {{message}}
     </div>
   {% endif %}

@@ -87,11 +87,10 @@ class DefaultController extends Controller
 
           $message = "Votre compte à été modifié avec succès.";
 
+          return $this->render('EducateurBundle:Default:monCompte.html.twig', array('message' => $message, 'user' => $user, 'form' => $form->createView()));
         }
-        else
-          $message = "Une erreur s'est produite lors de la modification de votre compte.";
 
-        return $this->render('EducateurBundle:Default:monCompte.html.twig', array('message' => $message, 'user' => $user, 'form' => $form->createView()));
+        return $this->render('EducateurBundle:Default:monCompte.html.twig', array('user' => $user, 'form' => $form->createView()));
     }
 
     public function ajoutEnfantAction(Request $request)
@@ -146,11 +145,11 @@ class DefaultController extends Controller
 
             $message = $enfant->getUsername()." à été ajouté avec succès.";
 
-		}
-		else
-			$message = "Une erreur s'est produite lors de l'ajout d'un enfant.";
+            return $this->render('EducateurBundle:Default:ajoutEnfant.html.twig', array('message' => $message,  'user' => $user, 'form' => $form->createView()));
 
-        return $this->render('EducateurBundle:Default:ajoutEnfant.html.twig', array('message' => $message,  'user' => $user, 'form' => $form->createView()));
+		}
+
+        return $this->render('EducateurBundle:Default:ajoutEnfant.html.twig', array('user' => $user, 'form' => $form->createView()));
     }
 
     public function supprimerEnfantAction(Request $request, $id)
@@ -209,11 +208,11 @@ class DefaultController extends Controller
   			$em->flush();
 
             $message = $enfant->getUsername()." à été modifié avec succès.";
-        }
-        else
-			$message = "Une erreur s'est produite lors de la modification d'un enfant.";
 
             return $this->render('EducateurBundle:Default:modifEnfant.html.twig', array('message' => $message, 'user' => $user, 'enfant' => $enfant, 'form' => $form->createView()));
+        }
+
+            return $this->render('EducateurBundle:Default:modifEnfant.html.twig', array('user' => $user, 'enfant' => $enfant, 'form' => $form->createView()));
 
     }
 
@@ -287,11 +286,12 @@ class DefaultController extends Controller
         	$em->flush();
 
             $message = "La séquence a été créée avec succès.";
-		}
-		else
-			$message = "Une erreur s'est produite lors de la création de la séquence.";
 
-        return $this->render('EducateurBundle:Default:creerSequence.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
+            return $this->render('EducateurBundle:Default:creerSequence.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
+
+		}
+
+        return $this->render('EducateurBundle:Default:creerSequence.html.twig', array('form' => $form->createView(), 'user' => $user, 'etapes' => $etapes));
     }
 
     public function ficheEnfantAction($username, $name)
@@ -366,11 +366,10 @@ class DefaultController extends Controller
 
             $message = "Le contrat a été créé avec succès.";
 
+            return $this->render('EducateurBundle:Default:creerContrat.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user, 'enfant' => $enfant, 'sequences' => $sequences));
         }
-        else
-            $message = "Une erreur s'est produite lors de la création du contrat.";
 
-        return $this->render('EducateurBundle:Default:creerContrat.html.twig', array('message' => $message, 'form' => $form->createView(), 'user' => $user, 'enfant' => $enfant, 'sequences' => $sequences));
+        return $this->render('EducateurBundle:Default:creerContrat.html.twig', array('form' => $form->createView(), 'user' => $user, 'enfant' => $enfant, 'sequences' => $sequences));
     }
 
     public function supprimerContratAction(Request $request, $id)

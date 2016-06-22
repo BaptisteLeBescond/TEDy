@@ -11,6 +11,15 @@ h1, h2{
   color: #ffa527;
 }
 
+#message{
+  text-align: center;
+  background-color: #76ad3a;
+  border-radius: 5px;
+  margin: 0px auto;
+  font-size: 14px;
+  width: 50%;
+}
+
 .navbar-nav>li>a{
   color:white;
   text-align: center;
