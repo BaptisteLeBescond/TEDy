@@ -26,7 +26,8 @@ interact('.draggable').draggable({
     // call this function on every dragmove event
     onmove: dragMoveListener,
     onstart : function(event) {
-        casesJetons = document.getElementById('casesJetons');
+        //casesJetons = document.getElementById('casesJetons');
+        casesJetons = document.getElementById('casesEtapes');
         jeton = casesJetons.getElementsByClassName('drop-jeton');
         for (var i = 0 ; i < jeton.length ; i++) {
             if($(jeton[i]).hasClass('fini')) {
