@@ -276,7 +276,7 @@ class DefaultController extends Controller
                     $this->container->getParameter('musiques_directory'),
                     $fileName
                 );
-                $sequence->setMusique($file);
+                $sequence->setMusique($fileName);
             }
 
         	$sequence->setCreateur($user);
