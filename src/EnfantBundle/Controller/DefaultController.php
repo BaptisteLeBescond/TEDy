@@ -68,7 +68,7 @@ class DefaultController extends Controller
 
         if(is_null($contrat)) {
             $points = $user->getPoints();
-            $contratsFinis = $em->getRepository('SequenceBundle:Contrat')->findOneBy(array('enfant' => $user));
+            $contratsFinis = $em->getRepository('SequenceBundle:Contrat')->findOneBy(array('enfant' => $user, 'fini' => true));
             $recompenses = sizeof($contratsFinis);
             return $this->render('EnfantBundle:Default:contrat404.html.twig' , array('recompenses' => $recompenses, 'points' => $points));
         }

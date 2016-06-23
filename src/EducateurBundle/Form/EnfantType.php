@@ -5,6 +5,7 @@ namespace EducateurBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class EnfantType extends AbstractType
 {
@@ -13,13 +14,12 @@ class EnfantType extends AbstractType
     $builder
       ->add('username',  'text')
       ->add('name',     'text')
-      ->add('password',    'password')
       ->add('age',   'integer')
       ->add('telephone', 'integer')
       ->add('adresse_postale', 'text')
       ->add('code_postale', 'integer')
       ->add('ville', 'text')
-      ->add('photo', 'file')
+      ->add('photo', FileType::class)
       ->add('save',      'submit')
     ;
   }

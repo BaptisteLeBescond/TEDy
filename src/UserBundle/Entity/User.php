@@ -65,8 +65,7 @@ class User extends BaseUser
     private $ville;
 
     /**
-     * @var string
-     * @ORM\Column(name="photo", type="string", nullable=true, unique=false)
+     * @ORM\Column(name="photo", nullable=true, unique=false)
      * @Assert\NotBlank(message="Veuillez uploader un fichier jpg / png / gif / bitmap.")
      * @Assert\File(mimeTypes={ "image/jpeg", "image/jpg", "image/png", "image/gif", "image/bitmap" })
      */

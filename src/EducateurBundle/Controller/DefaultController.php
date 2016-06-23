@@ -189,7 +189,7 @@ class DefaultController extends Controller
         ->add('adresse_postale', 'text', array('label' => 'Adresse','required' => false, 'attr' => array()))
         ->add('code_postale', 'integer', array('label' => 'Code postal','required' => false, 'attr' => array()))
         ->add('ville', 'text', array('label' => 'Ville','required' => false, 'attr' => array()))
-        ->add('photo', FileType::class, array('label' => 'Photo','required' => false, 'attr' => array()))
+        // ->add('photo', FileType::class, array('label' => 'Photo','required' => false, 'attr' => array()))
         ->add('save',      'submit')
         ->getForm()
 	      ;
